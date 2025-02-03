@@ -18,7 +18,7 @@
     const timeline = [];
 
     // informed_consent
-    let informed_consent = {
+    const informed_consent = {
         type: jsPsychHtmlButtonResponse,
         stimulus: '<div style="font-size:30px;">' +
             '<p><b>実験に参加頂きありがとうございます</b><p>' +
@@ -117,7 +117,7 @@
         }
     };
     // 練習セクションの説明
-    let exprein_test_experiment = {
+    const exprein_test_experiment = {
         type: jsPsychHtmlButtonResponse,
 
         stimulus: '<div style="font-size:30px;">' +
@@ -159,7 +159,7 @@
 
 
     // 本番実験セクションの説明
-    let exprein_experiment = {
+    const exprein_experiment = {
         type: jsPsychHtmlButtonResponse,
         stimulus: '<div style="font-size:30px;">' +
             '<p><b>本番を開始します</b></p>' +
@@ -235,7 +235,7 @@
     timeline.push(trial_1);
 
     //実験の 1/2 終了通達
-    let take_a_break_1 = {
+    const take_a_break_1 = {
         type: jsPsychHtmlButtonResponse,
         stimulus: '<div style="font-size:34px;">' +
             '<p><b>一旦休憩です</b></p>' +
@@ -310,7 +310,7 @@
     timeline.push(trial_2);
 
     //実験終了通達
-    let trial_is_finish = {
+    const trial_is_finish = {
         type: jsPsychHtmlButtonResponse,
         stimulus: '<div style="font-size:34px;">' +
             '<p><b>お疲れ様です、実験は終わりです</b></p>' +
