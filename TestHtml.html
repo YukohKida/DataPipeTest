@@ -14,8 +14,8 @@
 <body></body>
 <script>
     // 滑らかさ
-    var jsPsych = initJsPsych();
-    var timeline = [];
+    const jsPsych = initJsPsych();
+    const timeline = [];
 
     // informed_consent
     let informed_consent = {
@@ -51,7 +51,7 @@
     timeline.push(informed_consent);
 
     //フルスクリーン開始
-    var enter_fullscreen = {
+    const enter_fullscreen = {
         type: jsPsychFullscreen,
         message: '<div style="font-size:30px;">' +
             '<b>フルスクリーンモードに移行します</b>' +
@@ -70,11 +70,11 @@
     timeline.push(enter_fullscreen);
 
     // jsPsychによるスライダー回答画面プラグイン
-    var TestAns = {
+    const TestAns = {
         type: jsPsychHtmlSliderResponse,
         prompt: function () {
             // Get the current trial index from jsPsych data
-            var test_trial_index = jsPsych.data.get().count();
+            const test_trial_index = jsPsych.data.get().count();
             return '<br><p>' + (test_trial_index - 2) + '/' +
                 TestTrial.timeline_variables.length + ' 回目の回答</p>';
         },
@@ -102,10 +102,10 @@
             new p5();
 
             // スライダーの値を表示する要素
-            var displayElement = document.getElementById('slider-value-display');
+            const displayElement = document.getElementById('slider-value-display');
 
             // スライダーの値を表示
-            var slider = document.querySelector('input[type="range"]');
+            const slider = document.querySelector('input[type="range"]');
             slider.addEventListener('input', function () {
                 displayElement.innerHTML = '<b>' + slider.value +
                     '</b>';
@@ -147,7 +147,7 @@
     };
     timeline.push(exprein_test_experiment);
     // 練習セクションのフロー作成
-    var TestTrial = {
+    const TestTrial = {
         timeline: [TestAns],
         timeline_variables: [...Array(4).keys()].map((d) => {
             return { noise: d };
@@ -176,11 +176,11 @@
     timeline.push(exprein_experiment);
 
     // jsPsychによるスライダー回答画面プラグイン
-    var ans_1 = {
+    const ans_1 = {
         type: jsPsychHtmlSliderResponse,
         prompt: function () {
             // Get the current trial index from jsPsych data
-            var trial_index = jsPsych.data.get().count();
+            const trial_index = jsPsych.data.get().count();
             return '<br><p>' + (trial_index - 7) +
                 '/36 回目の回答</p>';
         },
@@ -209,10 +209,10 @@
             new p5();
 
             // スライダーの値を表示する要素
-            var displayElement = document.getElementById('slider-value-display');
+            const displayElement = document.getElementById('slider-value-display');
 
             // スライダーの値を表示
-            var slider = document.querySelector('input[type="range"]');
+            const slider = document.querySelector('input[type="range"]');
             slider.addEventListener('input', function () {
                 displayElement.innerHTML = '<b>' + slider.value +
                     '</b>';
@@ -224,7 +224,7 @@
         },
     };
     //　本番実験セクションのフロー作成
-    var trial_1 = {
+    const trial_1 = {
         timeline: [ans_1],
         timeline_variables: [...Array(4).keys()].map((d) => {
             return { noise: d };
@@ -251,11 +251,11 @@
 
     //　実験セクションPart2
     // jsPsychによるスライダー回答画面プラグイン
-    var ans_2 = {
+    const ans_2 = {
         type: jsPsychHtmlSliderResponse,
         prompt: function () {
             // Get the current trial index from jsPsych data
-            var trial_index = jsPsych.data.get().count();
+            const trial_index = jsPsych.data.get().count();
             return '<br><p>' + (trial_index - 44) +
                 '/36 回目の回答</p>';
         },
@@ -284,10 +284,10 @@
             new p5();
 
             // スライダーの値を表示する要素
-            var displayElement = document.getElementById('slider-value-display');
+            const displayElement = document.getElementById('slider-value-display');
 
             // スライダーの値を表示
-            var slider = document.querySelector('input[type="range"]');
+            const slider = document.querySelector('input[type="range"]');
             slider.addEventListener('input', function () {
                 displayElement.innerHTML = '<b>' + slider.value +
                     '</b>';
@@ -299,7 +299,7 @@
         },
     };
     //　本番実験セクションのフロー作成
-    var trial_2 = {
+    const trial_2 = {
         timeline: [ans_2],
         timeline_variables: [...Array(4).keys()].map((d) => {
             return { noise: d };
@@ -323,7 +323,7 @@
     timeline.push(trial_is_finish);
 
     // アンケート
-    var survey1 = {
+    const survey1 = {
         type: jsPsychHtmlButtonResponse,
         stimulus: '<div style="font-size:34px;">' +
             '<p>【任意】ご性別をお聞かせください</p><br><br>',
@@ -333,7 +333,7 @@
         },
     };
     timeline.push(survey1);
-    var survey2 = {
+    const survey2 = {
         type: jsPsychSurveyText,
         questions: [
             {
@@ -350,7 +350,7 @@
     timeline.push(survey2);
 
     // パスコード表示
-    var end_experiment = {
+    const end_experiment = {
         type: jsPsychHtmlButtonResponse,
         stimulus: '<div style="font-size:34px;">' +
             '<p><b>パスコードをメモしてください</b></p><br>' +
@@ -372,7 +372,7 @@
     timeline.push(end_experiment);
 
     //フルスクリーン終了
-    var exit_fullscreen = {
+    const exit_fullscreen = {
         type: jsPsychFullscreen,
         fullscreen_mode: false,
         delay_after: 0
