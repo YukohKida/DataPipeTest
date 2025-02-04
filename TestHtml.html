@@ -22,60 +22,60 @@
     const subject_id = jsPsych.randomization.randomID(10);
     const filename = `${subject_id}.csv`;
 
-    // プラグインの定義
-    // `plugin_P5js`はわかりやすいように適当に決めればよい
-    jsPsych.plugins['plugin_P5js'] = (function () {
-        var plugin = {};
-        plugin.info = {
-            name: 'plugin_P5js',
-            parameters: {
-                // パラメータが必要ならここで指定
-            }
-        }
+    // // プラグインの定義
+    // // `plugin_P5js`はわかりやすいように適当に決めればよい
+    // jsPsych.plugins['plugin_P5js'] = (function () {
+    //     var plugin = {};
+    //     plugin.info = {
+    //         name: 'plugin_P5js',
+    //         parameters: {
+    //             // パラメータが必要ならここで指定
+    //         }
+    //     }
 
-        // これがプラグインの本体
-        plugin.trial = function (display_element, trial) {
+    //     // これがプラグインの本体
+    //     plugin.trial = function (display_element, trial) {
 
-            // 時間になったら関数を終了する
-            let end_trial = function () {
-                jsPsych.pluginAPI.clearAllTimeouts();
-                display_element.innerHTML = "";
-                jsPsych.finishTrial();
-                // プラグイン終了時に p5js も閉じる
-                // ※ これ入れとかないと多分メモリリークします
-                myp5.remove();
-            };
+    //         // 時間になったら関数を終了する
+    //         let end_trial = function () {
+    //             jsPsych.pluginAPI.clearAllTimeouts();
+    //             display_element.innerHTML = "";
+    //             jsPsych.finishTrial();
+    //             // プラグイン終了時に p5js も閉じる
+    //             // ※ これ入れとかないと多分メモリリークします
+    //             myp5.remove();
+    //         };
 
-            // trial_duration が指定されてる場合は、その時間経過したら終了する
-            if (trial.trial_duration !== null) {
-                jsPsych.pluginAPI.setTimeout(function () {
-                    end_trial();
-                }, trial.trial_duration);
-            };
+    //         // trial_duration が指定されてる場合は、その時間経過したら終了する
+    //         if (trial.trial_duration !== null) {
+    //             jsPsych.pluginAPI.setTimeout(function () {
+    //                 end_trial();
+    //             }, trial.trial_duration);
+    //         };
 
-            // p5jsのオブジェクト
-            let sketch = function (p) {
+    //         // p5jsのオブジェクト
+    //         let sketch = function (p) {
 
-                //ーーーーーーーーーーーーーーーーーーーーーーーーーー
-                // ここに p5js をインスタンスモードで sketch する。
-                // `p`がp5jsのインスタンスなので、`p.hogehoge`でp5jsが公開しているオブジェクトにアクセス可能
-                p.setup = function () {
-                    p.createCanvas(400, 400);
-                }
-                p.draw = function () {
-                    p.background(220);
-                };
-                //
-                //ーーーーーーーーーーーーーーーーーーーーーーーーーー
+    //             //ーーーーーーーーーーーーーーーーーーーーーーーーーー
+    //             // ここに p5js をインスタンスモードで sketch する。
+    //             // `p`がp5jsのインスタンスなので、`p.hogehoge`でp5jsが公開しているオブジェクトにアクセス可能
+    //             p.setup = function () {
+    //                 p.createCanvas(400, 400);
+    //             }
+    //             p.draw = function () {
+    //                 p.background(220);
+    //             };
+    //             //
+    //             //ーーーーーーーーーーーーーーーーーーーーーーーーーー
 
-            };
+    //         };
 
-            // p5オブジェクトを作成
-            myp5 = new p5(sketch, display_element);
-        };
+    //         // p5オブジェクトを作成
+    //         myp5 = new p5(sketch, display_element);
+    //     };
 
-        return plugin;
-    })();
+    //     return plugin;
+    // })();
 
     const hello_trial = {
         type: jsPsychHtmlKeyboardResponse,
