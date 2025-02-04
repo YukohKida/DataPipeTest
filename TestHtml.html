@@ -2,7 +2,6 @@
 <html>
   <head>
     <title>My experiment</title>
-    <!-- <meta charset="utf-8"> -->
     <script src="https://unpkg.com/jspsych@7.3.2"></script>
     <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.2"></script>
     <script src="https://unpkg.com/@jspsych-contrib/plugin-pipe"></script>
@@ -10,35 +9,24 @@
   </head>
   <body></body>
   <script>
-    // const myp5;
     const jsPsych = initJsPsych();
-    let timeline = [];
     
     const subject_id = jsPsych.randomization.randomID(10);
     const filename = `${subject_id}.csv`;
-
+    
     const hello_trial = {
       type: jsPsychHtmlKeyboardResponse,
       stimulus: 'Hello world!'
     }
 
-
-    
-
-
-
-
-
-
     const save_data = {
-        type: jsPsychPipe,
-        action: "save",
-        experiment_id: "dOAWV88Cm1xS",
-        filename: filename,
-        data_string: ()=>jsPsych.data.get().csv()
+      type: jsPsychPipe,
+      action: "save",
+      experiment_id: "dOAWV88Cm1xS",
+      filename: filename,
+      data_string: ()=>jsPsych.data.get().csv()
     };
-    timeline.push(save_data);
 
-    jsPsych.run(timeline);
+    jsPsych.run([hello_trial, save_data]);
   </script>
 </html>
