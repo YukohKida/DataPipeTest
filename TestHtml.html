@@ -26,12 +26,9 @@
     // アンケート
     const survey1 = {
         type: jsPsychHtmlButtonResponse,
-        stimulus: 'gender',
+        // stimulus: '<p>gender</p>',
         choices: ['woman', 'men', 'other'],
-        prompt: "<p>Choose your gender</p>"
-        // data: {
-        //     survey_data: 1,
-        // },
+        prompt: '<p>Choose your gender</p>'
     };
     
     // const survey2 = {
@@ -50,8 +47,8 @@
 
     const save_data = {
         type: jsPsychPipe,
-        action: "save",
-        experiment_id: "dOAWV88Cm1xS",
+        action: 'save',
+        experiment_id: 'dOAWV88Cm1xS',
         filename: filename,
         data_string: () => jsPsych.data.get().csv()
     };
