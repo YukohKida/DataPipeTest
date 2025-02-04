@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>My experiment</title>
+    <meta charset="utf-8">
     <script src="https://unpkg.com/jspsych@7.3.2"></script>
     <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.2"></script>
     <script src="https://unpkg.com/@jspsych-contrib/plugin-pipe"></script>
@@ -16,7 +17,7 @@
     
     const hello_trial = {
       type: jsPsychHtmlKeyboardResponse,
-      stimulus: 'Hello world!'
+      stimulus: 'ハローワールド!'
     }
 
     const save_data = {
@@ -29,7 +30,7 @@
 
     const end_trial = {
       type: jsPsychHtmlKeyboardResponse,
-      stimulus: 'Thank you!'
+      stimulus: 'ありがとう!'
     }
 
     jsPsych.run([hello_trial, save_data, end_trial]);
