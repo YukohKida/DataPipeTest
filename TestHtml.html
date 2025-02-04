@@ -18,16 +18,16 @@
     const subject_id = jsPsych.randomization.randomID(10);
     const filename = `${subject_id}.csv`;
 
-    // const hello_trial = {
-    //     type: jsPsychHtmlKeyboardResponse,
-    //     stimulus: 'ハローワールド!'
-    // };
+    const hello_trial = {
+        type: jsPsychHtmlKeyboardResponse,
+        stimulus: 'ハローワールド!'
+    };
 
     // アンケート
     const survey1 = {
         type: jsPsychHtmlButtonResponse,
-        stimulus: '<p>【任意】ご性別をお聞かせください</p>',
-        choices: ['女性', '男性', 'その他'],
+        stimulus: 'gender',
+        choices: ['woman', 'men', 'other'],
         // data: {
         //     survey_data: 1,
         // },
