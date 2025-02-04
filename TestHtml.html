@@ -26,6 +26,30 @@
         stimulus: 'ハローワールド!'
     };
 
+    const hello_trial = {
+        type: jsPsychHtmlButtonResponse,
+        stimulus: '<div style="font-size:30px;">' +
+            '<p><b>実験に参加頂きありがとうございます</b><p>' +
+
+            '<p><div style=' +
+            '"text-align: left ;margin-left: auto; margin-right: auto; width: 70%;' +
+            ' font-size:20px;"><br>' +
+            'この実験は<b>パソコンやタブレットでは実施できません</b>。' +
+            'スマホでのみ実施していただけます。</p>' +
+
+            '<p>実験は任意でいつでもやめることもできます</p>' +
+
+            '<p>回答されたデータは個人が特定できない形で、' +
+            '研究の目的のみに利用します。</p>' +
+
+            '<p>実験を完了するには<b>5〜10分</b>程度かかります。</p></div>' +
+
+            '<div style="font-size:20px">' +
+            '<p>実験の参加に同意いただける場合には「次へ」を押して下さい</p>',
+        choices: ["次へ"],
+    };
+    timeline.push(informed_consent);
+
     // アンケート
     const survey1 = {
         type: jsPsychHtmlButtonResponse,
@@ -64,8 +88,8 @@
         stimulus: 'ありがとう!（もう閉じて大丈夫！）'
     }
 
-    // jsPsych.run([hello_trial, survey1, survey2, save_data, end_trial]);
-    jsPsych.run([survey1, survey2, save_data, end_trial]);
+    jsPsych.run([hello_trial, survey1, survey2, save_data, end_trial]);
+    // jsPsych.run([survey1, survey2, save_data, end_trial]);
 </script>
 
 </html>
