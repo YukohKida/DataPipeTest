@@ -7,88 +7,21 @@
     <script src="https://unpkg.com/jspsych@7.3.2"></script>
     <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.2"></script>
     <script src="https://unpkg.com/@jspsych-contrib/plugin-pipe"></script>
-
-<!--     <script src="https://cdn.jsdelivr.net/npm/p5@1.11.3/lib/p5.min.js"></script> -->
-
     <link href="https://unpkg.com/jspsych@7.3.2/css/jspsych.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body></body>
 <script>
-    // let myp5;
-
     const jsPsych = initJsPsych();
 
     const subject_id = jsPsych.randomization.randomID(10);
     const filename = `${subject_id}.csv`;
-
-    // // プラグインの定義
-    // // `plugin_P5js`はわかりやすいように適当に決めればよい
-    // jsPsych.plugins['plugin_P5js'] = (function () {
-    //     var plugin = {};
-    //     plugin.info = {
-    //         name: 'plugin_P5js',
-    //         parameters: {
-    //             // パラメータが必要ならここで指定
-    //         }
-    //     }
-
-    //     // これがプラグインの本体
-    //     plugin.trial = function (display_element, trial) {
-
-    //         // 時間になったら関数を終了する
-    //         let end_trial = function () {
-    //             jsPsych.pluginAPI.clearAllTimeouts();
-    //             display_element.innerHTML = "";
-    //             jsPsych.finishTrial();
-    //             // プラグイン終了時に p5js も閉じる
-    //             // ※ これ入れとかないと多分メモリリークします
-    //             myp5.remove();
-    //         };
-
-    //         // trial_duration が指定されてる場合は、その時間経過したら終了する
-    //         if (trial.trial_duration !== null) {
-    //             jsPsych.pluginAPI.setTimeout(function () {
-    //                 end_trial();
-    //             }, trial.trial_duration);
-    //         };
-
-    //         // p5jsのオブジェクト
-    //         let sketch = function (p) {
-
-    //             //ーーーーーーーーーーーーーーーーーーーーーーーーーー
-    //             // ここに p5js をインスタンスモードで sketch する。
-    //             // `p`がp5jsのインスタンスなので、`p.hogehoge`でp5jsが公開しているオブジェクトにアクセス可能
-    //             p.setup = function () {
-    //                 p.createCanvas(400, 400);
-    //             }
-    //             p.draw = function () {
-    //                 p.background(220);
-    //             };
-    //             //
-    //             //ーーーーーーーーーーーーーーーーーーーーーーーーーー
-
-    //         };
-
-    //         // p5オブジェクトを作成
-    //         myp5 = new p5(sketch, display_element);
-    //     };
-
-    //     return plugin;
-    // })();
 
     const hello_trial = {
         type: jsPsychHtmlKeyboardResponse,
         stimulus: 'ハローワールド!!'
     };
     timeline.push(hello_trial);
-
-    // //　jspysch の timline で p5js を呼び出す関数
-    // const p5_trial = {
-    //     type: 'plugin_P5js', //''内の文字列は上のプラグイン名前と同じにする
-    //     trial_duration: 2000, //　2000ms 刺激を表示する設定
-    // };
-    // timeline.push(p5_trial);
 
     const save_data = {
         type: jsPsychPipe,
@@ -106,7 +39,6 @@
     timeline.push(end_trial);
 
     jsPsych.run([hello_trial, save_data, end_trial]);
-    // jsPsych.run(timeline);
 </script>
 
 </html>
