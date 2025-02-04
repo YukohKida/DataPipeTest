@@ -27,6 +27,11 @@
       data_string: ()=>jsPsych.data.get().csv()
     };
 
-    jsPsych.run([hello_trial, save_data]);
+    const end_trial = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: 'Thank you!'
+    }
+
+    jsPsych.run([hello_trial, save_data, end_trial]);
   </script>
 </html>
