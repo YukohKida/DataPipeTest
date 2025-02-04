@@ -33,19 +33,19 @@
         // },
     };
     
-    const survey2 = {
-        type: jsPsychSurveyText,
-        questions: [
-            {
-                prompt: '<p>【任意】ご年齢をお聞かせください</p>',
-                placeholder: '半角英数字でお答えください'
-            }
-        ],
-        button_label: '次へ',
-        // data: {
-        //     survey_data: 1,
-        // },
-    };
+    // const survey2 = {
+    //     type: jsPsychSurveyText,
+    //     questions: [
+    //         {
+    //             prompt: '<p>【任意】ご年齢をお聞かせください</p>',
+    //             placeholder: '半角英数字でお答えください'
+    //         }
+    //     ],
+    //     button_label: '次へ',
+    //     // data: {
+    //     //     survey_data: 1,
+    //     // },
+    // };
 
     const save_data = {
         type: jsPsychPipe,
@@ -60,7 +60,7 @@
         stimulus: 'ありがとう!（もう閉じて大丈夫！）'
     }
 
-    jsPsych.run([hello_trial, survey1, survey2, save_data, end_trial]);
+    jsPsych.run([hello_trial, survey1, save_data, end_trial]);
 </script>
 
 </html>
