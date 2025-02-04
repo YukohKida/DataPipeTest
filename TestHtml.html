@@ -21,7 +21,7 @@
         type: jsPsychHtmlKeyboardResponse,
         stimulus: 'ハローワールド!!'
     };
-    timeline.push(hello_trial);
+    // timeline.push(hello_trial);
 
     const save_data = {
         type: jsPsychPipe,
@@ -30,13 +30,13 @@
         filename: filename,
         data_string: () => jsPsych.data.get().csv()
     };
-    timeline.push(save_data);
+    // timeline.push(save_data);
 
     const end_trial = {
         type: jsPsychHtmlKeyboardResponse,
         stimulus: 'ありがとう!（もう閉じて大丈夫！）'
     }
-    timeline.push(end_trial);
+    // timeline.push(end_trial);
 
     jsPsych.run([hello_trial, save_data, end_trial]);
 </script>
