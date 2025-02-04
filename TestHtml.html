@@ -11,27 +11,33 @@
   <body></body>
   <script>
     // const myp5;
-    const jsPsych = initJsPsych();
-    const timeline = [];
+    let jsPsych = initJsPsych();
+    let timeline = [];
     
-    const subject_id = jsPsych.randomization.randomID(10);
-    const filename = `${subject_id}.csv`;
+    let subject_id = jsPsych.randomization.randomID(10);
+    let filename = `${subject_id}.csv`;
 
-    // informed_consent
-    const informed_consent = {
-        type: jsPsychHtmlButtonResponse,
-        stimulus: '<div style="font-size:30px;">' +
-            '<p><b>実験に参加頂きありがとうございます</b><p>' +
-        choices: ["次へ"],
+    let hello_trial = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: 'Hello world!'
+    }
+
+
+    
+
+
+
+
+
+
+    let save_data = {
+        type: jsPsychPipe,
+        action: "save",
+        experiment_id: "dOAWV88Cm1xS",
+        filename: filename,
+        data_string: ()=>jsPsych.data.get().csv()
     };
-    timeline.push(informed_consent);
-
-    
-
-
-
-
-
+    timeline.push(save_data);
 
     jsPsych.run(timeline);
   </script>
