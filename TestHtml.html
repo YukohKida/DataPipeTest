@@ -44,7 +44,7 @@
         choices: ["次へ"],
     };
 
-    var trial = {
+    const device_check = {
         type: jsPsychBrowserCheck,
         inclusion_function: (data) => {
             return data.mobile === true
@@ -542,7 +542,7 @@
         stimulus: 'ありがとう!（もう閉じて大丈夫！）'
     }
 
-    jsPsych.run([hello_trial, demo_experiment1, demo_experiment2, survey1, survey2, save_data, end_trial]);
+    jsPsych.run([hello_trial, device_check, demo_experiment1, demo_experiment2, survey1, survey2, save_data, end_trial]);
     // jsPsych.run([survey1, survey2, save_data, end_trial]);
 </script>
 
