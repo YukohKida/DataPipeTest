@@ -49,7 +49,45 @@
     var demo_experiment = {
         type: jsPsychSurveyHtmlForm,
         preamble: '<details>'+
+            '<summary>植物</summary>'+
+            '<details>'+
             '<summary>果物</summary>'+
+            '<p>リンゴ 1番</p>'+
+            '<p>バナナ 2番</p>'+
+            '</details>'+
+            '<details>'+
+            '<summary>野菜</summary>'+
+            '<p>トマト 3番</p>'+
+            '<p>キャベツ 4番</p>'+
+            '</details>'+
+            '</details>'+
+            '<summary>動物</summary>'+
+            '<details>'+
+            '<summary>草食</summary>'+
+            '<p>ウシ 5番</p>'+
+            '<p>ブタ 6番</p>'+
+            '</details>'+
+            '<details>'+
+            '<summary>肉食</summary>'+
+            '<p>ワニ 7番</p>'+
+            '<p>サメ 8番</p>'+
+            '</details>'+
+            '</details>'
+
+            ,
+        html: '<p> 豚は <input name="first" type="text" />番にある。</p>',
+        placeholder: '半角英数字でお答えください',
+        button_label: '次へ',
+        data: {
+            demo_data: 1,
+        },
+    };
+
+    // デモ実験
+    var demo_experiment2 = {
+        type: jsPsychSurveyHtmlForm,
+        preamble: '<details>'+
+            '<summary>くらし・手続き</summary>'+
             '<p>リンゴ 1番</p>'+
             '<p>バナナ 2番</p></details>'+
             '<details>'+
@@ -62,7 +100,7 @@
         placeholder: '半角英数字でお答えください',
         button_label: '次へ',
         data: {
-            demo_data: 1,
+            demo_data: 2,
         },
     };
 
@@ -87,7 +125,7 @@
         choices: ['女性', '男性', 'その他'],
         // prompt: '<p>Choose your gender</p>'
         data: {
-            survey_data: 1,
+            survey_data: 2,
         },
     };
 
