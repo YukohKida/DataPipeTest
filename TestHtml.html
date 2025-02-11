@@ -6,9 +6,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <script src="https://unpkg.com/jspsych@7.3.2"></script>
-    <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.2"></script>
     <script src="https://unpkg.com/@jspsych/plugin-html-button-response@2.1.0"></script>
-    <script src="https://unpkg.com/@jspsych/plugin-html-slider-response@1.1.3"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-browser-check@1.0.3"></script>
     <script src="https://unpkg.com/@jspsych/plugin-survey-html-form@1.0.3"></script>
     <script src="https://unpkg.com/@jspsych/plugin-survey-text@1.1.3"></script>
     <script src="https://unpkg.com/@jspsych-contrib/plugin-pipe"></script>
@@ -45,37 +44,52 @@
         choices: ["次へ"],
     };
 
+    var trial = {
+        type: jsPsychBrowserCheck,
+        inclusion_function: (data) => {
+            return data.mobile === true
+        },
+        exclusion_message: (data) => {
+            if (data.mobile) {
+            } else if (data.browser !== 'chrome') {
+                return '<p>この実験はスマートフォンの操作感を検証対象としている為、'+
+                    'PCやタブレットでは参加できません。</p>'+
+                    '<p>お手数ですが、スマートフォンでやり直してください</p>';
+            }
+        }
+    };
+
     // デモ実験
     const demo_experiment1 = {
         type: jsPsychSurveyHtmlForm,
-        preamble: '<details>'+
-            '<summary>植物</summary>'+
-             '<details>'+
-              '<summary>果物</summary>'+
-               '<p>リンゴ 1番</p>'+
-               '<p>バナナ 2番</p>'+
-              '</details>'+
-             '<details>'+
-             '<summary>野菜</summary>'+
-              '<p>トマト 3番</p>'+
-              '<p>キャベツ 4番</p>'+
-             '</details>'+
-            '</details>'+
-            '<details>'+
-             '<summary>動物</summary>'+
-             '<details>'+
-              '<summary>草食</summary>'+
-               '<p>ウシ 5番</p>'+
-               '<p>ブタ 6番</p>'+
-             '</details>'+
-             '<details>'+
-              '<summary>肉食</summary>'+
-               '<p>ワニ 7番</p>'+
-               '<p>サメ 8番</p>'+
-             '</details>'+
+        preamble: '<details>' +
+            '<summary>植物</summary>' +
+            '<details>' +
+            '<summary>果物</summary>' +
+            '<p>リンゴ 1番</p>' +
+            '<p>バナナ 2番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>野菜</summary>' +
+            '<p>トマト 3番</p>' +
+            '<p>キャベツ 4番</p>' +
+            '</details>' +
+            '</details>' +
+            '<details>' +
+            '<summary>動物</summary>' +
+            '<details>' +
+            '<summary>草食</summary>' +
+            '<p>ウシ 5番</p>' +
+            '<p>ブタ 6番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>肉食</summary>' +
+            '<p>ワニ 7番</p>' +
+            '<p>サメ 8番</p>' +
+            '</details>' +
             '</details>'
 
-            ,
+        ,
         html: '<p>お題の情報を探してください。</b>豚は <input name="first" type="text" />番にある。</p>',
         placeholder: '半角英数字でお答えください',
         button_label: '次へ',
@@ -87,401 +101,401 @@
     // デモ実験
     const demo_experiment2 = {
         type: jsPsychSurveyHtmlForm,
-        preamble: '<details>'+
-             '<summary>くらし・手続き</summary>'+
-             '<details>'+
-              '<summary>戸籍・住民票など</summary>'+
-               '<p>リンゴ 1番</p>'+
-               '<p>バナナ 2番</p>'+
-             '</details>'+
-             '<details>'+
-              '<summary>税金</summary>'+
-               '<p>トマト 3番</p>'+
-               '<p>キャベツ 4番</p>'+
-             '</details>'+
-             '<details>'+
-              '<summary>ごみ・リサイクル</summary>'+
-               '<p>リンゴ 1番</p>'+
-               '<p>バナナ 2番</p>'+
-             '</details>'+
-             '<details>'+
-              '<summary>国保・後期高齢・年金</summary>'+
-               '<p>トマト 3番</p>'+
-               '<p>キャベツ 4番</p>'+
-             '</details>'+
-             '<details>'+
-              '<summary>住まい</summary>'+
-               '<p>リンゴ 1番</p>'+
-               '<p>バナナ 2番</p>'+
-             '</details>'+
-             '<details>'+
-              '<summary>環境</summary>'+
-               '<p>トマト 3番</p>'+
-               '<p>キャベツ 4番</p>'+
-             '</details>'+
-             '<details>'+
-              '<summary>安心・安全</summary>'+
-               '<p>リンゴ 1番</p>'+
-               '<p>バナナ 2番</p>'+
-             '</details>'+
-             '<details>'+
-              '<summary>各種相談</summary>'+
-               '<p>トマト 3番</p>'+
-               '<p>キャベツ 4番</p>'+
-             '</details>'+
-            '</details>'+
-            '<details>'+
-             '<summary>健康・医療・福祉</summary>'+
-             '<details>'+
-              '<summary>健康・医療</summary>'+
-               '<p>ウシ 5番</p>'+
-               '<p>ブタ 6番</p>'+
-             '</details>'+
-             '<details>'+
-              '<summary>がん・難病に対する支援</summary>'+
-               '<p>ワニ 7番</p>'+
-               '<p>サメ 8番</p>'+
-             '</details>'+
-             '<details>'+
-              '<summary>こころの健康</summary>'+
-               '<p>ウシ 5番</p>'+
-               '<p>ブタ 6番</p>'+
-             '</details>'+
-             '<details>'+
-              '<summary>健康づくり・啓発</summary>'+
-               '<p>ワニ 7番</p>'+
-               '<p>サメ 8番</p>'+
-             '</details>'+
-             '<details>'+
-              '<summary>食育・食の安全</summary>'+
-               '<p>ウシ 5番</p>'+
-               '<p>ブタ 6番</p>'+
-             '</details>'+
-             '<details>'+
-              '<summary>介護保険</summary>'+
-               '<p>ワニ 7番</p>'+
-               '<p>サメ 8番</p>'+
-             '</details>'+
-             '<details>'+
-              '<summary>高齢者福祉</summary>'+
-               '<p>ウシ 5番</p>'+
-               '<p>ブタ 6番</p>'+
-             '</details>'+
-             '<details>'+
-              '<summary>障害福祉</summary>'+
-               '<p>ワニ 7番</p>'+
-               '<p>サメ 8番</p>'+
-             '</details>'+
-             '<details>'+
-              '<summary>生活福祉</summary>'+
-               '<p>ウシ 5番</p>'+
-               '<p>ブタ 6番</p>'+
-             '</details>'+
-             '<details>'+
-              '<summary>健康・医療・福祉に関する各種相談</summary>'+
-               '<p>ワニ 7番</p>'+
-               '<p>サメ 8番</p>'+
-             '</details>'+
-            '</details>'+
-            '<details>'+
-             '<summary>子育て・教育</summary>'+
-             '<details>'+
-              '<summary>子育て</summary>'+
-               '<p>ワニ 7番</p>'+
-               '<p>サメ 8番</p>'+
-             '</details>'+
-             '<details>'+
-              '<summary>教育・学校</summary>'+
-               '<p>ウシ 5番</p>'+
-               '<p>ブタ 6番</p>'+
-             '</details>'+
-             '<details>'+
-              '<summary>生涯学習</summary>'+
-               '<p>ワニ 7番</p>'+
-               '<p>サメ 8番</p>'+
-             '</details>'+
-             '<details>'+
-              '<summary>子育て・教育に関する相談</summary>'+
-               '<p>ウシ 5番</p>'+
-               '<p>ブタ 6番</p>'+
-             '</details>'+
-            '</details>'+
-            '<details>'+
-             '<summary>観光・文化・スポーツ</summary>'+
-             '<details>'+
-              '<summary>観光</summary>'+
-               '<p>ウシ 5番</p>'+
-               '<p>ブタ 6番</p>'+
-             '</details>'+
-             '<details>'+
-              '<summary>学習施設</summary>'+
-               '<p>ワニ 7番</p>'+
-               '<p>サメ 8番</p>'+
-             '</details>'+
-             '<details>'+
-              '<summary>文化・芸術</summary>'+
-               '<p>ウシ 5番</p>'+
-               '<p>ブタ 6番</p>'+
-             '</details>'+
-             '<details>'+
-              '<summary>文化財保護</summary>'+
-               '<p>ワニ 7番</p>'+
-               '<p>サメ 8番</p>'+
-             '</details>'+
-             '<details>'+
-              '<summary>スポーツ</summary>'+
-               '<p>ウシ 5番</p>'+
-               '<p>ブタ 6番</p>'+
-             '</details>'+
-             '<details>'+
-              '<summary>イベント情報</summary>'+
-               '<p>ワニ 7番</p>'+
-               '<p>サメ 8番</p>'+
-             '</details>'+
-            '</details>'+
-            '<details>'+
-             '<summary>施設案内</summary>'+
-             '<details>'+
-              '<summary>電子マップ・施設予約</summary>'+
-               '<p>リンゴ 1番</p>'+
-               '<p>バナナ 2番</p>'+
-             '</details>'+
-             '<details>'+
-             '<summary>区役所・区民事務所</summary>'+
-              '<p>トマト 3番</p>'+
-              '<p>キャベツ 4番</p>'+
-             '</details>'+
-             '<details>'+
-              '<summary>地域コミュニティ施設</summary>'+
-               '<p>リンゴ 1番</p>'+
-               '<p>バナナ 2番</p>'+
-             '</details>'+
-             '<details>'+
-             '<summary>健康・医療・福祉施設</summary>'+
-              '<p>トマト 3番</p>'+
-              '<p>キャベツ 4番</p>'+
-             '</details>'+
-             '<details>'+
-              '<summary>子育て・教育施設</summary>'+
-               '<p>リンゴ 1番</p>'+
-               '<p>バナナ 2番</p>'+
-             '</details>'+
-             '<details>'+
-             '<summary>観光・文化・スポーツ施設</summary>'+
-              '<p>トマト 3番</p>'+
-              '<p>キャベツ 4番</p>'+
-             '</details>'+
-             '<details>'+
-              '<summary>公園</summary>'+
-               '<p>リンゴ 1番</p>'+
-               '<p>バナナ 2番</p>'+
-             '</details>'+
-             '<details>'+
-             '<summary>駐車場・駐輪場</summary>'+
-              '<p>トマト 3番</p>'+
-              '<p>キャベツ 4番</p>'+
-             '</details>'+
-             '<details>'+
-              '<summary>直売所・農園</summary>'+
-               '<p>リンゴ 1番</p>'+
-               '<p>バナナ 2番</p>'+
-             '</details>'+
-             '<details>'+
-             '<summary>環境・衛生・清掃施設</summary>'+
-              '<p>トマト 3番</p>'+
-              '<p>キャベツ 4番</p>'+
-             '</details>'+
-             '<details>'+
-              '<summary>国や都の施設、区役所</summary>'+
-               '<p>リンゴ 1番</p>'+
-               '<p>バナナ 2番</p>'+
-             '</details>'+
-            '</details>'+
-            '<details>'+
-             '<summary>産業・ビジネス</summary>'+
-             '<details>'+
-              '<summary>事業者</summary>'+
-               '<p>ウシ 5番</p>'+
-               '<p>ブタ 6番</p>'+
-             '</details>'+
-             '<details>'+
-              '<summary>産業</summary>'+
-               '<p>ワニ 7番</p>'+
-               '<p>サメ 8番</p>'+
-             '</details>'+
-             '<details>'+
-              '<summary>雇用・労働</summary>'+
-               '<p>ウシ 5番</p>'+
-               '<p>ブタ 6番</p>'+
-             '</details>'+
-             '<details>'+
-              '<summary>広報かつしか（産業・しごと面）</summary>'+
-               '<p>ワニ 7番</p>'+
-               '<p>サメ 8番</p>'+
-             '</details>'+
-            '</details>'+
-            '<details>'+
-             '<summary>まちづくり</summary>'+
-             '<details>'+
-              '<summary>土地・開発許可</summary>'+
-               '<p>リンゴ 1番</p>'+
-               '<p>バナナ 2番</p>'+
-             '</details>'+
-             '<details>'+
-             '<summary>地域街づくり</summary>'+
-              '<p>トマト 3番</p>'+
-              '<p>キャベツ 4番</p>'+
-             '</details>'+
-             '<details>'+
-              '<summary>防災街づくり</summary>'+
-               '<p>リンゴ 1番</p>'+
-               '<p>バナナ 2番</p>'+
-             '</details>'+
-             '<details>'+
-             '<summary>用途地域・都市計画・地区計画</summary>'+
-              '<p>トマト 3番</p>'+
-              '<p>キャベツ 4番</p>'+
-             '</details>'+
-             '<details>'+
-              '<summary>道路・屋外広告物・私道</summary>'+
-               '<p>リンゴ 1番</p>'+
-               '<p>バナナ 2番</p>'+
-             '</details>'+
-             '<details>'+
-             '<summary>河川</summary>'+
-              '<p>トマト 3番</p>'+
-              '<p>キャベツ 4番</p>'+
-             '</details>'+
-             '<details>'+
-              '<summary>交通</summary>'+
-               '<p>リンゴ 1番</p>'+
-               '<p>バナナ 2番</p>'+
-             '</details>'+
-             '<details>'+
-             '<summary>公園</summary>'+
-              '<p>トマト 3番</p>'+
-              '<p>キャベツ 4番</p>'+
-             '</details>'+
-             '<details>'+
-              '<summary>街づくり推進条例</summary>'+
-               '<p>リンゴ 1番</p>'+
-               '<p>バナナ 2番</p>'+
-             '</details>'+
-             '<details>'+
-             '<summary>福祉のまちづくり条例</summary>'+
-              '<p>トマト 3番</p>'+
-              '<p>キャベツ 4番</p>'+
-             '</details>'+
-            '</details>'+
-            '<details>'+
-             '<summary>区政情報</summary>'+
-             '<details>'+
-              '<summary>区の紹介</summary>'+
-               '<p>ウシ 5番</p>'+
-               '<p>ブタ 6番</p>'+
-             '</details>'+
-             '<details>'+
-              '<summary>組織図（機構図）</summary>'+
-               '<p>ワニ 7番</p>'+
-               '<p>サメ 8番</p>'+
-             '</details>'+
-             '<details>'+
-              '<summary>こんにちは区長です</summary>'+
-               '<p>ウシ 5番</p>'+
-               '<p>ブタ 6番</p>'+
-             '</details>'+
-             '<details>'+
-              '<summary>広報・広聴</summary>'+
-               '<p>ワニ 7番</p>'+
-               '<p>サメ 8番</p>'+
-             '</details>'+
-             '<details>'+
-              '<summary>例規集</summary>'+
-               '<p>ウシ 5番</p>'+
-               '<p>ブタ 6番</p>'+
-             '</details>'+
-             '<details>'+
-              '<summary>刊行物・葛飾区史</summary>'+
-               '<p>ワニ 7番</p>'+
-               '<p>サメ 8番</p>'+
-             '</details>'+
-             '<details>'+
-              '<summary>情報公開・個人情報保護</summary>'+
-               '<p>ウシ 5番</p>'+
-               '<p>ブタ 6番</p>'+
-             '</details>'+
-             '<details>'+
-              '<summary>選挙</summary>'+
-               '<p>ワニ 7番</p>'+
-               '<p>サメ 8番</p>'+
-             '</details>'+
-             '<details>'+
-              '<summary>監査</summary>'+
-               '<p>ウシ 5番</p>'+
-               '<p>ブタ 6番</p>'+
-             '</details>'+
-             '<details>'+
-              '<summary>区役所の取り組み</summary>'+
-               '<p>ワニ 7番</p>'+
-               '<p>サメ 8番</p>'+
-             '</details>'+
-             '<details>'+
-              '<summary>統計・調査</summary>'+
-               '<p>ウシ 5番</p>'+
-               '<p>ブタ 6番</p>'+
-             '</details>'+
-             '<details>'+
-              '<summary>計画・報告</summary>'+
-               '<p>ワニ 7番</p>'+
-               '<p>サメ 8番</p>'+
-             '</details>'+
-             '<details>'+
-              '<summary>行財政・予算・決算</summary>'+
-               '<p>ウシ 5番</p>'+
-               '<p>ブタ 6番</p>'+
-             '</details>'+
-             '<details>'+
-              '<summary>職員採用・人材育成</summary>'+
-               '<p>ワニ 7番</p>'+
-               '<p>サメ 8番</p>'+
-             '</details>'+
-             '<details>'+
-              '<summary>国際交流・多文化共生</summary>'+
-               '<p>ウシ 5番</p>'+
-               '<p>ブタ 6番</p>'+
-             '</details>'+
-             '<details>'+
-              '<summary>審議会・委員会</summary>'+
-               '<p>ワニ 7番</p>'+
-               '<p>サメ 8番</p>'+
-             '</details>'+
-             '<details>'+
-              '<summary>審査請求</summary>'+
-               '<p>ウシ 5番</p>'+
-               '<p>ブタ 6番</p>'+
-             '</details>'+
-             '<details>'+
-              '<summary>裁判員制度・検察審査会</summary>'+
-               '<p>ワニ 7番</p>'+
-               '<p>サメ 8番</p>'+
-             '</details>'+
-             '<details>'+
-              '<summary>町会・自治会（自治町会）</summary>'+
-               '<p>ウシ 5番</p>'+
-               '<p>ブタ 6番</p>'+
-             '</details>'+
-             '<details>'+
-              '<summary>地域活動団体</summary>'+
-               '<p>ワニ 7番</p>'+
-               '<p>サメ 8番</p>'+
-             '</details>'+
-             '<details>'+
-              '<summary>区政情報に関する各種相談</summary>'+
-               '<p>ウシ 5番</p>'+
-               '<p>ブタ 6番</p>'+
-             '</details>'+
+        preamble: '<details>' +
+            '<summary>くらし・手続き</summary>' +
+            '<details>' +
+            '<summary>戸籍・住民票など</summary>' +
+            '<p>リンゴ 1番</p>' +
+            '<p>バナナ 2番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>税金</summary>' +
+            '<p>トマト 3番</p>' +
+            '<p>キャベツ 4番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>ごみ・リサイクル</summary>' +
+            '<p>リンゴ 1番</p>' +
+            '<p>バナナ 2番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>国保・後期高齢・年金</summary>' +
+            '<p>トマト 3番</p>' +
+            '<p>キャベツ 4番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>住まい</summary>' +
+            '<p>リンゴ 1番</p>' +
+            '<p>バナナ 2番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>環境</summary>' +
+            '<p>トマト 3番</p>' +
+            '<p>キャベツ 4番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>安心・安全</summary>' +
+            '<p>リンゴ 1番</p>' +
+            '<p>バナナ 2番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>各種相談</summary>' +
+            '<p>トマト 3番</p>' +
+            '<p>キャベツ 4番</p>' +
+            '</details>' +
+            '</details>' +
+            '<details>' +
+            '<summary>健康・医療・福祉</summary>' +
+            '<details>' +
+            '<summary>健康・医療</summary>' +
+            '<p>ウシ 5番</p>' +
+            '<p>ブタ 6番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>がん・難病に対する支援</summary>' +
+            '<p>ワニ 7番</p>' +
+            '<p>サメ 8番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>こころの健康</summary>' +
+            '<p>ウシ 5番</p>' +
+            '<p>ブタ 6番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>健康づくり・啓発</summary>' +
+            '<p>ワニ 7番</p>' +
+            '<p>サメ 8番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>食育・食の安全</summary>' +
+            '<p>ウシ 5番</p>' +
+            '<p>ブタ 6番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>介護保険</summary>' +
+            '<p>ワニ 7番</p>' +
+            '<p>サメ 8番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>高齢者福祉</summary>' +
+            '<p>ウシ 5番</p>' +
+            '<p>ブタ 6番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>障害福祉</summary>' +
+            '<p>ワニ 7番</p>' +
+            '<p>サメ 8番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>生活福祉</summary>' +
+            '<p>ウシ 5番</p>' +
+            '<p>ブタ 6番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>健康・医療・福祉に関する各種相談</summary>' +
+            '<p>ワニ 7番</p>' +
+            '<p>サメ 8番</p>' +
+            '</details>' +
+            '</details>' +
+            '<details>' +
+            '<summary>子育て・教育</summary>' +
+            '<details>' +
+            '<summary>子育て</summary>' +
+            '<p>ワニ 7番</p>' +
+            '<p>サメ 8番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>教育・学校</summary>' +
+            '<p>ウシ 5番</p>' +
+            '<p>ブタ 6番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>生涯学習</summary>' +
+            '<p>ワニ 7番</p>' +
+            '<p>サメ 8番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>子育て・教育に関する相談</summary>' +
+            '<p>ウシ 5番</p>' +
+            '<p>ブタ 6番</p>' +
+            '</details>' +
+            '</details>' +
+            '<details>' +
+            '<summary>観光・文化・スポーツ</summary>' +
+            '<details>' +
+            '<summary>観光</summary>' +
+            '<p>ウシ 5番</p>' +
+            '<p>ブタ 6番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>学習施設</summary>' +
+            '<p>ワニ 7番</p>' +
+            '<p>サメ 8番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>文化・芸術</summary>' +
+            '<p>ウシ 5番</p>' +
+            '<p>ブタ 6番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>文化財保護</summary>' +
+            '<p>ワニ 7番</p>' +
+            '<p>サメ 8番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>スポーツ</summary>' +
+            '<p>ウシ 5番</p>' +
+            '<p>ブタ 6番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>イベント情報</summary>' +
+            '<p>ワニ 7番</p>' +
+            '<p>サメ 8番</p>' +
+            '</details>' +
+            '</details>' +
+            '<details>' +
+            '<summary>施設案内</summary>' +
+            '<details>' +
+            '<summary>電子マップ・施設予約</summary>' +
+            '<p>リンゴ 1番</p>' +
+            '<p>バナナ 2番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>区役所・区民事務所</summary>' +
+            '<p>トマト 3番</p>' +
+            '<p>キャベツ 4番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>地域コミュニティ施設</summary>' +
+            '<p>リンゴ 1番</p>' +
+            '<p>バナナ 2番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>健康・医療・福祉施設</summary>' +
+            '<p>トマト 3番</p>' +
+            '<p>キャベツ 4番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>子育て・教育施設</summary>' +
+            '<p>リンゴ 1番</p>' +
+            '<p>バナナ 2番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>観光・文化・スポーツ施設</summary>' +
+            '<p>トマト 3番</p>' +
+            '<p>キャベツ 4番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>公園</summary>' +
+            '<p>リンゴ 1番</p>' +
+            '<p>バナナ 2番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>駐車場・駐輪場</summary>' +
+            '<p>トマト 3番</p>' +
+            '<p>キャベツ 4番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>直売所・農園</summary>' +
+            '<p>リンゴ 1番</p>' +
+            '<p>バナナ 2番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>環境・衛生・清掃施設</summary>' +
+            '<p>トマト 3番</p>' +
+            '<p>キャベツ 4番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>国や都の施設、区役所</summary>' +
+            '<p>リンゴ 1番</p>' +
+            '<p>バナナ 2番</p>' +
+            '</details>' +
+            '</details>' +
+            '<details>' +
+            '<summary>産業・ビジネス</summary>' +
+            '<details>' +
+            '<summary>事業者</summary>' +
+            '<p>ウシ 5番</p>' +
+            '<p>ブタ 6番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>産業</summary>' +
+            '<p>ワニ 7番</p>' +
+            '<p>サメ 8番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>雇用・労働</summary>' +
+            '<p>ウシ 5番</p>' +
+            '<p>ブタ 6番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>広報かつしか（産業・しごと面）</summary>' +
+            '<p>ワニ 7番</p>' +
+            '<p>サメ 8番</p>' +
+            '</details>' +
+            '</details>' +
+            '<details>' +
+            '<summary>まちづくり</summary>' +
+            '<details>' +
+            '<summary>土地・開発許可</summary>' +
+            '<p>リンゴ 1番</p>' +
+            '<p>バナナ 2番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>地域街づくり</summary>' +
+            '<p>トマト 3番</p>' +
+            '<p>キャベツ 4番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>防災街づくり</summary>' +
+            '<p>リンゴ 1番</p>' +
+            '<p>バナナ 2番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>用途地域・都市計画・地区計画</summary>' +
+            '<p>トマト 3番</p>' +
+            '<p>キャベツ 4番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>道路・屋外広告物・私道</summary>' +
+            '<p>リンゴ 1番</p>' +
+            '<p>バナナ 2番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>河川</summary>' +
+            '<p>トマト 3番</p>' +
+            '<p>キャベツ 4番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>交通</summary>' +
+            '<p>リンゴ 1番</p>' +
+            '<p>バナナ 2番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>公園</summary>' +
+            '<p>トマト 3番</p>' +
+            '<p>キャベツ 4番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>街づくり推進条例</summary>' +
+            '<p>リンゴ 1番</p>' +
+            '<p>バナナ 2番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>福祉のまちづくり条例</summary>' +
+            '<p>トマト 3番</p>' +
+            '<p>キャベツ 4番</p>' +
+            '</details>' +
+            '</details>' +
+            '<details>' +
+            '<summary>区政情報</summary>' +
+            '<details>' +
+            '<summary>区の紹介</summary>' +
+            '<p>ウシ 5番</p>' +
+            '<p>ブタ 6番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>組織図（機構図）</summary>' +
+            '<p>ワニ 7番</p>' +
+            '<p>サメ 8番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>こんにちは区長です</summary>' +
+            '<p>ウシ 5番</p>' +
+            '<p>ブタ 6番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>広報・広聴</summary>' +
+            '<p>ワニ 7番</p>' +
+            '<p>サメ 8番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>例規集</summary>' +
+            '<p>ウシ 5番</p>' +
+            '<p>ブタ 6番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>刊行物・葛飾区史</summary>' +
+            '<p>ワニ 7番</p>' +
+            '<p>サメ 8番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>情報公開・個人情報保護</summary>' +
+            '<p>ウシ 5番</p>' +
+            '<p>ブタ 6番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>選挙</summary>' +
+            '<p>ワニ 7番</p>' +
+            '<p>サメ 8番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>監査</summary>' +
+            '<p>ウシ 5番</p>' +
+            '<p>ブタ 6番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>区役所の取り組み</summary>' +
+            '<p>ワニ 7番</p>' +
+            '<p>サメ 8番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>統計・調査</summary>' +
+            '<p>ウシ 5番</p>' +
+            '<p>ブタ 6番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>計画・報告</summary>' +
+            '<p>ワニ 7番</p>' +
+            '<p>サメ 8番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>行財政・予算・決算</summary>' +
+            '<p>ウシ 5番</p>' +
+            '<p>ブタ 6番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>職員採用・人材育成</summary>' +
+            '<p>ワニ 7番</p>' +
+            '<p>サメ 8番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>国際交流・多文化共生</summary>' +
+            '<p>ウシ 5番</p>' +
+            '<p>ブタ 6番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>審議会・委員会</summary>' +
+            '<p>ワニ 7番</p>' +
+            '<p>サメ 8番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>審査請求</summary>' +
+            '<p>ウシ 5番</p>' +
+            '<p>ブタ 6番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>裁判員制度・検察審査会</summary>' +
+            '<p>ワニ 7番</p>' +
+            '<p>サメ 8番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>町会・自治会（自治町会）</summary>' +
+            '<p>ウシ 5番</p>' +
+            '<p>ブタ 6番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>地域活動団体</summary>' +
+            '<p>ワニ 7番</p>' +
+            '<p>サメ 8番</p>' +
+            '</details>' +
+            '<details>' +
+            '<summary>区政情報に関する各種相談</summary>' +
+            '<p>ウシ 5番</p>' +
+            '<p>ブタ 6番</p>' +
+            '</details>' +
             '</details>'
-            ,
+        ,
         html: '<p> 資料は <input name="first" type="text" />番にある。</p>',
         placeholder: '半角英数字でお答えください',
         button_label: '次へ',
@@ -504,7 +518,7 @@
             survey_data: 1,
         },
     };
-    
+
     const survey2 = {
         type: jsPsychHtmlButtonResponse,
         stimulus: '<p>ご性別をお聞かせください</p>',
@@ -528,7 +542,7 @@
         stimulus: 'ありがとう!（もう閉じて大丈夫！）'
     }
 
-    jsPsych.run([hello_trial, demo_experiment1, demo_experiment2,  survey1, survey2, save_data, end_trial]);
+    jsPsych.run([hello_trial, demo_experiment1, demo_experiment2, survey1, survey2, save_data, end_trial]);
     // jsPsych.run([survey1, survey2, save_data, end_trial]);
 </script>
 
