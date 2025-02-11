@@ -46,7 +46,7 @@
     };
 
     // デモ実験
-    var demo_experiment = {
+    const demo_experiment1 = {
         type: jsPsychSurveyHtmlForm,
         preamble: '<details>'+
             '<summary>植物</summary>'+
@@ -85,7 +85,7 @@
     };
 
     // デモ実験
-    var demo_experiment2 = {
+    const demo_experiment2 = {
         type: jsPsychSurveyHtmlForm,
         preamble: '<details>'+
              '<summary>くらし・手続き</summary>'+
@@ -528,7 +528,7 @@
         stimulus: 'ありがとう!（もう閉じて大丈夫！）'
     }
 
-    jsPsych.run([hello_trial, demo_experiment, survey1, survey2, save_data, end_trial]);
+    jsPsych.run([hello_trial, demo_experiment1, demo_experiment2,  survey1, survey2, save_data, end_trial]);
     // jsPsych.run([survey1, survey2, save_data, end_trial]);
 </script>
 
