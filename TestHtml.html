@@ -44,8 +44,20 @@
         choices: ["次へ"],
     };
 
+    // デモ実験
+    var demo_experiment = {
+        type: jsPsychSurveyHtmlForm,
+        preamble: '<details><summary>階層</summary>'+
+            '<p>資料所在地 1番</p></details>',
+        html: '<p> 資料は <input name="first" type="text" />番にある。</p>',
+        button_label: '次へ',
+        data: {
+            demo_data: 1,
+        },
+    };
+
     // アンケート
-        const survey1 = {
+    const survey1 = {
         type: jsPsychSurveyText,
         questions: [
             {
