@@ -45,17 +45,7 @@
     };
 
     // アンケート
-    const survey1 = {
-        type: jsPsychHtmlButtonResponse,
-        stimulus: '<p>ご性別をお聞かせください</p>',
-        choices: ['女性', '男性', 'その他'],
-        // prompt: '<p>Choose your gender</p>'
-        data: {
-            survey_data: 1,
-        },
-    };
-    
-    const survey2 = {
+        const survey1 = {
         type: jsPsychSurveyText,
         questions: [
             {
@@ -64,6 +54,16 @@
             }
         ],
         button_label: '次へ',
+        data: {
+            survey_data: 1,
+        },
+    };
+    
+    const survey2 = {
+        type: jsPsychHtmlButtonResponse,
+        stimulus: '<p>ご性別をお聞かせください</p>',
+        choices: ['女性', '男性', 'その他'],
+        // prompt: '<p>Choose your gender</p>'
         data: {
             survey_data: 1,
         },
