@@ -48,9 +48,18 @@
     // デモ実験
     var demo_experiment = {
         type: jsPsychSurveyHtmlForm,
-        preamble: '<details><summary>階層</summary>'+
-            '<p>資料所在地 1番</p></details>',
+        preamble: '<details>'+
+            '<summary>果物</summary>'+
+            '<p>リンゴ 1番</p>'+
+            '<p>バナナ 2番</p></details>'+
+            '<details>'+
+            '<summary>野菜</summary>'+
+            '<p>トマト 3番</p>'+
+            '<p>キャベツ 4番</p>'+
+            '</details>'
+            ,
         html: '<p> 資料は <input name="first" type="text" />番にある。</p>',
+        placeholder: '半角英数字でお答えください',
         button_label: '次へ',
         data: {
             demo_data: 1,
