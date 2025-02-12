@@ -28,6 +28,15 @@
     const subject_id = jsPsych.randomization.randomID(10);
     const filename = `${subject_id}.csv`;
 
+    function addClickEvent() {
+        document.querySelectorAll('.clickable-text').forEach(element => {
+            element.addEventListener('click', function() {
+                const clickedText = this.innerText;
+                jsPsych.data.get().addToLast({ clicked_text: clickedText });
+            });
+        });
+    }
+
     const hello_trial = {
         type: jsPsychHtmlButtonResponse,
         stimulus: '<div style="font-size:30px;">' +
@@ -70,45 +79,54 @@
     };
 
     // デモ実験
-    const demo_experiment1 = {
-        type: jsPsychSurveyHtmlForm,
-        preamble: '<div style=' +
-            '"text-align: left ;margin-left: auto; margin-right: auto;">'+
-            '<details>' +
-            '<summary>植物</summary>' +
-             '<details>' +
-             '<summary>果物</summary>' +
-              'リンゴ 1番<br>' +
-              'バナナ 2番' +
-             '</details>' +
-             '<details>' +
-             '<summary>野菜</summary>' +
-              'トマト 3番<br>' +
-              'キャベツ 4番' +
-             '</details>' +
-            '</details>' +
-            '<details>' +
-            '<summary>動物</summary>' +
-             '<details>' +
-             '<summary>草食</summary>' +
-              'ウシ 5番<br>' +
-              'ブタ 6番' +
-             '</details>' +
-             '<details>' +
-             '<summary>肉食</summary>' +
-              'ワニ 7番<br>' +
-              'サメ 8番' +
-             '</details>' +
-            '</details>'
+    const DemoDetailsHTML = `
+        <div style= "text-align: left ;margin-left: auto; margin-right: auto;">
+        <details>
+            <summary>植物</summary>
+            <details>
+                <summary>果物</summary>
+                <p class="clickable-text">リンゴ</p>
+                <p class="clickable-text">バナナ</p>
+                </details>
+                <details>
+                    <summary>野菜</summary>
+                    <p class="clickable-text">トマト</p>
+                    <p class="clickable-text">キャベツ</p>
+                </details>
+            </details>
+            <details>
+                <summary>動物</summary>
+                <details>
+                    <summary>草食</summary>
+                    <p class="clickable-text">ウシ 5番</p>
+                    <p class="clickable-text">ブタ 6番</p>
+                </details>
+                <details>
+                    <summary>肉食</summary>
+                    <p class="clickable-text">ワニ 7番</p>
+                    <p class="clickable-text">サメ 8番</p>
+                </details>
+            </details>
+        `;
 
-        ,
-        html: '<p>お題の情報を探してください。</b>豚は <input name="first" type="text" />番にある。</p>',
-        placeholder: '半角英数字でお答えください',
-        button_label: '次へ',
-        data: {
-            demo_data: 1,
-        },
+    // jsPsych のトライアル
+    const demo_experiment1 = {
+        type: jsPsychHtmlKeyboardResponse,
+        stimulus: detailsHTML,
+        choices: "NO_KEYS", // キーボード入力を無効化
+        on_load: addClickEvent // 画面が表示された後にイベントを追加
     };
+    
+    // const demo_experiment1 = {
+    //     type: jsPsychHtmlKeyboardResponse,
+    //     preamble: detailsHTML,
+    //     html: '<p>お題の情報を探してください。</b>豚は <input name="first" type="text" />番にある。</p>',
+    //     placeholder: '半角英数字でお答えください',
+    //     button_label: '次へ',
+    //     data: {
+    //         demo_data: 1,
+    //     },
+    // };
 
     // デモ実験
     const demo_experiment2 = {
