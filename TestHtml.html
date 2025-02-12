@@ -683,7 +683,7 @@
         type: jsPsychHtmlButtonResponse,
         stimulus: function() {
             // 直前の trial でクリックされたテキストを取得
-            const lastData = jsPsych.data.getLastTrialData().values()[0];
+            var lastData = jsPsych.data.getLastTrialData().values()[0];
             var clickedText = lastData.clicked_text || "データなし";
             var rt = lastData.rt || "データなし";
             return `<p>回答ありがとうございます。</p>
