@@ -83,21 +83,21 @@
              '</details>' +
              '<details>' +
              '<summary>野菜</summary>' +
-              '<p>トマト 3番</p>' +
-              '<p>キャベツ 4番</p>' +
+              'トマト 3番<br>' +
+              'キャベツ 4番' +
              '</details>' +
             '</details>' +
             '<details>' +
             '<summary>動物</summary>' +
              '<details>' +
              '<summary>草食</summary>' +
-              '<p>ウシ 5番</p>' +
-              '<p>ブタ 6番</p>' +
+              'ウシ 5番<br>' +
+              'ブタ 6番' +
              '</details>' +
              '<details>' +
              '<summary>肉食</summary>' +
-              '<p>ワニ 7番</p>' +
-              '<p>サメ 8番</p>' +
+              'ワニ 7番<br>' +
+              'サメ 8番' +
              '</details>' +
             '</details>'
 
@@ -113,10 +113,12 @@
     // デモ実験
     const demo_experiment2 = {
         type: jsPsychSurveyHtmlForm,
-        preamble: '<details>' +
-             '<summary>くらし・手続き</summary>' +
+        preamble: '<div style=' +
+            '"text-align: left ;margin-left: auto; margin-right: auto;">'+
+            '<details>' +
+            '<summary>くらし・手続き</summary>' +
              '<details>' +
-              '<summary>戸籍・住民票など</summary>' +
+             '<summary>戸籍・住民票など</summary>' +
               '<p>戸籍の届出・証明</p>' +
               '<p>住所の届出・証明（住民票）</p>' +
               '<p>印鑑登録・証明書</p>' +
@@ -127,7 +129,7 @@
               '<p>外国人（がいこくじん）のみなさんへ（手続き）</p>' +
              '</details>' +
              '<details>' +
-              '<summary>税金</summary>' +
+             '<summary>税金</summary>' +
               '<p>住民税</p>' +
               '<p>軽自動車税</p>' +
               '<p>特別区たばこ税・入湯税・鉱産税</p>' +
@@ -137,7 +139,7 @@
               '<p>国税</p>' +
              '</details>' +
              '<details>' +
-              '<summary>ごみ・リサイクル</summary>' +
+             '<summary>ごみ・リサイクル</summary>' +
               '<p>新着のお知らせ</p>' +
               '<p>家庭ごみ</p>' +
               '<p>事業系ごみ・廃棄物</p>' +
@@ -148,7 +150,7 @@
               '<p>不法投棄防止対策</p>' +
              '</details>' +
              '<details>' +
-              '<summary>国保・後期高齢・年金</summary>' +
+             '<summary>国保・後期高齢・年金</summary>' +
               '<p>令和6年12月2日からの保険証利用について</p>' +
               '<p>国民健康保険</p>' +
               '<p>後期高齢者医療制度</p>' +
@@ -156,7 +158,7 @@
               '<p>国保年金課 担当業務別お問い合わせ先</p>' +
              '</details>' +
              '<details>' +
-              '<summary>住まい</summary>' +
+             '<summary>住まい</summary>' +
               '<p>建設リサイクル法</p>' +
               '<p>分譲マンション</p>' +
               '<p>「住まいのガイドブック」を作成しました</p>' +
@@ -170,21 +172,21 @@
               '<p>自動車仮ナンバー</p>' +
              '</details>' +
              '<details>' +
-              '<summary>環境</summary>' +
+             '<summary>環境</summary>' +
               '<p>省エネ・地球温暖化対策・助成</p>' +
               '<p>自然環境・自然観察</p>' +
               '<p>公害・環境調査</p>' +
               '<p>緑化・花いっぱいのまちづくり</p>' +
              '</details>' +
              '<details>' +
-              '<summary>安心・安全</summary>' +
+             '<summary>安心・安全</summary>' +
               '<p>防災・国民保護</p>' +
               '<p>消防・救急</p>' +
               '<p>防犯・消費生活</p>' +
               '<p>交通安全</p>' +
              '</details>' +
              '<details>' +
-              '<summary>各種相談</summary>' +
+             '<summary>各種相談</summary>' +
               '<p>子育てに関する相談</p>' +
               '<p>教育に関する相談</p>' +
               '<p>若者に関する相談</p>' +
@@ -211,9 +213,9 @@
              '</details>' +
             '</details>' +
             '<details>' +
-             '<summary>健康・医療・福祉</summary>' +
+            '<summary>健康・医療・福祉</summary>' +
              '<details>' +
-              '<summary>健康・医療</summary>' +
+             '<summary>健康・医療</summary>' +
               '<p>葛飾区保健所</p>' +
               '<p>休日・夜間の診療</p>' +
               '<p>健康診査</p>' +
@@ -228,14 +230,14 @@
               '<p>医療や健康に関する相談</p>' +
              '</details>' +
              '<details>' +
-              '<summary>がん・難病に対する支援</summary>' +
+             '<summary>がん・難病に対する支援</summary>' +
               '<p>葛飾区骨髄移植ドナー支援事業</p>' +
               '<p>がん患者への支援（ウィッグ等購入費助成、若年がん患者在宅療支援事業）</p>' +
               '<p>若年がん患者在宅療養支援</p>' +
               '<p>難病患者・被爆者等支援</p>' +
              '</details>' +
              '<details>' +
-              '<summary>こころの健康</summary>' +
+             '<summary>こころの健康</summary>' +
               '<p>こころの健康 情報検索ページ</p>' +
               '<p>依存症についての相談</p>' +
               '<p>アルコール依存症についての相談</p>' +
@@ -255,13 +257,13 @@
               '<p>自殺対策</p>' +
              '</details>' +
              '<details>' +
-              '<summary>健康づくり・啓発</summary>' +
+             '<summary>健康づくり・啓発</summary>' +
               '<p>健康づくり</p>' +
               '<p>糖尿病対策</p>' +
               '<p>かつしか笑顔いきいきお口体操</p>' +
              '</details>' +
              '<details>' +
-              '<summary>食育・食の安全</summary>' +
+             '<summary>食育・食の安全</summary>' +
               '<p>「かつしかの元気食堂」推進事業</p>' +
               '<p>葛飾区役所内食堂について</p>' +
               '<p>食と栄養関連お役立ち情報</p>' +
@@ -270,7 +272,7 @@
               '<p>衛生検査</p>' +
              '</details>' +
              '<details>' +
-              '<summary>介護保険</summary>' +
+             '<summary>介護保険</summary>' +
               '<p>介護保険における個人番号記入欄のある申請書の取り扱いについて</p>' +
               '<p>介護予防・日常生活支援総合事業（訪問型サービス・通所型サービス）</p>' +
               '<p>介護保険制度（仕組み・パンフレット）</p>' +
@@ -280,7 +282,7 @@
               '<p>介護サービス事業者の申請・手続き</p>' +
              '</details>' +
              '<details>' +
-              '<summary>高齢者福祉</summary>' +
+             '<summary>高齢者福祉</summary>' +
               '<p>高齢者支援サイト</p>' +
               '<p>認知症</p>' +
               '<p>医療・保健サービス</p>' +
@@ -291,7 +293,7 @@
               '<p>高齢者総合相談センター（地域包括支援センター）</p>' +
              '</details>' +
              '<details>' +
-              '<summary>障害福祉</summary>' +
+             '<summary>障害福祉</summary>' +
               '<p>【株式会社MAXIV・九重部屋】感謝状贈呈式を行いました</p>' +
               '<p>身体・知的障害者福祉のしおり</p>' +
               '<p>葛飾区地域活動支援センター 創作的活動事業（知的障害者デイサービス）の利用者を募集します</p>' +
@@ -315,7 +317,7 @@
               '<p>地域生活支援拠点等</p>' +
              '</details>' +
              '<details>' +
-              '<summary>生活福祉</summary>' +
+             '<summary>生活福祉</summary>' +
               '<p>【事業終了】葛飾区非課税世帯等エアコン購入費等助成事業</p>' +
               '<p>新たな経済に向けた給付金・定額減税一体措置について</p>' +
               '<p>令和6年度住民税が非課税等の方に向けて給付金を給付します。令和6年度価格高騰支援金（1世帯当たり3万円）</p>' +
@@ -330,7 +332,7 @@
               '<p>社会福祉協議会</p>' +
              '</details>' +
              '<details>' +
-              '<summary>健康・医療・福祉に関する各種相談</summary>' +
+             '<summary>健康・医療・福祉に関する各種相談</summary>' +
               '<p>医療に関する相談</p>' +
               '<p>医療や健康に関する相談</p>' +
               '<p>こころの健康に関する相談</p>' +
@@ -341,24 +343,24 @@
              '</details>' +
             '</details>' +
             '<details>' +
-             '<summary>子育て・教育</summary>' +
+            '<summary>子育て・教育</summary>' +
              '<details>' +
-              '<summary>子育て</summary>' +
+             '<summary>子育て</summary>' +
               '<p>ワニ</p>' +
               '<p>サメ</p>' +
              '</details>' +
              '<details>' +
-              '<summary>教育・学校</summary>' +
+             '<summary>教育・学校</summary>' +
               '<p>ワニ</p>' +
               '<p>サメ</p>' +
              '</details>' +
              '<details>' +
-              '<summary>生涯学習</summary>' +
+             '<summary>生涯学習</summary>' +
               '<p>ワニ</p>' +
               '<p>サメ</p>' +
              '</details>' +
              '<details>' +
-              '<summary>子育て・教育に関する相談</summary>' +
+             '<summary>子育て・教育に関する相談</summary>' +
               '<p>ワニ</p>' +
               '<p>サメ</p>' +
              '</details>' +
@@ -366,32 +368,32 @@
             '<details>' +
              '<summary>観光・文化・スポーツ</summary>' +
              '<details>' +
-              '<summary>観光</summary>' +
+             '<summary>観光</summary>' +
               '<p>ワニ</p>' +
               '<p>サメ</p>' +
              '</details>' +
              '<details>' +
-              '<summary>学習施設</summary>' +
+             '<summary>学習施設</summary>' +
               '<p>ワニ</p>' +
               '<p>サメ</p>' +
              '</details>' +
              '<details>' +
-              '<summary>文化・芸術</summary>' +
+             '<summary>文化・芸術</summary>' +
               '<p>ワニ</p>' +
               '<p>サメ</p>' +
              '</details>' +
              '<details>' +
-              '<summary>文化財保護</summary>' +
+             '<summary>文化財保護</summary>' +
               '<p>ワニ</p>' +
               '<p>サメ</p>' +
              '</details>' +
              '<details>' +
-              '<summary>スポーツ</summary>' +
+             '<summary>スポーツ</summary>' +
               '<p>ワニ</p>' +
               '<p>サメ</p>' +
              '</details>' +
              '<details>' +
-              '<summary>イベント情報</summary>' +
+             '<summary>イベント情報</summary>' +
               '<p>ワニ</p>' +
               '<p>サメ</p>' +
              '</details>' +
@@ -399,241 +401,241 @@
             '<details>' +
              '<summary>施設案内</summary>' +
              '<details>' +
-              '<summary>電子マップ・施設予約</summary>' +
+             '<summary>電子マップ・施設予約</summary>' +
               '<p>ワニ</p>' +
               '<p>サメ</p>' +
              '</details>' +
              '<details>' +
-              '<summary>区役所・区民事務所</summary>' +
+             '<summary>区役所・区民事務所</summary>' +
               '<p>ワニ</p>' +
               '<p>サメ</p>' +
              '</details>' +
              '<details>' +
-              '<summary>地域コミュニティ施設</summary>' +
+             '<summary>地域コミュニティ施設</summary>' +
               '<p>ワニ</p>' +
               '<p>サメ</p>' +
              '</details>' +
              '<details>' +
-              '<summary>健康・医療・福祉施設</summary>' +
+             '<summary>健康・医療・福祉施設</summary>' +
               '<p>ワニ</p>' +
               '<p>サメ</p>' +
              '</details>' +
              '<details>' +
-              '<summary>子育て・教育施設</summary>' +
+             '<summary>子育て・教育施設</summary>' +
               '<p>ワニ</p>' +
               '<p>サメ</p>' +
              '</details>' +
              '<details>' +
-              '<summary>観光・文化・スポーツ施設</summary>' +
+             '<summary>観光・文化・スポーツ施設</summary>' +
               '<p>ワニ</p>' +
               '<p>サメ</p>' +
              '</details>' +
              '<details>' +
-              '<summary>公園</summary>' +
+             '<summary>公園</summary>' +
               '<p>ワニ</p>' +
               '<p>サメ</p>' +
              '</details>' +
              '<details>' +
-              '<summary>駐車場・駐輪場</summary>' +
+             '<summary>駐車場・駐輪場</summary>' +
               '<p>ワニ</p>' +
               '<p>サメ</p>' +
              '</details>' +
              '<details>' +
-              '<summary>直売所・農園</summary>' +
+             '<summary>直売所・農園</summary>' +
               '<p>ワニ</p>' +
               '<p>サメ</p>' +
              '</details>' +
              '<details>' +
-              '<summary>環境・衛生・清掃施設</summary>' +
+             '<summary>環境・衛生・清掃施設</summary>' +
               '<p>ワニ</p>' +
               '<p>サメ</p>' +
              '</details>' +
              '<details>' +
-              '<summary>国や都の施設、区役所</summary>' +
-              '<p>ワニ</p>' +
-              '<p>サメ</p>' +
-             '</details>' +
-            '</details>' +
-            '<details>' +
-             '<summary>産業・ビジネス</summary>' +
-             '<details>' +
-              '<summary>事業者</summary>' +
-              '<p>ワニ</p>' +
-              '<p>サメ</p>' +
-             '</details>' +
-             '<details>' +
-              '<summary>産業</summary>' +
-              '<p>ワニ</p>' +
-              '<p>サメ</p>' +
-             '</details>' +
-             '<details>' +
-              '<summary>雇用・労働</summary>' +
-              '<p>ワニ</p>' +
-              '<p>サメ</p>' +
-             '</details>' +
-             '<details>' +
-              '<summary>広報かつしか（産業・しごと面）</summary>' +
+             '<summary>国や都の施設、区役所</summary>' +
               '<p>ワニ</p>' +
               '<p>サメ</p>' +
              '</details>' +
             '</details>' +
             '<details>' +
-             '<summary>まちづくり</summary>' +
+            '<summary>産業・ビジネス</summary>' +
              '<details>' +
-              '<summary>土地・開発許可</summary>' +
+             '<summary>事業者</summary>' +
               '<p>ワニ</p>' +
               '<p>サメ</p>' +
              '</details>' +
              '<details>' +
-              '<summary>地域街づくり</summary>' +
+             '<summary>産業</summary>' +
               '<p>ワニ</p>' +
               '<p>サメ</p>' +
              '</details>' +
              '<details>' +
-              '<summary>防災街づくり</summary>' +
+             '<summary>雇用・労働</summary>' +
               '<p>ワニ</p>' +
               '<p>サメ</p>' +
              '</details>' +
              '<details>' +
-              '<summary>用途地域・都市計画・地区計画</summary>' +
-              '<p>ワニ</p>' +
-              '<p>サメ</p>' +
-             '</details>' +
-             '<details>' +
-              '<summary>道路・屋外広告物・私道</summary>' +
-              '<p>ワニ</p>' +
-              '<p>サメ</p>' +
-             '</details>' +
-             '<details>' +
-              '<summary>河川</summary>' +
-              '<p>ワニ</p>' +
-              '<p>サメ</p>' +
-             '</details>' +
-             '<details>' +
-              '<summary>交通</summary>' +
-              '<p>ワニ</p>' +
-              '<p>サメ</p>' +
-             '</details>' +
-             '<details>' +
-              '<summary>公園</summary>' +
-              '<p>ワニ</p>' +
-              '<p>サメ</p>' +
-             '</details>' +
-             '<details>' +
-              '<summary>街づくり推進条例</summary>' +
-              '<p>ワニ</p>' +
-              '<p>サメ</p>' +
-             '</details>' +
-             '<details>' +
-              '<summary>福祉のまちづくり条例</summary>' +
+             '<summary>広報かつしか（産業・しごと面）</summary>' +
               '<p>ワニ</p>' +
               '<p>サメ</p>' +
              '</details>' +
             '</details>' +
             '<details>' +
-             '<summary>区政情報</summary>' +
+            '<summary>まちづくり</summary>' +
              '<details>' +
-              '<summary>区の紹介</summary>' +
+             '<summary>土地・開発許可</summary>' +
               '<p>ワニ</p>' +
               '<p>サメ</p>' +
              '</details>' +
              '<details>' +
-              '<summary>組織図（機構図）</summary>' +
+             '<summary>地域街づくり</summary>' +
               '<p>ワニ</p>' +
               '<p>サメ</p>' +
              '</details>' +
              '<details>' +
-              '<summary>こんにちは区長です</summary>' +
+             '<summary>防災街づくり</summary>' +
               '<p>ワニ</p>' +
               '<p>サメ</p>' +
              '</details>' +
              '<details>' +
-              '<summary>広報・広聴</summary>' +
+             '<summary>用途地域・都市計画・地区計画</summary>' +
               '<p>ワニ</p>' +
               '<p>サメ</p>' +
              '</details>' +
              '<details>' +
-              '<summary>例規集</summary>' +
+             '<summary>道路・屋外広告物・私道</summary>' +
               '<p>ワニ</p>' +
               '<p>サメ</p>' +
              '</details>' +
              '<details>' +
-              '<summary>刊行物・葛飾区史</summary>' +
+             '<summary>河川</summary>' +
               '<p>ワニ</p>' +
               '<p>サメ</p>' +
              '</details>' +
              '<details>' +
-              '<summary>情報公開・個人情報保護</summary>' +
+             '<summary>交通</summary>' +
               '<p>ワニ</p>' +
               '<p>サメ</p>' +
              '</details>' +
              '<details>' +
-              '<summary>選挙</summary>' +
+             '<summary>公園</summary>' +
               '<p>ワニ</p>' +
               '<p>サメ</p>' +
              '</details>' +
              '<details>' +
-              '<summary>監査</summary>' +
+             '<summary>街づくり推進条例</summary>' +
               '<p>ワニ</p>' +
               '<p>サメ</p>' +
              '</details>' +
              '<details>' +
-              '<summary>区役所の取り組み</summary>' +
+             '<summary>福祉のまちづくり条例</summary>' +
+              '<p>ワニ</p>' +
+              '<p>サメ</p>' +
+             '</details>' +
+            '</details>' +
+            '<details>' +
+            '<summary>区政情報</summary>' +
+             '<details>' +
+             '<summary>区の紹介</summary>' +
               '<p>ワニ</p>' +
               '<p>サメ</p>' +
              '</details>' +
              '<details>' +
-              '<summary>統計・調査</summary>' +
+             '<summary>組織図（機構図）</summary>' +
               '<p>ワニ</p>' +
               '<p>サメ</p>' +
              '</details>' +
              '<details>' +
-              '<summary>計画・報告</summary>' +
+             '<summary>こんにちは区長です</summary>' +
               '<p>ワニ</p>' +
               '<p>サメ</p>' +
              '</details>' +
              '<details>' +
-              '<summary>行財政・予算・決算</summary>' +
+             '<summary>広報・広聴</summary>' +
               '<p>ワニ</p>' +
               '<p>サメ</p>' +
              '</details>' +
              '<details>' +
-              '<summary>職員採用・人材育成</summary>' +
+             '<summary>例規集</summary>' +
               '<p>ワニ</p>' +
               '<p>サメ</p>' +
              '</details>' +
              '<details>' +
-              '<summary>国際交流・多文化共生</summary>' +
+             '<summary>刊行物・葛飾区史</summary>' +
               '<p>ワニ</p>' +
               '<p>サメ</p>' +
              '</details>' +
              '<details>' +
-              '<summary>審議会・委員会</summary>' +
+             '<summary>情報公開・個人情報保護</summary>' +
               '<p>ワニ</p>' +
               '<p>サメ</p>' +
              '</details>' +
              '<details>' +
-              '<summary>審査請求</summary>' +
+             '<summary>選挙</summary>' +
               '<p>ワニ</p>' +
               '<p>サメ</p>' +
              '</details>' +
              '<details>' +
-              '<summary>裁判員制度・検察審査会</summary>' +
+             '<summary>監査</summary>' +
               '<p>ワニ</p>' +
               '<p>サメ</p>' +
              '</details>' +
              '<details>' +
-              '<summary>町会・自治会（自治町会）</summary>' +
+             '<summary>区役所の取り組み</summary>' +
               '<p>ワニ</p>' +
               '<p>サメ</p>' +
              '</details>' +
              '<details>' +
-              '<summary>地域活動団体</summary>' +
+             '<summary>統計・調査</summary>' +
               '<p>ワニ</p>' +
               '<p>サメ</p>' +
              '</details>' +
              '<details>' +
-              '<summary>区政情報に関する各種相談</summary>' +
+             '<summary>計画・報告</summary>' +
+              '<p>ワニ</p>' +
+              '<p>サメ</p>' +
+             '</details>' +
+             '<details>' +
+             '<summary>行財政・予算・決算</summary>' +
+              '<p>ワニ</p>' +
+              '<p>サメ</p>' +
+             '</details>' +
+             '<details>' +
+             '<summary>職員採用・人材育成</summary>' +
+              '<p>ワニ</p>' +
+              '<p>サメ</p>' +
+             '</details>' +
+             '<details>' +
+             '<summary>国際交流・多文化共生</summary>' +
+              '<p>ワニ</p>' +
+              '<p>サメ</p>' +
+             '</details>' +
+             '<details>' +
+             '<summary>審議会・委員会</summary>' +
+              '<p>ワニ</p>' +
+              '<p>サメ</p>' +
+             '</details>' +
+             '<details>' +
+             '<summary>審査請求</summary>' +
+              '<p>ワニ</p>' +
+              '<p>サメ</p>' +
+             '</details>' +
+             '<details>' +
+             '<summary>裁判員制度・検察審査会</summary>' +
+              '<p>ワニ</p>' +
+              '<p>サメ</p>' +
+             '</details>' +
+             '<details>' +
+             '<summary>町会・自治会（自治町会）</summary>' +
+              '<p>ワニ</p>' +
+              '<p>サメ</p>' +
+             '</details>' +
+             '<details>' +
+             '<summary>地域活動団体</summary>' +
+              '<p>ワニ</p>' +
+              '<p>サメ</p>' +
+             '</details>' +
+             '<details>' +
+             '<summary>区政情報に関する各種相談</summary>' +
               '<p>ワニ</p>' +
               '<p>サメ</p>' +
              '</details>' +
