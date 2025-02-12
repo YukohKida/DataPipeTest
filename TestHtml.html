@@ -94,32 +94,38 @@
                 <summary>果物</summary>
                 <p class="clickable-text">リンゴ</p>
                 <p class="clickable-text">バナナ</p>
-                </details>
-                <details>
-                    <summary>野菜</summary>
-                    <p class="clickable-text">トマト</p>
-                    <p class="clickable-text">キャベツ</p>
-                </details>
             </details>
             <details>
-                <summary>動物</summary>
-                <details>
-                    <summary>草食</summary>
-                    <p class="clickable-text">ウシ 5番</p>
-                    <p class="clickable-text">ブタ 6番</p>
-                </details>
-                <details>
-                    <summary>肉食</summary>
-                    <p class="clickable-text">ワニ 7番</p>
-                    <p class="clickable-text">サメ 8番</p>
-                </details>
+                <summary>野菜</summary>
+                <p class="clickable-text">トマト</p>
+                <p class="clickable-text">キャベツ</p>
             </details>
+        </details>
+        <details>
+            <summary>動物</summary>
+            <details>
+                <summary>草食</summary>
+                <p class="clickable-text">ウシ 5番</p>
+                <p class="clickable-text">ブタ 6番</p>
+            </details>
+            <details>
+                <summary>肉食</summary>
+                <p class="clickable-text">ワニ 7番</p>
+                <p class="clickable-text">サメ 8番</p>
+            </details>
+        </details>
         `;
 
+    const DemoPrompt = `
+        <div style= "text-align: left ;margin-left: auto; margin-right: auto;">
+        豚丼に使われる代表的な食材はなんですか？
+        `;
+    
     // jsPsych のトライアル
     const demo_experiment1 = {
         type: jsPsychHtmlKeyboardResponse,
         stimulus: DemoDetailsHTML,
+        prompt: DemoPrompt,
         choices: "NO_KEYS", // キーボード入力を無効化
         on_load: addClickEvent // 画面が表示された後にイベントを追加
     };
