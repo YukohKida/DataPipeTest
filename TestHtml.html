@@ -39,7 +39,7 @@
                 event.stopPropagation();
                 event.preventDefault();
                 const clickedText = this.innerText;
-                const reaction_time = performance.now() - start_time; // 反応時間を計算
+                const reaction_time = (performance.now() - start_time) / 100; // 反応時間を計算
 
                 // データを明示的に記録
                 jsPsych.data.write({
@@ -135,7 +135,13 @@
         stimulus: DemoDetailsHTML,
         prompt: DemoPrompt,
         choices: "NO_KEYS", // キーボード入力を無効化
-        on_load: addClickEvent // 画面が表示された後にイベントを追加
+        on_load: addClickEvent, // 画面が表示された後にイベントを追加
+        on_start: function () {
+            jsPsych.getDisplayElement().innerHTML = ""; // **画面をクリア**
+        },
+        data: {
+            demo_data: 1,
+        }
     };
 
     // 行政手続き階層刺激
@@ -682,8 +688,11 @@
         choices: "NO_KEYS", // キーボード入力を無効化
         on_load: addClickEvent, // 画面が表示された後にイベントを追加
         data: {
-            demo_data: 2,
+            experiment_data: 1,
         },
+        on_start: function () {
+            jsPsych.getDisplayElement().innerHTML = ""; // **画面をクリア**
+        }
     };
 
     // **2つ目の trial (クリックした内容を表示)**
@@ -693,15 +702,21 @@
             // 直前の trial でクリックされたテキストを取得
             const lastData = jsPsych.data.get().last(2).values()[0];
             const clickedText = lastData.clicked_text || "データなし";
-            const reactionTime = lastData?.reaction_time ? `${lastData.reaction_time.toFixed(2)} s` : "データなし";
+            const reactionTime = lastData?.reaction_time ? `${lastData.reaction_time.toFixed(2)}` : "データなし";
             return `<p>回答ありがとうございます。</p>
                 <p>回答は<br>
                 <strong>${clickedText}</strong><br>
                 で受け付けました。</p>
-                <p>あなたの回答時間は <strong>${reactionTime}</strong> でした。</p>
+                <p>あなたの回答時間は <strong>${reactionTime}</strong>秒 でした。</p>
                 <p>次の実験の準備がで来たら「次へ」を押してください</p>`;
         },
         choices: ['次へ'],
+        data: {
+            ans_data: 1,
+        },
+        on_start: function () {
+            jsPsych.getDisplayElement().innerHTML = ""; // **画面をクリア**
+        }
     };
 
     // アンケート
@@ -722,7 +737,7 @@
     const survey2 = {
         type: jsPsychHtmlButtonResponse,
         stimulus: '<p>ご性別をお聞かせください</p>',
-        choices: ['女性', '男性', 'その他'],
+        choices: ['女性', '男性', 'その他'], // 女0, 男1, その他2,
         // prompt: '<p>Choose your gender</p>'
         data: {
             survey_data: 2,
