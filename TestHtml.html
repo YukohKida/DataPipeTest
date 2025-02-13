@@ -68,7 +68,7 @@ const trial2 = {
     type: jsPsychHtmlKeyboardResponse,
     stimulus: function() {
         // 直前の trial のデータを取得
-        const lastData = jsPsych.data.get().last(1).values()[0];
+        const lastData = jsPsych.data.get().last(2).values()[0];
         const clickedText = lastData?.clicked_text || "データなし";
         
         return `<p>あなたがクリックしたのは: <strong>${clickedText}</strong> です。</p>`;
