@@ -681,11 +681,11 @@
     };
 
     // **2つ目の trial (クリックした内容を表示)**
-    const TellAns = {
+    var TellAns = {
         type: jsPsychHtmlButtonResponse,
         stimulus: function () {
             // 直前の trial でクリックされたテキストを取得
-            var lastData = jsPsych.data.getLastTrialData().values()[0];
+            var lastData = jsPsych.data.get().last(1).values()[0];
             var clickedText = lastData.clicked_text || "データなし";
             var rt = lastData.rt || "データなし";
             return `<p>回答ありがとうございます。</p>
