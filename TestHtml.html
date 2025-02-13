@@ -37,6 +37,7 @@
                 event.stopPropagation();
                 event.preventDefault();
                 const clickedText = this.innerText;
+                const reaction_time = performance.now() - start_time / 1000; // 反応時間を計算
 
                 // データを明示的に記録
                 jsPsych.data.write({ clicked_text: clickedText });
@@ -681,18 +682,18 @@
     };
 
     // **2つ目の trial (クリックした内容を表示)**
-    var TellAns = {
+    const TellAns = {
         type: jsPsychHtmlButtonResponse,
         stimulus: function () {
             // 直前の trial でクリックされたテキストを取得
-            var lastData = jsPsych.data.get().last(2).values()[0];
-            var clickedText = lastData.clicked_text || "データなし";
-            var rt = lastData.rt || "データなし";
+            const lastData = jsPsych.data.get().last(2).values()[0];
+            const clickedText = lastData.clicked_text || "データなし";
+            const reactionTime = lastData?.reaction_time ? `${Math.round(lastData.reaction_time)} ms` : "データなし";
             return `<p>回答ありがとうございます。</p>
                 <p>回答は<br>
                 <strong>${clickedText}</strong><br>
                 で受け付けました。</p>
-                <p>あなたの回答時間は <strong>${rt}</strong> でした。</p>
+                <p>あなたの回答時間は <strong>${reactionTime}</strong> でした。</p>
                 <p>次の実験の準備がで来たら「次へ」を押してください</p>`;
         },
         choices: ['次へ'],
