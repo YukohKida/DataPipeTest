@@ -29,6 +29,8 @@
     const subject_id = jsPsych.randomization.randomID(10);
     const filename = `${subject_id}.csv`;
 
+    let start_time; // グローバルスコープに定義
+
     // クリックイベントを処理する関数
     function addClickEvent() {
         document.querySelectorAll('.clickable-text').forEach(element => {
