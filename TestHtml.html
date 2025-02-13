@@ -143,6 +143,7 @@
         on_load: addClickEvent, // 画面が表示された後にイベントを追加
         on_start: function () {
             jsPsych.getDisplayElement().innerHTML = ""; // **画面をクリア**
+            start_time = performance.now(); // **開始時刻を記録**
         },
         data: {
             demo_data: 1,
@@ -697,6 +698,7 @@
         },
         on_start: function () {
             jsPsych.getDisplayElement().innerHTML = ""; // **画面をクリア**
+            start_time = performance.now(); // **開始時刻を記録**
         }
     };
 
