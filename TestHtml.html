@@ -37,7 +37,7 @@
                 event.stopPropagation();
                 event.preventDefault();
                 const clickedText = this.innerText;
-                const reaction_time = (performance.now() - start_time) / 1000; // 反応時間を計算
+                const reaction_time = performance.now() - start_time; // 反応時間を計算
 
                 // データを明示的に記録
                 jsPsych.data.write({ clicked_text: clickedText });
