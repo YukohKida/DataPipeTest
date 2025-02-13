@@ -688,7 +688,7 @@
             // 直前の trial でクリックされたテキストを取得
             const lastData = jsPsych.data.get().last(2).values()[0];
             const clickedText = lastData.clicked_text || "データなし";
-            const reactionTime = lastData?.reaction_time ? `${Math.round(lastData.reaction_time)} ms` : "データなし";
+            const reactionTime = lastData?.reaction_time ? `${lastData.reaction_time.toFixed(2)} s` : "データなし";
             return `<p>回答ありがとうございます。</p>
                 <p>回答は<br>
                 <strong>${clickedText}</strong><br>
