@@ -42,7 +42,10 @@
                 const reaction_time = performance.now() - start_time; // 反応時間を計算
 
                 // データを明示的に記録
-                jsPsych.data.write({ clicked_text: clickedText });
+                jsPsych.data.write({
+                    clicked_text: clickedText,
+                    reaction_time: reaction_time
+                });
 
                 jsPsych.finishTrial(); // クリックで次のトライアルへ
             });
