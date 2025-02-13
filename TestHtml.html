@@ -29,17 +29,19 @@
     const subject_id = jsPsych.randomization.randomID(10);
     const filename = `${subject_id}.csv`;
 
+    // クリックイベントを処理する関数
     function addClickEvent() {
         document.querySelectorAll('.clickable-text').forEach(element => {
-            element.style.pointerEvents = "auto"; // クリックを有効化
+            element.style.pointerEvents = "auto";
             element.addEventListener('click', function (event) {
-                event.stopPropagation(); // <details> の開閉イベントを防ぐ
-                event.preventDefault();  // デフォルトの挙動を防ぐ（念のため）
+                event.stopPropagation();
+                event.preventDefault();
                 const clickedText = this.innerText;
-                jsPsych.data.get().addToLast({ clicked_text: clickedText });
 
-                // 次の trial に進む
-                jsPsych.finishTrial();
+                // データを明示的に記録
+                jsPsych.data.write({ clicked_text: clickedText });
+
+                jsPsych.finishTrial(); // クリックで次のトライアルへ
             });
         });
     }
@@ -681,7 +683,7 @@
     // **2つ目の trial (クリックした内容を表示)**
     const TellAns = {
         type: jsPsychHtmlButtonResponse,
-        stimulus: function() {
+        stimulus: function () {
             // 直前の trial でクリックされたテキストを取得
             var lastData = jsPsych.data.getLastTrialData().values()[0];
             var clickedText = lastData.clicked_text || "データなし";
