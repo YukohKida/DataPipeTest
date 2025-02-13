@@ -726,6 +726,22 @@
         }
     };
 
+    const nasa_rtlx = {
+        type: jsPsychSurveyLikert,
+        questions: [
+            { prompt: "1. Mental Demand（精神的負荷）\nどれくらい精神的、知的な活動を求められましたか？", labels: Array.from({ length: 20 }, (_, i) => (i + 1).toString()), required: true },
+            { prompt: "2. Physical Demand（身体的負荷）\nどれくらいの身体的な活動を求められましたか？", labels: Array.from({ length: 20 }, (_, i) => (i + 1).toString()), required: true },
+            { prompt: "3. Temporal Demand（時間的負荷）\nどれくらい時間的なプレッシャーを感じましたか？", labels: Array.from({ length: 20 }, (_, i) => (i + 1).toString()), required: true },
+            { prompt: "4. Performance（作業達成度）\nどれくらい成功したと感じましたか？", labels: Array.from({ length: 20 }, (_, i) => (i + 1).toString()), required: true },
+            { prompt: "5. Effort（努力量）\nどれくらい努力しましたか？", labels: Array.from({ length: 20 }, (_, i) => (i + 1).toString()), required: true },
+            { prompt: "6. Frustration（不満・ストレス）\nどれくらいストレスやイライラを感じましたか？", labels: Array.from({ length: 20 }, (_, i) => (i + 1).toString()), required: true }
+        ],
+        randomize_question_order: false,
+        on_finish: function (data) {
+            console.log(jsPsych.data.get().last(1).values());
+        }
+    };
+
     // アンケート
     const survey1 = {
         type: jsPsychSurveyText,
