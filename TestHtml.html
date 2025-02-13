@@ -1,4 +1,30 @@
-// jsPsych のセットアップ
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My experiment</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <script src="https://unpkg.com/jspsych@7.3.2"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-button-response@2.1.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-browser-check@1.0.3"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-survey-html-form@1.0.3"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-survey-text@1.1.3"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.3"></script>
+    <script src="https://unpkg.com/@jspsych-contrib/plugin-pipe"></script>
+    <link href="https://unpkg.com/jspsych@7.3.2/css/jspsych.css" rel="stylesheet" type="text/css" />
+    <!-- css -->
+    <style type="text/css">
+        details[open]> :not(summary) {
+            padding-left: 2em;
+            /* 1文字分右へ */
+        }
+    </style>
+</head>
+
+<body></body>
+<script>
+    // jsPsych のセットアップ
 const jsPsych = initJsPsych({
     on_finish: function() {
         jsPsych.data.displayData(); // 実験終了時にデータを表示
@@ -53,3 +79,6 @@ const trial2 = {
 
 // 実験の開始
 jsPsych.run([trial1, trial2]);
+</script>
+
+</html>
