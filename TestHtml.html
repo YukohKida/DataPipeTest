@@ -21,11 +21,22 @@
             padding-left: 2em;
             /* 1文字分右へ */
         }
+
         body {
-            margin: 20px; /* 画面端に余白を設定 */
+            margin: 20px;
+            /* 画面端に余白を設定 */
         }
+
+        .jspsych-btn {
+            margin: 20px auto;
+            /* 上下 20px の余白、中央配置 */
+            max-width: 80%;
+            /* ボタンの横幅を制限 */
+        }
+
         #jspsych-display-element {
-            padding: 30px; /* 画面の端とボタンの間に余白 */
+            padding: 30px;
+            /* 画面の端とボタンの間に余白 */
             box-sizing: border-box;
         }
     </style>
@@ -897,11 +908,11 @@
     const end_trial = {
         type: jsPsychHtmlKeyboardResponse,
         stimulus: 'お疲れ様でした。データが無事保存され、実験は終了です。<br>' +
-        '本日は実験に参加いただきありがとうございました。（もう閉じて大丈夫です）'
+            '本日は実験に参加いただきありがとうございました。（もう閉じて大丈夫です）'
     }
 
     // jsPsych.run([hello_trial, device_check, demo_experiment1, demo_experiment2, survey1, survey2, save_data, end_trial]);
-    jsPsych.run([hello_instructions, device_check, experiment_instructions, demo_experiment1, TellAns, nasa_rtlx, end_demo,Experiment1, TellAns, nasa_rtlx, survey1, survey2, save_data, end_trial]);
+    jsPsych.run([hello_instructions, device_check, experiment_instructions, demo_experiment1, TellAns, nasa_rtlx, end_demo, Experiment1, TellAns, nasa_rtlx, survey1, survey2, save_data, end_trial]);
 </script>
 
 </html>
