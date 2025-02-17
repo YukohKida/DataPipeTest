@@ -68,7 +68,7 @@
             '<p><b>実験に参加頂き<br>ありがとうございます</b><p>' +
 
             '<p><div style=' +
-            '"text-align: left ;margin-left: auto; margin-right: auto; width: 80%;' +
+            '"text-align: left; margin-top: 10px; margin-bottom: 10px; margin-left: auto; margin-right: auto; width: 80%;' +
             ' font-size:20px;"><br>' +
             'この実験は<b>パソコンやタブレットでは実施できません</b>。' +
             'スマホでのみ実施していただけます。</p>' +
@@ -109,7 +109,7 @@
             "<div style='font-size:30px;'>" +
             "<b>実験の目的</b><br><br></div>" +
             "<div style=" +
-            "'text-align: left ;margin-left: auto; margin-right: auto; width: 80%;" +
+            "'text-align: left; margin-top: 10px; margin-bottom: 10px; margin-left: auto; margin-right: auto; width: 80%;" +
             " font-size:20px;'>" +
             " この実験はスマートフォンの画面デザインの検討を目的とした実験です。<br><br>" +
             "特にスマートフォンを用いたオンラインのお手続きを行ってもらう際に、" +
@@ -121,7 +121,7 @@
             "<div style='font-size:30px;'>" +
             "<b>実験の流れ</b><br><br></div>" +
             "<div style=" +
-            "'text-align: left ;margin-left: auto; margin-right: auto; width: 80%;" +
+            "'text-align: left; margin-top: 10px; margin-bottom: 10px; margin-left: auto; margin-right: auto; width: 80%;" +
             " font-size:20px;'>" +
             " ここでは本実験全体の流れについて説明します。<br><br>" +
             "実験は3部で構成されています。<br><br>" +
@@ -136,7 +136,7 @@
             "<div style='font-size:30px;'>" +
             "<b>実験で行ってもらうタスク</b><br><br></div>" +
             "<div style=" +
-            "'text-align: left ;margin-left: auto; margin-right: auto; width: 80%;" +
+            "'text-align: left; margin-top: 10px; margin-bottom: 10px; margin-left: auto; margin-right: auto; width: 80%;" +
             " font-size:20px;'>" +
             " ここでは練習パート、実験パートで共通して行ってもらう作業（タスク）について説明します。<br><br>" +
             "実験パートでは2つのタスクを N 回繰り返し行ってもらいます。<br><br>" +
@@ -150,7 +150,7 @@
             "<div style='font-size:30px;'>" +
             "<b>オンライン手続きタスク</b><br><br></div>" +
             "<div style=" +
-            "'text-align: left ;margin-left: auto; margin-right: auto; width: 80%;" +
+            "'text-align: left; margin-top: 10px; margin-bottom: 10px; margin-left: auto; margin-right: auto; width: 80%;" +
             " font-size:20px;'>" +
             " ここでは練習パート、実験パートで共通して行ってもらう作業（タスク）の内、" +
             "オンライン手続きタスクについて説明します。<br><br>" +
@@ -165,7 +165,7 @@
             "<div style='font-size:30px;'>" +
             "<b>オンライン手続きの評価タスク</b><br><br></div>" +
             "<div style=" +
-            "'text-align: left ;margin-left: auto; margin-right: auto; width: 80%;" +
+            "'text-align: left; margin-top: 10px; margin-bottom: 10px; margin-left: auto; margin-right: auto; width: 80%;" +
             " font-size:20px;'>" +
             " ここでは練習パート、実験パートで共通して行ってもらう作業（タスク）の内、" +
             "オンライン手続きの評価タスクについて説明します。<br><br>" +
@@ -179,7 +179,7 @@
             "<div style='font-size:30px;'>" +
             "<b>アンケート入力</b><br><br></div>" +
             "<div style=" +
-            "'text-align: left ;margin-left: auto; margin-right: auto; width: 80%;" +
+            "'text-align: left; margin-top: 10px; margin-bottom: 10px; margin-left: auto; margin-right: auto; width: 80%;" +
             " font-size:20px;'>" +
             " ここでは実験の最後に行なっていただくアンケートパートについて説明します。<br><br>" +
             "このパートでは年齢と性別の調査を行います。<br><br>" +
@@ -203,7 +203,7 @@
 
     // デモ実験刺激
     const DemoDetailsHTML = `
-        <div style= "text-align: left ;margin-left: auto; margin-right: auto;">
+        <div style= "text-align: left; margin-top: 10px; margin-bottom: 10px; margin-left: auto; margin-right: auto;">
         <details>
             <summary>植物</summary>
             <details>
@@ -253,9 +253,18 @@
         }
     };
 
+    const end_demo = {
+        type: jsPsychHtmlButtonResponse,
+        stimulus: '<div style="font-size:30px;">' +
+            '<p><b>練習パートは終了です</b><p>' +
+            '<div style="font-size:20px">' +
+            '<p>「次へ」を押すと<br>「実験パート」<br>が始まります。</p>',
+        choices: ["次へ"],
+    };
+
     // 行政手続き階層刺激
     const Exp1DetailsHTML = `
-    <div style= "text-align: left ;margin-left: auto; margin-right: auto;">
+    <div style= "text-align: left; margin-top: 10px; margin-bottom: 10px; margin-left: 10px; margin-right: 10px;">
         <details>
             <summary>くらし・手続き</summary>
             <details>
@@ -888,7 +897,7 @@
     }
 
     // jsPsych.run([hello_trial, device_check, demo_experiment1, demo_experiment2, survey1, survey2, save_data, end_trial]);
-    jsPsych.run([hello_instructions, device_check, experiment_instructions, demo_experiment1, TellAns, nasa_rtlx, Experiment1, TellAns, nasa_rtlx, survey1, survey2, save_data, end_trial]);
+    jsPsych.run([hello_instructions, device_check, experiment_instructions, demo_experiment1, TellAns, nasa_rtlx, end_demo,Experiment1, TellAns, nasa_rtlx, survey1, survey2, save_data, end_trial]);
 </script>
 
 </html>
