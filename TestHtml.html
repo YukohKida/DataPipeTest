@@ -77,10 +77,10 @@
     // 実験の prompt を stimulus よりも上に持って来る
     const createStimulusHTML = (stimulus, prompt) => {
         return `
-        <div style="position: absolute; top: 40px; left: 50%; transform: translateX(-50%); font-size: 1.5em;">
+        <div style="position: absolute; top: 40px; left: 50%; transform: translateX(-50%); font-size: 1.5em; max-width: 80%; text-align: center;">
             ${prompt}
         </div>
-        <div style="position: absolute; top: 120px; left: 50%; transform: translateX(-50%); font-size: 2em;">
+        <div style="position: absolute; top: 120px; left: 50%; transform: translateX(-50%); font-size: 2em; width: 80%; max-width: 600px; text-align: center; word-wrap: break-word;">
             ${stimulus}
         </div>
     `;
@@ -142,6 +142,7 @@
             "特にスマートフォンを用いたオンラインのお手続きを行ってもらう際に、" +
             "デザインがどの様な影響を与えるのかを検証する事を目的にしています。<br><br>" +
             "これから本実験の説明を行います。<br><br>" +
+            "</div>" +
             '<div style="text-align: center; "font-size:20px">' +
             "Next ボタンを押してください" +
             "</div>",
@@ -158,6 +159,7 @@
             "  3.実験パート<br>" +
             "  4.アンケートパート<br><br>" +
             "の3部になります。<br><br>" +
+            "</div>" +
             '<div style="text-align: center; "font-size:20px">' +
             "Next ボタンを押すと<br>「実験で行ってもらうタスク」<br>の説明に切り替わります。" +
             "</div>",
@@ -173,6 +175,7 @@
             "  1.オンライン手続きタスク<br>" +
             "  2.オンライン手続きの評価タスク<br>" +
             "の2つです。<br><br>" +
+            "</div>" +
             '<div style="text-align: center; "font-size:20px">' +
             "Next ボタンを押すと<br>「オンライン手続きタスク」<br>の説明に切り替わります。" +
             "</div>",
@@ -189,6 +192,7 @@
             "課題では指示される情報がどこにあるのか、画面を操作して探していただきます。" +
             "太文字で書かれた目的の情報があると思われるリンクを見つけたら、タップして。" +
             "課題はできるだけ早く解くことを心がけてください。<br><br>" +
+            "</div>" +
             '<div style="text-align: center; "font-size:20px">' +
             "Next ボタンを押すと<br>「オンライン手続きの評価タスク」<br>の説明に切り替わります。" +
             "</div>",
@@ -204,6 +208,7 @@
             "6つの項目について、あなたが感じた負荷の程度を1～20のスケールで評価していただきます。<br><br>" +
             "各スケールは、1（非常に低い）から 20（非常に高い）までの段階で構成されています。<br><br>" +
             "回答は直感的に、最も適切だと思う値を選択してください。<br><br>" +
+            "</div>" +
             '<div style="text-align: center; "font-size:20px">' +
             "Next ボタンを押すと<br>「アンケート入力」<br>の説明に切り替わります。" +
             "</div>",
@@ -221,6 +226,7 @@
             "個人情報保護の観点から個人を特定できるその他の情報（氏名、所属、連絡先など）は一切取得しません。<br><br>" +
             "この為、取得したデータは個人が特定される形で保存されることはありません。<br>" +
             "また、データは統計的な解析のみに使用され、本実験の目的以外で使用されることはありません。<br><br>" +
+            "</div>" +
             '<div style="text-align: center; "font-size:20px">' +
             "Next ボタンを押してください。" +
             "</div>",
@@ -228,6 +234,7 @@
             "<div style='font-size:30px; margin-top: 20px; margin-bottom: 20px; margin-left: auto; margin-right: auto; width: 90%;'>" +
             "<b>説明終わり</b><br><br></div>" +
             "以上で説明は終わりです。<br><br><br>" +
+            "</div>" +
             '<div style="text-align: center; "font-size:20px">' +
             "Next ボタンを押すと<br>「説明パート」<br>が終わります。",
 
