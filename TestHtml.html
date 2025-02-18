@@ -76,12 +76,12 @@
 
     const createStimulusHTML = (stimulus, prompt) => {
         return `
-            <div id="prompt" style="position: absolute; top: 10%; left: 50%; transform: translateX(-50%); font-size: 1.5em;">
-                ${prompt}
-            </div>
-            <div id="stimulus" style="position: absolute; top: 40%; left: 50%; transform: translateX(-50%); font-size: 2em;">
-                ${stimulus}
-            </div>
+        <div style="position: absolute; top: 10%; left: 50%; transform: translateX(-50%); font-size: 1.5em;">
+            ${prompt}
+        </div>
+        <div style="position: absolute; top: 40%; left: 50%; transform: translateX(-50%); font-size: 2em;">
+            ${stimulus}
+        </div>
         `;
     };
 
@@ -327,7 +327,7 @@
             start_time = performance.now(); // **開始時刻を記録**
         },
         data: {
-            demo_data: 1,
+            demo_data: 2,
         }
     };
 
@@ -351,6 +351,27 @@
         },
         on_start: function () {
             jsPsych.getDisplayElement().innerHTML = ""; // **画面をクリア**
+        }
+    };
+
+    const demo_nasa_rtlx = {
+        type: jsPsychSurveyLikert,
+        preamble: "<strong>各項目について、<br>1（低い）～ 20（高い）<br>で評価してください。</strong>",
+        questions: [
+            { prompt: "1. Mental Demand（精神的負荷）<br>どれくらい精神的、知的な活動を求められましたか？", labels: Array.from({ length: 20 }, (_, i) => (i + 1).toString()), required: true },
+            { prompt: "2. Physical Demand（身体的負荷）<br>どれくらいの身体的な活動を求められましたか？", labels: Array.from({ length: 20 }, (_, i) => (i + 1).toString()), required: true },
+            { prompt: "3. Temporal Demand（時間的負荷）<br>どれくらい時間的なプレッシャーを感じましたか？", labels: Array.from({ length: 20 }, (_, i) => (i + 1).toString()), required: true },
+            { prompt: "4. Performance（作業達成度）<br>どれくらい成功したと感じましたか？", labels: Array.from({ length: 20 }, (_, i) => (i + 1).toString()), required: true },
+            { prompt: "5. Effort（努力量）<br>どれくらい努力しましたか？", labels: Array.from({ length: 20 }, (_, i) => (i + 1).toString()), required: true },
+            { prompt: "6. Frustration（不満・ストレス）<br>どれくらいストレスやイライラを感じましたか？", labels: Array.from({ length: 20 }, (_, i) => (i + 1).toString()), required: true }
+        ],
+        required: true,
+        randomize_question_order: false,
+        data: {
+            demo_nasa_rtlx_data: 1,
+        },
+        on_finish: function (data) {
+            console.log(jsPsych.data.get().last(1).values());
         }
     };
 
@@ -1939,7 +1960,7 @@
         choices: "NO_KEYS", // キーボード入力を無効化
         on_load: addClickEvent, // 画面が表示された後にイベントを追加
         data: {
-            experiment_data: 1,
+            experiment_data: 2,
         },
         on_start: function () {
             jsPsych.getDisplayElement().innerHTML = ""; // **画面をクリア**
@@ -1985,6 +2006,9 @@
         ],
         required: true,
         randomize_question_order: false,
+        data: {
+            nasa_rtlx_data: 1,
+        },
         on_finish: function (data) {
             console.log(jsPsych.data.get().last(1).values());
         }
@@ -2046,7 +2070,7 @@
         timeline: [
             demo_experiment1,
             demo_tell_ans,
-            nasa_rtlx
+            demo_nasa_rtlx
         ]
     };
     // デモ実験2のタイムラインを作成
@@ -2054,18 +2078,14 @@
         timeline: [
             demo_experiment2,
             demo_tell_ans,
-            nasa_rtlx
-        ]
-    };
-    // デモ実験タイムラインを作成
-    const demo_experiment_timeline = {
-        timeline: [
-            demo_experiment1_timeline,
-            demo_experiment2_timeline
+            demo_nasa_rtlx
         ]
     };
     // ランダムな順序にシャッフル
-    const randomized_demo_experiment_timeline = jsPsych.randomization.shuffle(demo_experiment_timeline);
+    const randomized_demo_experiment_timeline = jsPsych.randomization.shuffle([
+            demo_experiment1_timeline,
+            demo_experiment2_timeline
+        ]);
     // デモセクション全体のタイムライン
     const demo_timeline = {
         demo_introduction,
@@ -2090,15 +2110,11 @@
             nasa_rtlx
         ]
     };
-    // 全実験のタイムラインを作成
-    const experiment_timeline = {
-        timeline: [
+    // ランダムに順序をシャッフル
+    const randomized_experiment_timeline = jsPsych.randomization.shuffle([
             experiment1_timeline,
             experiment2_timeline
-        ]
-    };
-    // ランダムに順序をシャッフル
-    const randomized_experiment_timeline = jsPsych.randomization.shuffle(experiment_timeline);
+        ]);
 
     // インタビューセクションのタイムラインを作成
     const survey_timeline = {
