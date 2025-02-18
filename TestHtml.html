@@ -2083,13 +2083,13 @@
     };
     // ランダムな順序にシャッフル
     const randomized_demo_experiment_timeline = jsPsych.randomization.shuffle([
-            demo_experiment1_timeline,
-            demo_experiment2_timeline
+            demo_experiment1_timeline.timeline,
+            demo_experiment2_timeline.timeline
         ]);
     // デモセクション全体のタイムライン
     const demo_timeline = {
         demo_introduction,
-        randomized_demo_experiment_timeline,
+        randomized_demo_experiment_timeline.timeline,
         end_demo
     };
 
@@ -2112,8 +2112,8 @@
     };
     // ランダムに順序をシャッフル
     const randomized_experiment_timeline = jsPsych.randomization.shuffle([
-            experiment1_timeline,
-            experiment2_timeline
+            experiment1_timeline.timeline,
+            experiment2_timeline.timeline
         ]);
 
     // インタビューセクションのタイムラインを作成
@@ -2133,11 +2133,11 @@
     // jsPsych.run([hello_trial, device_check, demo_experiment1, demo_experiment2, survey1, survey2, save_data, end_trial]);
     // jsPsych.run([hello_instructions, device_check, experiment_instructions, demo_experiment1, tell_ans, nasa_rtlx, end_demo, experiment1, tell_ans, nasa_rtlx, survey1, survey2, save_data, end_trial]);
     jsPsych.run([
-        opening_timelin,
-        demo_timeline,
-        randomized_experiment_timeline,
-        survey_timeline,
-        ending_timeline
+        opening_timelin.timeline,
+        demo_timeline.timeline,
+        randomized_experiment_timeline.timeline,
+        survey_timeline.timeline,
+        ending_timeline.timeline
     ]);
 </script>
 
