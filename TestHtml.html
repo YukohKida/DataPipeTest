@@ -74,13 +74,12 @@
         });
     }
 
-    // 実験の prompt を stimulus よりも上に持って来る
     const createStimulusHTML = (stimulus, prompt) => {
         return `
-        <div style="position: absolute; top: 40px; left: 50%; transform: translateX(-50%);">
+        <div style="position: absolute; top: 40px; left: 50%; text-align: center;">
             ${prompt}
         </div>
-        <div style="position: absolute; top: 120px; left: 50%; transform: translateX(-50%);">
+        <div style="position: absolute; top: 120px; left: 50%; text-align: center;">
             ${stimulus}
         </div>
     `;
