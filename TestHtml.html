@@ -28,14 +28,14 @@
         }
 
         .jspsych-btn {
-            margin: 40px auto;
+            margin: 50px auto;
             /* 上下 20px の余白、中央配置 */
             max-width: 80%;
             /* ボタンの横幅を制限 */
         }
 
         #jspsych-display-element {
-            padding: 40px;
+            padding: 50px;
             /* 画面の端とボタンの間に余白 */
             box-sizing: border-box;
         }
@@ -74,17 +74,19 @@
         });
     }
 
+    // 実験の prompt を stimulus よりも上に持って来る
     const createStimulusHTML = (stimulus, prompt) => {
         return `
         <div style="position: absolute; top: 10%; left: 50%; transform: translateX(-50%); font-size: 1.5em;">
             ${prompt}
         </div>
-        <div style="position: absolute; top: 40%; left: 50%; transform: translateX(-50%); font-size: 2em;">
+        <div style="position: absolute; top: 50%; left: 100%; transform: translateX(-50%); font-size: 2em;">
             ${stimulus}
         </div>
         `;
     };
 
+    // 実験開始の説明
     const hello_instructions = {
         type: jsPsychHtmlButtonResponse,
         stimulus: '<div style="font-size:30px;">' +
@@ -108,6 +110,7 @@
         choices: ["次へ"],
     };
 
+    // デバイスチェック
     const device_check = {
         type: jsPsychBrowserCheck,
         inclusion_function: (data) => {
@@ -126,6 +129,7 @@
         }
     };
 
+    // 実験の教示
     const experiment_instructions = {
         type: jsPsychInstructions,
         pages: [
@@ -224,6 +228,7 @@
         show_clickable_nav: true
     };
 
+    // デモ実験 開始
     const demo_introduction = {
         type: jsPsychHtmlButtonResponse,
         stimulus: '<div style="font-size:30px;">' +
@@ -231,14 +236,14 @@
             '<p><div style=' +
             '"text-align: left; margin-top: 20px; margin-bottom: 20px; margin-left: auto; margin-right: auto; width: 80%;' +
             ' font-size:20px;"><br>' +
-            'これから実験の練習を２セット行なっていただきます。</b>' +
-            '1セットはお手続き、回答結果の表示、お手続きの評価の3ステップで構成されています。</b></p>' +
-            '<div style="font-size:20px">' +
+            'これから実験の練習を２セット行なっていただきます。<br>' +
+            '1セットはお手続き、回答結果の表示、お手続きの評価の3ステップで構成されています。<br></p>' +
+            '<div style="text-align: center; "font-size:20px">' +
             '<p>「次へ」を押すと<br>「練習パート」<br>が始まります。</p>',
         choices: ["実験を開始"],
     };
 
-    // デモ実験刺激
+    // デモ実験 刺激1
     const Demo1StimuliDatails = `
         <div style= "text-align: left; margin-top: 20px; margin-bottom: 20px; margin-left: auto; margin-right: auto; width: 90%;">
         <details>
@@ -269,12 +274,13 @@
         </details>
     `;
 
+    // デモ実験　指示文 1&2
     const DemoExperiment1and2Prompt = `
         <div style= "text-align: left ;margin-left: auto; margin-right: auto;">
         <br>豚丼に使われる代表的な食材はなんですか？該当する<b>太字</b>で表示された食材をタップしてください。
     `;
 
-    // jsPsych のトライアル
+    // デモ実験1
     const demo_experiment1 = {
         type: jsPsychHtmlKeyboardResponse,
         stimulus: createStimulusHTML(Demo1StimuliDatails, DemoExperiment1and2Prompt),
@@ -289,6 +295,7 @@
         }
     };
 
+    // デモ実験 刺激2
     const Demo2StimuliDatails = `
         <div style= "text-align: left; margin-top: 20px; margin-bottom: 20px; margin-left: auto; margin-right: auto; width: 90%;">
         植物<br>
@@ -316,7 +323,7 @@
         </details>
     `;
 
-    // jsPsych のトライアル
+    // デモ実験2
     const demo_experiment2 = {
         type: jsPsychHtmlKeyboardResponse,
         stimulus: createStimulusHTML(Demo2StimuliDatails, DemoExperiment1and2Prompt),
@@ -331,6 +338,7 @@
         }
     };
 
+    // デモ実験 レスポンス
     const demo_tell_ans = {
         type: jsPsychHtmlButtonResponse,
         stimulus: function () {
@@ -354,6 +362,7 @@
         }
     };
 
+    // デモ実験　NASA-RTLX
     const demo_nasa_rtlx = {
         type: jsPsychSurveyLikert,
         preamble: "<strong>各項目について、<br>1（低い）～ 20（高い）<br>で評価してください。</strong>",
@@ -375,6 +384,7 @@
         }
     };
 
+    // デモ実験　終了
     const end_demo = {
         type: jsPsychHtmlButtonResponse,
         stimulus: '<div style="font-size:30px;">' +
@@ -384,7 +394,7 @@
         choices: ["実験を開始"],
     };
 
-    // 行政手続き階層刺激
+    // 実験　刺激1　行政手続き階層刺激
     const Exp1StimuliDatails = `
     <div style= "text-align: left; margin-top: 20px; margin-bottom: 20px; margin-left: 10px; margin-right: 10px;">
         <details>
@@ -1154,17 +1164,17 @@
             </details>
         `;
 
-    // 行政手続き階層教示文
-    const Exp1Prompt = `
+    // 実験　指示文1&2　行政手続き
+    const Exp1and2Prompt = `
         <div style= "text-align: left; margin-top: 20px; margin-bottom: 20px; margin-left: auto; margin-right: auto;">
         <br>行政webサイトから<b>可燃ゴミ回収の曜日</b>を確認するための資料がどこにあるか探してください。
         `;
 
-    // 行政実験
+    // 実験1 行政
     const experiment1 = {
         type: jsPsychHtmlKeyboardResponse,
         stimulus: Exp1StimuliDatails,
-        prompt: Exp1Prompt,
+        prompt: Exp1and2Prompt,
         choices: "NO_KEYS", // キーボード入力を無効化
         on_load: addClickEvent, // 画面が表示された後にイベントを追加
         data: {
@@ -1176,7 +1186,7 @@
         }
     };
 
-    // 行政手続き階層刺激
+    // 実験　刺激2　行政手続き階層刺激
     const Exp2StimuliDatails = `
     <div style= "text-align: left; margin-top: 20px; margin-bottom: 20px; margin-left: 10px; margin-right: 10px;">
         <details>
@@ -1946,17 +1956,11 @@
             </details>
         `;
 
-    // 行政手続き階層教示文
-    const Exp2Prompt = `
-        <div style= "text-align: left; margin-top: 20px; margin-bottom: 20px; margin-left: auto; margin-right: auto;">
-        <br>行政webサイトから<b>可燃ゴミ回収の曜日</b>を確認するための資料がどこにあるか探してください。
-        `;
-
-    // 行政実験
+    // 実験2 行政実験
     const experiment2 = {
         type: jsPsychHtmlKeyboardResponse,
         stimulus: Exp2StimuliDatails,
-        prompt: Exp2Prompt,
+        prompt: Exp1and2Prompt,
         choices: "NO_KEYS", // キーボード入力を無効化
         on_load: addClickEvent, // 画面が表示された後にイベントを追加
         data: {
@@ -2049,8 +2053,8 @@
 
     const end_trial = {
         type: jsPsychHtmlKeyboardResponse,
-        stimulus: 'お疲れ様でした。<br>データが無事保存され、<br>実験は終了です。<br>' +
-            '本日は実験に参加いただき<br>ありがとうございました。<br>（もう画面を閉じて大丈夫です）'
+        stimulus: 'お疲れ様でした。<br><br>データが無事保存され、<br>実験は終了です。<br><br>' +
+            '本日は実験に参加いただき<br>ありがとうございました。<br><br>（もう画面を閉じて大丈夫です）'
     };
 
 
