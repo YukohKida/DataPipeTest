@@ -39,6 +39,11 @@
             /* 画面の端とボタンの間に余白 */
             box-sizing: border-box;
         }
+
+        .indent-summary>summary {
+            padding-left: 20px;
+            /* 任意のインデント */
+        }
     </style>
 </head>
 
@@ -312,24 +317,24 @@
     const Demo2StimuliDatails = `
         <div style= "text-align: left; margin-top: 20px; margin-bottom: 20px; margin-left: auto; margin-right: auto; width: 90%;">
         植物<br>
-        <details>
+        <details class="indent-summary">
         <summary>果物</summary>
             <span class="clickable-text"><b>リンゴ</b><br></span>
             <span class="clickable-text"><b>バナナ</b></span>
         </details>
-        <details>
+        <details class="indent-summary">
             <summary>野菜</summary>
             <span class="clickable-text"><b>トマト</b><br></span>
             <span class="clickable-text"><b>キャベツ</b></span>
         </details>
 
         動物<br>
-        <details>
+        <details class="indent-summary">
         <summary>草食</summary>
             <span class="clickable-text"><b>ウシ</b><br></span>
             <span class="clickable-text"><b>ブタ</b></span>
         </details>
-        <details>
+        <details class="indent-summary">
         <summary>肉食</summary>
             <span class="clickable-text"><b>ワニ</b><br></span>
             <span class="clickable-text"><b>サメ</b></span>
