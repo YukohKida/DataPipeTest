@@ -2054,9 +2054,8 @@
     };
 
 
-    // timeline
     // 説明セクションのタイムライン
-    const opening_timelin = {
+    const opening_timeline = {
         timeline: [
             hello_instructions,
             // device_check,
@@ -2065,7 +2064,6 @@
     };
 
     // デモセクション
-    // デモ実験1のタイムラインを作成
     const demo_experiment1_timeline = {
         timeline: [
             demo_experiment1,
@@ -2073,7 +2071,7 @@
             demo_nasa_rtlx
         ]
     };
-    // デモ実験2のタイムラインを作成
+
     const demo_experiment2_timeline = {
         timeline: [
             demo_experiment2,
@@ -2081,20 +2079,23 @@
             demo_nasa_rtlx
         ]
     };
+
     // ランダムな順序にシャッフル
     const randomized_demo_experiment_timeline = jsPsych.randomization.shuffle([
-            demo_experiment1_timeline.timeline,
-            demo_experiment2_timeline.timeline
-        ]);
-    // デモセクション全体のタイムライン
+        demo_experiment1_timeline,
+        demo_experiment2_timeline
+    ]);
+
+    // デモ全体のタイムライン
     const demo_timeline = {
-        demo_introduction,
-        randomized_demo_experiment_timeline.timeline,
-        end_demo
+        timeline: [
+            demo_introduction,
+            ...randomized_demo_experiment_timeline, // 修正点①
+            end_demo
+        ]
     };
 
     // 実験セクション
-    // 実験1のタイムラインを作成
     const experiment1_timeline = {
         timeline: [
             experiment1,
@@ -2102,7 +2103,7 @@
             nasa_rtlx
         ]
     };
-    // 実験2のタイムラインを作成
+
     const experiment2_timeline = {
         timeline: [
             experiment2,
@@ -2110,16 +2111,18 @@
             nasa_rtlx
         ]
     };
-    // ランダムに順序をシャッフル
-    const randomized_experiment_timeline = jsPsych.randomization.shuffle([
-            experiment1_timeline.timeline,
-            experiment2_timeline.timeline
-        ]);
 
-    // インタビューセクションのタイムラインを作成
+    // 実験をランダム化
+    const randomized_experiment_timeline = {
+        timeline: jsPsych.randomization.shuffle([
+            experiment1_timeline,
+            experiment2_timeline
+        ])
+    };
+
+    // インタビューセクション
     const survey_timeline = {
-        survey1,
-        survey2
+        timeline: [survey1, survey2] // 修正点②
     };
 
     // 実験終了のタイムライン
@@ -2130,15 +2133,15 @@
         ]
     };
 
-    // jsPsych.run([hello_trial, device_check, demo_experiment1, demo_experiment2, survey1, survey2, save_data, end_trial]);
-    // jsPsych.run([hello_instructions, device_check, experiment_instructions, demo_experiment1, tell_ans, nasa_rtlx, end_demo, experiment1, tell_ans, nasa_rtlx, survey1, survey2, save_data, end_trial]);
+    // jsPsychの実行
     jsPsych.run([
-        opening_timelin.timeline,
-        demo_timeline.timeline,
-        randomized_experiment_timeline.timeline,
-        survey_timeline.timeline,
-        ending_timeline.timeline
+        opening_timeline,
+        demo_timeline,
+        randomized_experiment_timeline,
+        survey_timeline,
+        ending_timeline
     ]);
+
 </script>
 
 </html>
