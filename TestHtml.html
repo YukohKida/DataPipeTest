@@ -76,10 +76,10 @@
 
     const createStimulusHTML = (stimulus, prompt) => {
         return `
-        <div style="position: absolute; top: 40px; left: 50%; transform: translateX(-50%);">
+        <div style="position: absolute; top: 40px; left: 50%; transform: translateX(-50%); display: inline-block; text-align: center;">
             ${prompt}
         </div>
-        <div style="position: absolute; top: 120px; left: 50%; transform: translateX(-50%); white-space: normal; text-align: center; display: inline-block;">
+        <div style="position: absolute; top: 120px; left: 50%; transform: translateX(-50%); display: inline-block; text-align: center;">
             ${stimulus}
         </div>
     `;
@@ -258,6 +258,7 @@
 
     // デモ実験 刺激1
     const Demo1StimuliDatails = `
+        <div style= "text-align: left; margin-top: 20px; margin-bottom: 20px; margin-left: auto; margin-right: auto; width: 90%;">
         <details>
             <summary>植物</summary>
             <details>
