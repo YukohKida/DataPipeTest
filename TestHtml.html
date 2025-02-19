@@ -667,6 +667,10 @@
             '<div style="font-size:20px">' +
             '<p>「次へ」を押すと<br>「実験パート」<br>が始まります。</p>',
         choices: ["実験を開始"],
+        on_start: function (trial) {
+                jsPsych.getDisplayElement().innerHTML = ""; // **画面をクリア**
+                start_time = performance.now(); // **開始時刻を記録**
+        }
     };
 
     // 実験　刺激1　行政手続き階層刺激
