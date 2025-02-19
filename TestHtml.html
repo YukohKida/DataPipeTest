@@ -21,28 +21,16 @@
 
     <head>
         <style>
-            /* --- ページ全体のレイアウト調整 --- */
-            body {
-                margin: 20px;
-            }
+            /* ==============================
+            スライダーのデザイン（NASA-TLX スタイル）
+            ============================== */
 
-            /* --- jsPsych の全体レイアウト --- */
-            #jspsych-content-wrapper {
-                padding-top: 50px;
-            }
-
-            #jspsych-display-element {
-                padding: 80px;
-                box-sizing: border-box;
-            }
-
-            /* --- スライダーのコンテナ（各スライダーの間隔を調整）--- */
+            /* スライダー全体のコンテナ */
             .slider-container {
                 margin-bottom: 30px;
-                /* スライダー間のスペースを広げる */
             }
 
-            /* --- スライダーのラベル（左右の値表示）--- */
+            /* スライダーのラベル（左・右端の表示） */
             .slider-labels {
                 display: flex;
                 justify-content: space-between;
@@ -51,72 +39,67 @@
                 color: #333;
             }
 
-            /* --- スライダーのバー（全体の線） --- */
+            /* スライダーのバー */
             input[type="range"] {
                 width: 100%;
                 height: 20px;
-                /* バーの高さをつまみよりも大きくする */
+                /* バーを大きめに */
                 -webkit-appearance: none;
                 appearance: none;
                 background: #ccc;
-                /* グレー */
                 border-radius: 10px;
                 outline: none;
                 cursor: pointer;
                 position: relative;
             }
 
-            /* --- スライダーのつまみ（サークル部分） --- */
+            /* スライダーのつまみ（サークル部分） */
             input[type="range"]::-webkit-slider-thumb {
                 -webkit-appearance: none;
                 width: 30px;
                 height: 30px;
                 background: #333;
-                /* 黒 */
                 border-radius: 50%;
                 cursor: pointer;
                 border: 2px solid #555;
                 position: relative;
                 top: 50%;
                 transform: translateY(-50%);
-                /* つまみの位置を中央揃え */
             }
 
             input[type="range"]::-moz-range-thumb {
                 width: 30px;
                 height: 30px;
                 background: #333;
-                /* 黒 */
                 border-radius: 50%;
                 cursor: pointer;
                 border: 2px solid #555;
                 position: relative;
                 top: 50%;
                 transform: translateY(-50%);
-                /* つまみの位置を中央揃え */
             }
 
-            /* --- スライダーのバーのスタイル（Webkit用） --- */
+            /* スライダーのバー（Webkit用） */
             input[type="range"]::-webkit-slider-runnable-track {
                 width: 100%;
                 height: 20px;
-                /* バーの高さを大きめに */
                 background: #ccc;
                 border-radius: 10px;
-                position: relative;
             }
 
-            /* --- スライダーのバーのスタイル（Moz用） --- */
+            /* スライダーのバー（Moz用） */
             input[type="range"]::-moz-range-track {
                 width: 100%;
                 height: 20px;
-                /* バーの高さを大きめに */
                 background: #ccc;
                 border-radius: 10px;
-                position: relative;
             }
 
-            /* --- ボタンのデザイン --- */
+            /* ==============================
+            ボタンのデザイン
+            ============================== */
+
+            /* ボタンのコンテナ */
             .button-container {
                 display: flex;
                 justify-content: center;
@@ -125,11 +108,12 @@
                 flex-wrap: wrap;
             }
 
+            /* jsPsych のボタンスタイル */
             .jspsych-btn {
                 background-color: #333;
                 color: #fff;
                 border: 1px solid #555;
-                padding: 10px 20px;
+                padding: 12px 24px;
                 font-size: 16px;
                 border-radius: 5px;
                 cursor: pointer;
@@ -138,41 +122,31 @@
                 text-align: center;
             }
 
+            /* ボタンのホバー時 */
             .jspsych-btn:hover {
                 background-color: #555;
             }
 
-            /* --- 説明画面のデザイン --- */
-            .instruction-container {
-                text-align: center;
-                max-width: 90%;
-                margin: auto;
-                padding: 40px 20px;
+            /* ==============================
+            jsPsych の画面調整
+            ============================== */
+
+            /* スライダー画面の上部に余白を追加 */
+            #jspsych-content-wrapper {
+                padding-top: 50px;
             }
 
-            .instruction-container h2 {
-                font-size: 28px;
-                margin-bottom: 20px;
-                color: #333;
+            /* jsPsych の全体レイアウト */
+            #jspsych-display-element {
+                padding: 80px;
+                box-sizing: border-box;
             }
 
-            .instruction-text {
-                text-align: left;
-                font-size: 18px;
-                color: #555;
-                line-height: 1.6;
-                margin: 20px auto;
-                max-width: 80%;
-            }
+            /* ==============================
+            実験画面（Exp1, Exp2, Demo）のデザイン
+            ============================== */
 
-            .instruction-agreement,
-            .instruction-next {
-                font-size: 20px;
-                font-weight: bold;
-                margin-top: 30px;
-            }
-
-            /* --- 刺激のデザイン（Demo1, Demo2 の見た目を統一） --- */
+            /* 実験・デモの共通コンテナ */
             .stimulus-container {
                 text-align: left;
                 max-width: 90%;
@@ -180,7 +154,7 @@
                 padding: 20px;
             }
 
-            /* --- カテゴリー（植物・動物）を囲むボックス --- */
+            /* 各カテゴリーのボックス */
             .category-box {
                 border: 1px solid #444;
                 padding: 10px;
@@ -189,7 +163,7 @@
                 background-color: #f8f8f8;
             }
 
-            /* --- カテゴリータイトル（植物・動物） --- */
+            /* メインカテゴリのタイトル */
             .category-title {
                 font-size: 20px;
                 font-weight: bold;
@@ -199,7 +173,16 @@
                 color: #222;
             }
 
-            /* --- <details> のデザインを統一 --- */
+            /* サブカテゴリのタイトル（Exp2） */
+            .category-subtitle {
+                font-size: 18px;
+                font-weight: bold;
+                margin-top: 10px;
+                padding-left: 10px;
+                color: #444;
+            }
+
+            /* <details> のデザイン（Exp1） */
             details {
                 border: 1px solid #444;
                 padding: 10px;
@@ -216,14 +199,16 @@
                 padding: 5px;
             }
 
-            /* --- <details> の有無に関わらず、テキストの見た目を統一 --- */
-            .details-content {
-                display: flex;
-                flex-direction: column;
+            /* 折りたたみ要素のインデント */
+            details[open]> :not(summary) {
                 padding-left: 20px;
             }
 
-            /* --- クリック可能なテキスト（ボタン風） --- */
+            /* ==============================
+            クリック可能な項目（リンク風）
+            ============================== */
+
+            /* 選択肢のスタイル */
             .clickable-text {
                 display: block;
                 font-size: 18px;
@@ -237,8 +222,54 @@
                 cursor: pointer;
             }
 
+            /* ホバー時 */
             .clickable-text:hover {
                 background-color: #bbb;
+            }
+
+            /* ==============================
+            説明画面（指示文）のスタイル
+            ============================== */
+
+            /* 説明文のコンテナ */
+            .instruction-container {
+                text-align: center;
+                max-width: 90%;
+                margin: auto;
+                padding: 40px 20px;
+            }
+
+            /* 見出し */
+            .instruction-container h2 {
+                font-size: 28px;
+                margin-bottom: 20px;
+                color: #333;
+            }
+
+            /* 説明テキスト */
+            .instruction-text {
+                text-align: left;
+                font-size: 18px;
+                color: #555;
+                line-height: 1.6;
+                margin: 20px auto;
+                max-width: 80%;
+            }
+
+            /* 同意を求める部分のスタイル */
+            .instruction-agreement {
+                font-size: 20px;
+                font-weight: bold;
+                margin-top: 30px;
+            }
+
+            /* ==============================
+            全体のレイアウト調整
+            ============================== */
+
+            /* ページ全体のマージン */
+            body {
+                margin: 20px;
             }
         </style>
     </head>
@@ -713,7 +744,7 @@
 
     // 実験　刺激1　行政手続き階層刺激
     const Exp1StimuliDatails = `
-    <div style= "text-align: left; margin-top: 20px; margin-bottom: 20px; margin-left: 10px; margin-right: 10px;">
+    <div class="stimulus-container">
         <details>
             <summary>くらし・手続き</summary>
             <details>
@@ -1488,24 +1519,24 @@
         `;
 
     // 実験1 行政
+    // 実験1（行政手続き）
     const experiment1 = {
         type: jsPsychHtmlKeyboardResponse,
-        stimulus: Exp1StimuliDatails,
-        prompt: Exp1and2Prompt,
+        stimulus: createStimulusHTML(Exp1StimuliDatails, Exp1and2Prompt),
         choices: "NO_KEYS", // キーボード入力を無効化
-        on_load: addClickEvent, // 画面が表示された後にイベントを追加
-        data: {
-            experiment_data: 1,
-        },
+        on_load: addClickEvent, // クリックイベントを追加
         on_start: function () {
             jsPsych.getDisplayElement().innerHTML = ""; // **画面をクリア**
             start_time = performance.now(); // **開始時刻を記録**
+        },
+        data: {
+            experiment_data: 1, // 実験1であることを識別
         }
     };
 
     // 実験 刺激2 行政手続き階層刺激
     const Exp2StimuliDatails = `
-    <div style= "text-align: left; margin-top: 20px; margin-bottom: 20px; margin-left: 10px; margin-right: 10px;">
+    <div class="stimulus-container">
         <details>
             <summary>くらし・手続き</summary>
             <details>
@@ -2276,16 +2307,15 @@
     // 実験2 行政実験
     const experiment2 = {
         type: jsPsychHtmlKeyboardResponse,
-        stimulus: Exp2StimuliDatails,
-        prompt: Exp1and2Prompt,
+        stimulus: createStimulusHTML(Exp1StimuliDatails, Exp1and2Prompt),
         choices: "NO_KEYS", // キーボード入力を無効化
-        on_load: addClickEvent, // 画面が表示された後にイベントを追加
-        data: {
-            experiment_data: 2,
-        },
+        on_load: addClickEvent, // クリックイベントを追加
         on_start: function () {
             jsPsych.getDisplayElement().innerHTML = ""; // **画面をクリア**
             start_time = performance.now(); // **開始時刻を記録**
+        },
+        data: {
+            experiment_data: 2, // 実験2であることを識別
         }
     };
 
