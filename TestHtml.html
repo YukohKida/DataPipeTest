@@ -22,15 +22,87 @@
     <head>
         <style>
             /* ==============================
-            スライダーのデザイン（NASA-TLX スタイル）
-            ============================== */
+            全体のレイアウト
+            ================================= */
+            body {
+                margin: 20px;
+                padding: 0;
+                font-family: Arial, sans-serif;
+                background-color: #fff;
+                color: #333;
+            }
 
-            /* スライダー全体のコンテナ */
+            /* 画面のコンテンツを中央に配置 */
+            .container {
+                width: 90%;
+                max-width: 800px;
+                margin: auto;
+                text-align: center;
+            }
+
+            /* ==============================
+            Prompt（指示文）のスタイル
+            ================================= */
+            .prompt-container {
+                width: 100%;
+                text-align: left;
+                font-size: 18px;
+                color: #555;
+                line-height: 1.6;
+                margin-bottom: 30px;
+                padding: 15px;
+                background-color: #f8f8f8;
+                border-radius: 5px;
+                border: 1px solid #ccc;
+            }
+
+            /* ==============================
+            StimuliDatails のスタイル
+            ================================= */
+            .stimulus-container {
+                width: 100%;
+                max-width: 800px;
+                padding: 20px;
+                border: 1px solid #444;
+                border-radius: 5px;
+                background-color: #fff;
+                overflow: auto;
+            }
+
+            /* ==============================
+            etails（折りたたみ項目）のスタイル
+            ================================= */
+            details {
+                width: 100%;
+                margin-bottom: 10px;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                background-color: #f8f8f8;
+            }
+
+            summary {
+                font-size: 18px;
+                font-weight: bold;
+                cursor: pointer;
+                padding: 8px;
+                background-color: #e6e6e6;
+                border-radius: 5px;
+            }
+
+            details[open] {
+                margin-bottom: 15px;
+            }
+
+            /* ==============================
+            スライダーのデザイン（NASA-TLX スタイル）
+            ================================= */
             .slider-container {
+                width: 100%;
                 margin-bottom: 30px;
             }
 
-            /* スライダーのラベル（左・右端の表示） */
+            /* スライダーのラベル */
             .slider-labels {
                 display: flex;
                 justify-content: space-between;
@@ -43,7 +115,6 @@
             input[type="range"] {
                 width: 100%;
                 height: 20px;
-                /* バーを大きめに */
                 -webkit-appearance: none;
                 appearance: none;
                 background: #ccc;
@@ -53,7 +124,7 @@
                 position: relative;
             }
 
-            /* スライダーのつまみ（サークル部分） */
+            /* スライダーのつまみ */
             input[type="range"]::-webkit-slider-thumb {
                 -webkit-appearance: none;
                 width: 30px;
@@ -97,9 +168,7 @@
 
             /* ==============================
             ボタンのデザイン
-            ============================== */
-
-            /* ボタンのコンテナ */
+            ================================= */
             .button-container {
                 display: flex;
                 justify-content: center;
@@ -108,7 +177,6 @@
                 flex-wrap: wrap;
             }
 
-            /* jsPsych のボタンスタイル */
             .jspsych-btn {
                 background-color: #333;
                 color: #fff;
@@ -118,25 +186,20 @@
                 border-radius: 5px;
                 cursor: pointer;
                 transition: background-color 0.3s;
-                max-width: 80%;
                 text-align: center;
             }
 
-            /* ボタンのホバー時 */
             .jspsych-btn:hover {
                 background-color: #555;
             }
 
             /* ==============================
-            jsPsych の画面調整
-            ============================== */
-
-            /* スライダー画面の上部に余白を追加 */
+            jsPsych のレイアウト調整
+            ================================= */
             #jspsych-content-wrapper {
                 padding-top: 50px;
             }
 
-            /* jsPsych の全体レイアウト */
             #jspsych-display-element {
                 padding: 80px;
                 box-sizing: border-box;
@@ -144,8 +207,7 @@
 
             /* ==============================
             実験画面（Exp1, Exp2, Demo）のデザイン
-            ============================== */
-
+            ================================= */
             .stimulus-wrapper {
                 width: 100%;
                 display: flex;
@@ -153,23 +215,7 @@
                 align-items: center;
             }
 
-            /* 指示文（Prompt）のスタイル */
-            .prompt-container {
-                width: 100%;
-                max-width: 800px;
-                text-align: left;
-                font-size: 18px;
-                color: #555;
-                line-height: 1.6;
-                margin-bottom: 20px;
-                padding: 10px;
-                background-color: #f8f8f8;
-                border-radius: 5px;
-                border: 1px solid #ccc;
-            }
-
             /* 実験・デモの共通コンテナ */
-            /* 刺激（StimuliDatails）のコンテナ */
             .stimulus-container {
                 width: 90%;
                 max-width: 800px;
@@ -199,7 +245,7 @@
                 color: #222;
             }
 
-            /* サブカテゴリのタイトル（Exp2） */
+            /* サブカテゴリのタイトル */
             .category-subtitle {
                 font-size: 18px;
                 font-weight: bold;
@@ -208,39 +254,7 @@
                 color: #444;
             }
 
-            /* <details> のデザイン（Exp1） */
-            details {
-                border: 1px solid #444;
-                padding: 10px;
-                margin: 5px 0;
-                border-radius: 5px;
-                background-color: #f8f8f8;
-                margin-bottom: 10px;  /* 🔥 details 同士の間隔を確保 */
-                width: auto;
-                /* 幅を制限せず、内容に応じて広がる */
-                max-width: 100%;
-                /* 画面いっぱいまで拡張可能 */
-            }
-
-            summary {
-                font-size: 18px;
-                font-weight: bold;
-                cursor: pointer;
-                color: #222;
-                padding: 5px;
-            }
-
-            /* 折りたたみ要素のインデント */
-            details[open]> :not(summary) {
-                padding-left: 20px;
-                margin-bottom: 15px; /* 🔥 details を開いたときに下の要素と間隔を作る */
-            }
-
-            /* ==============================
-            クリック可能な項目（リンク風）
-            ============================== */
-
-            /* 選択肢のスタイル */
+            /* クリック可能な項目（リンク風） */
             .clickable-text {
                 display: block;
                 font-size: 18px;
@@ -254,16 +268,13 @@
                 cursor: pointer;
             }
 
-            /* ホバー時 */
             .clickable-text:hover {
                 background-color: #bbb;
             }
 
             /* ==============================
             説明画面（指示文）のスタイル
-            ============================== */
-
-            /* 説明文のコンテナ */
+            ================================= */
             .instruction-container {
                 text-align: center;
                 max-width: 90%;
@@ -271,14 +282,12 @@
                 padding: 40px 20px;
             }
 
-            /* 見出し */
             .instruction-container h2 {
                 font-size: 28px;
                 margin-bottom: 20px;
                 color: #333;
             }
 
-            /* 説明テキスト */
             .instruction-text {
                 text-align: left;
                 font-size: 18px;
@@ -288,20 +297,10 @@
                 max-width: 80%;
             }
 
-            /* 同意を求める部分のスタイル */
             .instruction-agreement {
                 font-size: 20px;
                 font-weight: bold;
                 margin-top: 30px;
-            }
-
-            /* ==============================
-            全体のレイアウト調整
-            ============================== */
-
-            /* ページ全体のマージン */
-            body {
-                margin: 20px;
             }
         </style>
     </head>
