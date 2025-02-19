@@ -36,12 +36,13 @@
                 box-sizing: border-box;
             }
 
-            /* --- スライダーのデザイン（完全に元に戻す） --- */
+            /* --- スライダーのコンテナ（各スライダーの間隔を調整）--- */
             .slider-container {
                 margin-bottom: 30px;
                 /* スライダー間のスペースを広げる */
             }
 
+            /* --- スライダーのラベル（左右の値表示）--- */
             .slider-labels {
                 display: flex;
                 justify-content: space-between;
@@ -53,15 +54,16 @@
             /* --- スライダーのバー（全体の線） --- */
             input[type="range"] {
                 width: 100%;
-                height: 10px;
-                /* バーの高さを大きく */
+                height: 20px;
+                /* バーの高さをつまみよりも大きくする */
                 -webkit-appearance: none;
                 appearance: none;
                 background: #ccc;
-                /* 背景色をグレーに */
-                border-radius: 5px;
+                /* グレー */
+                border-radius: 10px;
                 outline: none;
                 cursor: pointer;
+                position: relative;
             }
 
             /* --- スライダーのつまみ（サークル部分） --- */
@@ -70,40 +72,48 @@
                 width: 30px;
                 height: 30px;
                 background: #333;
-                /* 黒に戻す */
+                /* 黒 */
                 border-radius: 50%;
                 cursor: pointer;
                 border: 2px solid #555;
+                position: relative;
+                top: 50%;
+                transform: translateY(-50%);
+                /* つまみの位置を中央揃え */
             }
 
             input[type="range"]::-moz-range-thumb {
                 width: 30px;
                 height: 30px;
                 background: #333;
-                /* 黒に戻す */
+                /* 黒 */
                 border-radius: 50%;
                 cursor: pointer;
                 border: 2px solid #555;
+                position: relative;
+                top: 50%;
+                transform: translateY(-50%);
+                /* つまみの位置を中央揃え */
             }
 
             /* --- スライダーのバーのスタイル（Webkit用） --- */
             input[type="range"]::-webkit-slider-runnable-track {
                 width: 100%;
-                height: 10px;
-                /* バーの高さを統一 */
+                height: 20px;
+                /* バーの高さを大きめに */
                 background: #ccc;
-                /* グレーに統一 */
-                border-radius: 5px;
+                border-radius: 10px;
+                position: relative;
             }
 
             /* --- スライダーのバーのスタイル（Moz用） --- */
             input[type="range"]::-moz-range-track {
                 width: 100%;
-                height: 10px;
-                /* バーの高さを統一 */
+                height: 20px;
+                /* バーの高さを大きめに */
                 background: #ccc;
-                /* グレーに統一 */
-                border-radius: 5px;
+                border-radius: 10px;
+                position: relative;
             }
 
             /* --- ボタンのデザイン --- */
