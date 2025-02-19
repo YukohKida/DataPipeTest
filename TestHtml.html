@@ -21,32 +21,36 @@
 
     <head>
         <style>
-            /* --- スライダーのコンテナ（各スライダーの間隔を調整）--- */
+            /* --- ページ全体のレイアウト調整 --- */
+            body {
+                margin: 20px;
+            }
+
+            /* --- jsPsych の全体レイアウト --- */
+            #jspsych-content-wrapper {
+                padding-top: 50px;
+                /* 上部に余白を作る */
+            }
+
+            #jspsych-display-element {
+                padding: 80px;
+                box-sizing: border-box;
+            }
+
+            /* --- スライダーのデザイン --- */
             .slider-container {
                 margin-bottom: 30px;
                 /* スライダー間のスペースを広げる */
             }
 
-            /* --- スライダーのラベル（1～20の表示）--- */
             .slider-labels {
                 display: flex;
                 justify-content: space-between;
-                /* 左右に配置 */
                 margin-top: 5px;
                 font-size: 14px;
                 color: #333;
-                /* 黒系に統一 */
             }
 
-            /* --- 説明文のスタイル（補足説明のフォント設定）--- */
-            .description {
-                font-size: 14px;
-                color: #666;
-                /* グレーで控えめな表示 */
-                margin-bottom: 10px;
-            }
-
-            /* --- スライダーの基本デザイン --- */
             input[type="range"] {
                 width: 100%;
                 height: 40px;
@@ -61,22 +65,11 @@
                 transition: opacity 0.2s;
             }
 
-            /* --- スライダーのホバー時（透明度調整）--- */
             input[type="range"]:hover {
                 opacity: 1;
             }
 
-            /* --- スライダーのつまみ（サークル部分のデザイン）--- */
-            input[type="range"]::-webkit-slider-thumb {
-                -webkit-appearance: none;
-                width: 30px;
-                height: 30px;
-                background: #333;
-                /* 少し明るめの黒 */
-                border-radius: 50%;
-                cursor: pointer;
-            }
-
+            input[type="range"]::-webkit-slider-thumb,
             input[type="range"]::-moz-range-thumb {
                 width: 30px;
                 height: 30px;
@@ -86,72 +79,35 @@
                 cursor: pointer;
             }
 
-            /* --- ボタンのコンテナ（複数ボタンを均等配置）--- */
+            /* --- ボタンのデザイン --- */
             .button-container {
                 display: flex;
                 justify-content: center;
                 gap: 20px;
-                /* ボタン同士の間隔を 20px に設定 */
+                /* ボタン間のスペース */
                 padding: 15px 0;
                 flex-wrap: wrap;
                 /* 小さい画面では折り返し */
             }
 
-            /* --- ボタンのスタイル（少し明るめの黒）--- */
             .jspsych-btn {
                 background-color: #333;
-                /* 以前の #222 より少し明るく */
                 color: #fff;
-                /* 文字を白に */
                 border: 1px solid #555;
-                /* 少し明るめのボーダー */
                 padding: 10px 20px;
                 font-size: 16px;
                 border-radius: 5px;
                 cursor: pointer;
                 transition: background-color 0.3s;
                 max-width: 80%;
-                /* ボタンの横幅を制限 */
                 text-align: center;
             }
 
-            /* --- ボタンのホバー時（少し明るくする）--- */
             .jspsych-btn:hover {
                 background-color: #555;
-                /* 明るさをさらに調整 */
             }
 
-            /* --- jsPsych のスライダー画面の上部に余白を追加 --- */
-            #jspsych-content-wrapper {
-                padding-top: 50px;
-                /* 上部に余白を作る */
-            }
-
-            /* --- jsPsych の画面全体のレイアウト調整 --- */
-            #jspsych-display-element {
-                padding: 80px;
-                /* 画面の端とボタンの間に余白 */
-                box-sizing: border-box;
-            }
-
-            /* --- 折りたたみ要素（details）内のテキストのインデント --- */
-            details[open]> :not(summary) {
-                padding-left: 2em;
-                /* 折りたたみ文字を2文字分右へ */
-            }
-
-            /* --- 任意のインデントを持つ summary 要素 --- */
-            .indent-summary>summary {
-                padding-left: 2em;
-            }
-
-            /* --- ページ全体のマージンを調整 --- */
-            body {
-                margin: 20px;
-                /* 画面端に余白を設定 */
-            }
-
-            /* --- 説明画面のコンテナ --- */
+            /* --- 説明画面のデザイン --- */
             .instruction-container {
                 text-align: center;
                 max-width: 90%;
@@ -159,14 +115,12 @@
                 padding: 40px 20px;
             }
 
-            /* --- 見出しスタイル --- */
             .instruction-container h2 {
                 font-size: 28px;
                 margin-bottom: 20px;
                 color: #333;
             }
 
-            /* --- 説明テキストのスタイル --- */
             .instruction-text {
                 text-align: left;
                 font-size: 18px;
@@ -176,43 +130,69 @@
                 max-width: 80%;
             }
 
-            /* --- 同意を求める部分のスタイル --- */
-            .instruction-agreement {
-                font-size: 20px;
-                font-weight: bold;
-                margin-top: 30px;
-            }
-
-            /* --- 説明画面のコンテナ --- */
-            .instruction-container {
-                text-align: center;
-                max-width: 90%;
-                margin: auto;
-                padding: 40px 20px;
-            }
-
-            /* --- 見出しのスタイル --- */
-            .instruction-container h2 {
-                font-size: 28px;
-                margin-bottom: 20px;
-                color: #333;
-            }
-
-            /* --- 説明テキストのスタイル --- */
-            .instruction-text {
-                text-align: left;
-                font-size: 18px;
-                color: #555;
-                line-height: 1.6;
-                margin: 20px auto;
-                max-width: 80%;
-            }
-
-            /* --- 次のページへ進む説明テキスト --- */
+            .instruction-agreement,
             .instruction-next {
                 font-size: 20px;
                 font-weight: bold;
                 margin-top: 30px;
+            }
+
+            /* --- 刺激のデザイン --- */
+            .stimulus-container {
+                text-align: left;
+                max-width: 90%;
+                margin: auto;
+                padding: 20px;
+            }
+
+            /* --- カテゴリータイトル（植物・動物） --- */
+            .category-title {
+                font-size: 20px;
+                font-weight: bold;
+                margin-top: 10px;
+                margin-bottom: 5px;
+                padding: 5px;
+                border-bottom: 1px solid #444;
+                color: #222;
+            }
+
+            /* --- <details> のデザインを統一 --- */
+            details {
+                border: 1px solid #444;
+                padding: 10px;
+                margin: 5px 0;
+                border-radius: 5px;
+                background-color: #f8f8f8;
+            }
+
+            summary {
+                font-size: 18px;
+                font-weight: bold;
+                cursor: pointer;
+                color: #222;
+                padding: 5px;
+            }
+
+            details[open]> :not(summary) {
+                padding-left: 20px;
+            }
+
+            /* --- クリック可能なテキスト（ボタン風） --- */
+            .clickable-text {
+                display: block;
+                font-size: 18px;
+                font-weight: bold;
+                padding: 10px;
+                margin: 5px 0;
+                border: 1px solid #444;
+                background-color: #ddd;
+                text-align: center;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            .clickable-text:hover {
+                background-color: #bbb;
             }
         </style>
     </head>
@@ -424,44 +404,47 @@
         choices: ["実験を開始"],
     };
 
-    // デモ実験 刺激1
+    // デモ実験 刺激1 (修正後)
     const Demo1StimuliDatails = `
-        <div style= "text-align: left; margin-top: 20px; margin-bottom: 20px; margin-left: auto; margin-right: auto; width: 90%;">
+    <div class="stimulus-container">
         <details>
             <summary>植物</summary>
             <details>
                 <summary>果物</summary>
-                <span class="clickable-text"><b>リンゴ</b><br></span>
-                <span class="clickable-text"><b>バナナ</b></span>
+                <span class="clickable-text">リンゴ</span>
+                <span class="clickable-text">バナナ</span>
             </details>
             <details>
                 <summary>野菜</summary>
-                <span class="clickable-text"><b>トマト</b><br></span>
-                <span class="clickable-text"><b>キャベツ</b></span>
+                <span class="clickable-text">トマト</span>
+                <span class="clickable-text">キャベツ</span>
             </details>
         </details>
         <details>
             <summary>動物</summary>
             <details>
                 <summary>草食</summary>
-                <span class="clickable-text"><b>ウシ</b><br></span>
-                <span class="clickable-text"><b>ブタ</b></span>
+                <span class="clickable-text">ウシ</span>
+                <span class="clickable-text">ブタ</span>
             </details>
             <details>
                 <summary>肉食</summary>
-                <span class="clickable-text"><b>ワニ</b><br></span>
-                <span class="clickable-text"><b>サメ</b></span>
+                <span class="clickable-text">ワニ</span>
+                <span class="clickable-text">サメ</span>
             </details>
         </details>
-    `;
+    </div>
+`;
 
-    // デモ実験　指示文 1&2
+    // デモ実験 指示文 1&2 (修正後)
     const DemoExperiment1and2Prompt = `
-        <div style= "text-align: left ;margin-left: auto; margin-right: auto;">
-        <br>豚丼に使われる代表的な食材はなんですか？該当する<b>太字</b>で表示された食材をタップしてください。
-    `;
+    <div class="instruction-container">
+        <p>豚丼に使われる代表的な食材はなんですか？</p>
+        <p>該当する<b>太字</b>で表示された食材をタップしてください。</p>
+    </div>
+`;
 
-    // デモ実験1
+    // デモ実験1 (修正後)
     const demo_experiment1 = {
         type: jsPsychHtmlKeyboardResponse,
         stimulus: createStimulusHTML(Demo1StimuliDatails, DemoExperiment1and2Prompt),
@@ -476,35 +459,36 @@
         }
     };
 
-    // デモ実験 刺激2
+    // デモ実験 刺激2 (修正後)
     const Demo2StimuliDatails = `
-        <div style= "text-align: left; margin-top: 20px; margin-bottom: 20px; margin-left: auto; margin-right: auto; width: 90%;">
-        植物<br>
-        <details class="indent-summary">
-        <summary>果物</summary>
-            <span class="clickable-text"><b>リンゴ</b><br></span>
-            <span class="clickable-text"><b>バナナ</b></span>
+    <div class="stimulus-container">
+        <div class="category-title">植物</div>
+        <details>
+            <summary>果物</summary>
+            <span class="clickable-text">リンゴ</span>
+            <span class="clickable-text">バナナ</span>
         </details>
-        <details class="indent-summary">
+        <details>
             <summary>野菜</summary>
-            <span class="clickable-text"><b>トマト</b><br></span>
-            <span class="clickable-text"><b>キャベツ</b></span>
+            <span class="clickable-text">トマト</span>
+            <span class="clickable-text">キャベツ</span>
         </details>
 
-        動物<br>
-        <details class="indent-summary">
-        <summary>草食</summary>
-            <span class="clickable-text"><b>ウシ</b><br></span>
-            <span class="clickable-text"><b>ブタ</b></span>
+        <div class="category-title">動物</div>
+        <details>
+            <summary>草食</summary>
+            <span class="clickable-text">ウシ</span>
+            <span class="clickable-text">ブタ</span>
         </details>
-        <details class="indent-summary">
-        <summary>肉食</summary>
-            <span class="clickable-text"><b>ワニ</b><br></span>
-            <span class="clickable-text"><b>サメ</b></span>
+        <details>
+            <summary>肉食</summary>
+            <span class="clickable-text">ワニ</span>
+            <span class="clickable-text">サメ</span>
         </details>
-    `;
+    </div>
+`;
 
-    // デモ実験2
+    // デモ実験2 (修正後)
     const demo_experiment2 = {
         type: jsPsychHtmlKeyboardResponse,
         stimulus: createStimulusHTML(Demo2StimuliDatails, DemoExperiment1and2Prompt),
@@ -668,8 +652,8 @@
             '<p>「次へ」を押すと<br>「実験パート」<br>が始まります。</p>',
         choices: ["実験を開始"],
         on_start: function (trial) {
-                jsPsych.getDisplayElement().innerHTML = ""; // **画面をクリア**
-                start_time = performance.now(); // **開始時刻を記録**
+            jsPsych.getDisplayElement().innerHTML = ""; // **画面をクリア**
+            start_time = performance.now(); // **開始時刻を記録**
         }
     };
 
