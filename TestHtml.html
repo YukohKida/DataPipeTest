@@ -148,9 +148,9 @@
 
             .stimulus-wrapper {
                 width: 100%;
-                /* 画面全体を使う */
                 display: flex;
-                justify-content: center;
+                flex-direction: column;
+                align-items: center;
             }
 
             /* 指示文（Prompt）のスタイル */
@@ -178,16 +178,6 @@
                 border-radius: 5px;
                 background-color: #fff;
                 overflow: auto;
-            }
-
-            .stimulus-container {
-                text-align: left;
-                max-width: 100%;
-                /* 画面いっぱいまで広げる */
-                width: 95%;
-                /* 必要に応じて制限 */
-                margin: auto;
-                padding: 20px;
             }
 
             /* 各カテゴリーのボックス */
@@ -225,6 +215,7 @@
                 margin: 5px 0;
                 border-radius: 5px;
                 background-color: #f8f8f8;
+                margin-bottom: 10px;  /* 🔥 details 同士の間隔を確保 */
                 width: auto;
                 /* 幅を制限せず、内容に応じて広がる */
                 max-width: 100%;
@@ -242,6 +233,7 @@
             /* 折りたたみ要素のインデント */
             details[open]> :not(summary) {
                 padding-left: 20px;
+                margin-bottom: 15px; /* 🔥 details を開いたときに下の要素と間隔を作る */
             }
 
             /* ==============================
@@ -346,14 +338,16 @@
         });
     }
 
+
     function createStimulusHTML(stimuli, prompt) {
         return `
         <div class="stimulus-wrapper">
             <div class="prompt-container">${prompt}</div>
             <div class="stimulus-container">${stimuli}</div>
         </div>
-        `;
+    `;
     }
+
 
     // 実験開始の説明
     const hello_instructions = {
