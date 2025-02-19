@@ -606,18 +606,25 @@
                 };
             },
             on_finish: function (data) {
-                jsPsych.getDisplayElement().innerHTML = ""; // **画面をクリア**
-                data.start_time = start_time; // **開始時間をデータに記録**
-                data.end_time = performance.now(); // **終了時間を記録**
-                data.reaction_time = data.end_time - data.start_time; // **反応時間を計算**
-
-                data.mental_demand = document.getElementById("mental_demand").value;
-                data.physical_demand = document.getElementById("physical_demand").value;
-                data.temporal_demand = document.getElementById("temporal_demand").value;
-                data.performance = document.getElementById("performance").value;
-                data.effort = document.getElementById("effort").value;
-                data.frustration = document.getElementById("frustration").value;
+                // **エレメントが削除される前にデータを取得**
+                data.mental_demand = document.getElementById("mental_demand")?.value || null;
+                data.physical_demand = document.getElementById("physical_demand")?.value || null;
+                data.temporal_demand = document.getElementById("temporal_demand")?.value || null;
+                data.performance = document.getElementById("performance")?.value || null;
+                data.effort = document.getElementById("effort")?.value || null;
+                data.frustration = document.getElementById("frustration")?.value || null;
                 data.mode = mode; // **データにデモ or 本番を記録**
+
+                // **画面クリアを最後に移動**
+                setTimeout(() => {
+                    jsPsych.getDisplayElement().innerHTML = "";
+                }, 10);
+
+                // **反応時間を記録**
+                data.start_time = start_time;
+                data.end_time = performance.now();
+                data.reaction_time = data.end_time - data.start_time;
+
                 console.log(jsPsych.data.get().last(1).values());
             }
         };
