@@ -615,17 +615,15 @@
                 data.frustration = document.getElementById("frustration")?.value || null;
                 data.mode = mode; // **データにデモ or 本番を記録**
 
-                // **画面クリアを最後に移動**
-                setTimeout(() => {
-                    jsPsych.getDisplayElement().innerHTML = "";
-                }, 10);
-
                 // **反応時間を記録**
                 data.start_time = start_time;
                 data.end_time = performance.now();
                 data.reaction_time = data.end_time - data.start_time;
 
                 console.log(jsPsych.data.get().last(1).values());
+
+                // **次の trial に進む**
+                jsPsych.finishTrial();
             }
         };
     }
