@@ -35,13 +35,13 @@
         }
 
         #jspsych-display-element {
-            padding: 50px;
+            padding: 80px;
             /* 画面の端とボタンの間に余白 */
             box-sizing: border-box;
         }
 
         .indent-summary>summary {
-            padding-left: 20px;
+            padding-left: 2em;
             /* 任意のインデント */
         }
     </style>
@@ -84,7 +84,7 @@
         <div style="position: absolute; top: 40px; left: 50%; transform: translateX(-50%); text-align: center;">
             ${prompt}
         </div>
-        <div style="position: absolute; top: 120px; left: 50%; transform: translateX(-50%); width: 80%; max-width: 600px; text-align: left; margin: 0 auto;">
+        <div style="position: absolute; top: 150px; left: 50%; transform: translateX(-50%); width: 80%; max-width: 600px; text-align: left; margin: 0 auto;">
             ${stimulus}
         </div>
     `;
@@ -112,6 +112,11 @@
             '<div style="font-size:20px">' +
             '<p>実験の参加に<br>同意いただける場合には<br>「次へ」を押して下さい</p>',
         choices: ["次へ"],
+        on_start: function (trial) {
+            trial.data = {
+                timestamp: new Date().toISOString()
+            };
+        }
     };
 
     // デバイスチェック
@@ -130,7 +135,11 @@
                     'PCやタブレットでは参加できません。</p>' +
                     '<p>お手数ですが、スマートフォンでやり直してください</p>';
             }
-        }
+        },
+        data: {
+            os_data: 1,
+        },
+
     };
 
     // 実験の教示
@@ -380,8 +389,35 @@
         }
     };
 
+    const demo_nasa_tlx_slider = {
+        type: jsPsychSurveySlider,
+        preamble: "<strong>各項目について、<br>1（低い）～ 20（高い）<br>で評価してください。</strong>",
+        questions: [
+            { prompt: "1. Mental Demand（精神的負荷）<br>どれくらい精神的、知的な活動を求められましたか？", name: "mental_demand", min: 1, max: 20, step: 1, required: true },
+            { prompt: "2. Physical Demand（身体的負荷）<br>どれくらいの身体的な活動を求められましたか？", name: "physical_demand", min: 1, max: 20, step: 1, required: true },
+            { prompt: "3. Temporal Demand（時間的負荷）<br>どれくらい時間的なプレッシャーを感じましたか？", name: "temporal_demand", min: 1, max: 20, step: 1, required: true },
+            { prompt: "4. Performance（作業達成度）<br>どれくらい成功したと感じましたか？", name: "performance", min: 1, max: 20, step: 1, required: true },
+            { prompt: "5. Effort（努力量）<br>どれくらい努力しましたか？", name: "effort", min: 1, max: 20, step: 1, required: true },
+            { prompt: "6. Frustration（不満・ストレス）<br>どれくらいストレスやイライラを感じましたか？", name: "frustration", min: 1, max: 20, step: 1, required: true }
+        ],
+        randomize_question_order: false,
+        on_start: function (trial) {
+            // 直近3つのデータを取得
+            const lastThreeData = jsPsych.data.get().last(3).values();
+            // 3つ前のデータが存在する場合のみ取得
+            const thirdLastData = lastThreeData.length === 3 ? lastThreeData[0] : null;
+            // 取得データをそのまま格納
+            trial.data = {
+                demo_nasa_tlx_slider_data: thirdLastData?.demo_data ?? "データなし"
+            };
+        },
+        on_finish: function (data) {
+            console.log(jsPsych.data.get().last(1).values());
+        }
+    };
+
     // デモ実験　NASA-RTLX
-    const demo_nasa_rtlx = {
+    const demo_nasa_tlx_likert = {
         type: jsPsychSurveyLikert,
         preamble: "<strong>各項目について、<br>1（低い）～ 20（高い）<br>で評価してください。</strong>",
         questions: [
@@ -392,10 +428,16 @@
             { prompt: "5. Effort（努力量）<br>どれくらい努力しましたか？", labels: Array.from({ length: 20 }, (_, i) => (i + 1).toString()), required: true },
             { prompt: "6. Frustration（不満・ストレス）<br>どれくらいストレスやイライラを感じましたか？", labels: Array.from({ length: 20 }, (_, i) => (i + 1).toString()), required: true }
         ],
-        required: true,
         randomize_question_order: false,
-        data: {
-            demo_nasa_rtlx_data: 1,
+        on_start: function (trial) {
+            // 直近3つのデータを取得
+            const lastThreeData = jsPsych.data.get().last(3).values();
+            // 3つ前のデータが存在する場合のみ取得
+            const thirdLastData = lastThreeData.length === 3 ? lastThreeData[0] : null;
+            // 取得データをそのまま格納
+            trial.data = {
+                demo_nasa_tlx_likert_data: thirdLastData?.demo_data ?? "データなし"
+            };
         },
         on_finish: function (data) {
             console.log(jsPsych.data.get().last(1).values());
@@ -1182,7 +1224,7 @@
             </details>
         `;
 
-    // 実験　指示文1&2　行政手続き
+    // 実験 指示文1&2 行政手続き
     const Exp1and2Prompt = `
         <div style= "text-align: left; margin-top: 20px; margin-bottom: 20px; margin-left: auto; margin-right: auto;">
         <br>行政webサイトから<b>可燃ゴミ回収の曜日</b>を確認するための資料がどこにあるか探してください。
@@ -1204,7 +1246,7 @@
         }
     };
 
-    // 実験　刺激2　行政手続き階層刺激
+    // 実験 刺激2 行政手続き階層刺激
     const Exp2StimuliDatails = `
     <div style= "text-align: left; margin-top: 20px; margin-bottom: 20px; margin-left: 10px; margin-right: 10px;">
         <details>
@@ -1990,13 +2032,14 @@
         }
     };
 
-    // **2つ目の trial (クリックした内容を表示)**
+    // 回答結果の表示
     const tell_ans = {
         type: jsPsychHtmlButtonResponse,
         stimulus: function () {
             // 直前の trial でクリックされたテキストを取得
             const lastData = jsPsych.data.get().last(2).values()[0];
             const clickedText = lastData.clicked_text || "データなし";
+            const experimentNumber = lastData.clicked_text || "データなし";
             const reactionTime = lastData?.reaction_time ? `${lastData.reaction_time.toFixed(2)}` : "データなし";
             return `<p>回答ありがとうございます。</p>
                 <p>回答は<br>
@@ -2014,8 +2057,36 @@
         }
     };
 
-    // NASA-RTLX の質問
-    const nasa_rtlx = {
+    // NASA-TLX の質問 slider
+    const nasa_tlx_slider = {
+        type: jsPsychSurveySlider,
+        preamble: "<strong>各項目について、<br>1（低い）～ 20（高い）<br>で評価してください。</strong>",
+        questions: [
+            { prompt: "1. Mental Demand（精神的負荷）<br>どれくらい精神的、知的な活動を求められましたか？", name: "mental_demand", min: 1, max: 20, step: 1, required: true },
+            { prompt: "2. Physical Demand（身体的負荷）<br>どれくらいの身体的な活動を求められましたか？", name: "physical_demand", min: 1, max: 20, step: 1, required: true },
+            { prompt: "3. Temporal Demand（時間的負荷）<br>どれくらい時間的なプレッシャーを感じましたか？", name: "temporal_demand", min: 1, max: 20, step: 1, required: true },
+            { prompt: "4. Performance（作業達成度）<br>どれくらい成功したと感じましたか？", name: "performance", min: 1, max: 20, step: 1, required: true },
+            { prompt: "5. Effort（努力量）<br>どれくらい努力しましたか？", name: "effort", min: 1, max: 20, step: 1, required: true },
+            { prompt: "6. Frustration（不満・ストレス）<br>どれくらいストレスやイライラを感じましたか？", name: "frustration", min: 1, max: 20, step: 1, required: true }
+        ],
+        randomize_question_order: false,
+        on_start: function (trial) {
+            // 直近3つのデータを取得
+            const lastThreeData = jsPsych.data.get().last(3).values();
+            // 3つ前のデータが存在する場合のみ取得
+            const thirdLastData = lastThreeData.length === 3 ? lastThreeData[0] : null;
+            // 取得データをそのまま格納
+            trial.data = {
+                demo_nasa_tlx_slider_data: thirdLastData?.demo_data ?? "データなし"
+            };
+        },
+        on_finish: function (data) {
+            console.log(jsPsych.data.get().last(1).values());
+        }
+    };
+
+    // NASA-TLX の質問 likert
+    const nasa_tlx_likert = {
         type: jsPsychSurveyLikert,
         preamble: "<strong>各項目について、<br>1（低い）～ 20（高い）<br>で評価してください。</strong>",
         questions: [
@@ -2026,10 +2097,16 @@
             { prompt: "5. Effort（努力量）<br>どれくらい努力しましたか？", labels: Array.from({ length: 20 }, (_, i) => (i + 1).toString()), required: true },
             { prompt: "6. Frustration（不満・ストレス）<br>どれくらいストレスやイライラを感じましたか？", labels: Array.from({ length: 20 }, (_, i) => (i + 1).toString()), required: true }
         ],
-        required: true,
         randomize_question_order: false,
-        data: {
-            nasa_rtlx_data: 1,
+        on_start: function (trial) {
+            // 直近3つのデータを取得
+            const lastThreeData = jsPsych.data.get().last(3).values();
+            // 3つ前のデータが存在する場合のみ取得
+            const thirdLastData = lastThreeData.length === 3 ? lastThreeData[0] : null;
+            // 取得データを格納
+            trial.data = {
+                nasa_tlx_likert_data: thirdLastData?.experiment_data ?? "データなし"
+            };
         },
         on_finish: function (data) {
             console.log(jsPsych.data.get().last(1).values());
@@ -2090,7 +2167,7 @@
         timeline: [
             demo_experiment1,
             demo_tell_ans,
-            demo_nasa_rtlx
+            demo_nasa_tlx_likert
         ]
     };
 
@@ -2098,7 +2175,7 @@
         timeline: [
             demo_experiment2,
             demo_tell_ans,
-            demo_nasa_rtlx
+            demo_nasa_tlx_likert
         ]
     };
 
@@ -2122,7 +2199,7 @@
         timeline: [
             experiment1,
             tell_ans,
-            nasa_rtlx
+            nasa_tlx_likert
         ]
     };
 
@@ -2130,7 +2207,7 @@
         timeline: [
             experiment2,
             tell_ans,
-            nasa_rtlx
+            nasa_tlx_likert
         ]
     };
 
