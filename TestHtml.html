@@ -16,120 +16,203 @@
     <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.3"></script>
     <script src="https://unpkg.com/@jspsych-contrib/plugin-pipe"></script>
     <link href="https://unpkg.com/jspsych@7.3.2/css/jspsych.css" rel="stylesheet" type="text/css" />
-   
+
     <!-- css -->
 
     <head>
         <style>
             /* --- スライダーのコンテナ（各スライダーの間隔を調整）--- */
             .slider-container {
-                margin-bottom: 30px; /* スライダー間のスペースを広げる */
+                margin-bottom: 30px;
+                /* スライダー間のスペースを広げる */
             }
-    
+
             /* --- スライダーのラベル（1～20の表示）--- */
             .slider-labels {
                 display: flex;
-                justify-content: space-between; /* 左右に配置 */
+                justify-content: space-between;
+                /* 左右に配置 */
                 margin-top: 5px;
                 font-size: 14px;
-                color: #333; /* 黒系に統一 */
+                color: #333;
+                /* 黒系に統一 */
             }
-    
+
             /* --- 説明文のスタイル（補足説明のフォント設定）--- */
             .description {
                 font-size: 14px;
-                color: #666; /* グレーで控えめな表示 */
+                color: #666;
+                /* グレーで控えめな表示 */
                 margin-bottom: 10px;
             }
-    
+
             /* --- スライダーの基本デザイン --- */
             input[type="range"] {
                 width: 100%;
-                height: 40px; /* タッチしやすいサイズ */
+                height: 40px;
+                /* タッチしやすいサイズ */
                 -webkit-appearance: none;
                 appearance: none;
-                background: #ccc; /* 背景色をグレーに */
+                background: #ccc;
+                /* 背景色をグレーに */
                 border-radius: 10px;
                 outline: none;
                 opacity: 0.9;
                 transition: opacity 0.2s;
             }
-    
+
             /* --- スライダーのホバー時（透明度調整）--- */
             input[type="range"]:hover {
                 opacity: 1;
             }
-    
+
             /* --- スライダーのつまみ（サークル部分のデザイン）--- */
             input[type="range"]::-webkit-slider-thumb {
                 -webkit-appearance: none;
                 width: 30px;
                 height: 30px;
-                background: #333; /* 少し明るめの黒 */
+                background: #333;
+                /* 少し明るめの黒 */
                 border-radius: 50%;
                 cursor: pointer;
             }
-    
+
             input[type="range"]::-moz-range-thumb {
                 width: 30px;
                 height: 30px;
-                background: #333; /* 少し明るめの黒 */
+                background: #333;
+                /* 少し明るめの黒 */
                 border-radius: 50%;
                 cursor: pointer;
             }
-    
+
             /* --- ボタンのコンテナ（複数ボタンを均等配置）--- */
             .button-container {
                 display: flex;
                 justify-content: center;
-                gap: 20px; /* ボタン同士の間隔を 20px に設定 */
+                gap: 20px;
+                /* ボタン同士の間隔を 20px に設定 */
                 padding: 15px 0;
-                flex-wrap: wrap; /* 小さい画面では折り返し */
+                flex-wrap: wrap;
+                /* 小さい画面では折り返し */
             }
-    
+
             /* --- ボタンのスタイル（少し明るめの黒）--- */
             .jspsych-btn {
-                background-color: #333; /* 以前の #222 より少し明るく */
-                color: #fff; /* 文字を白に */
-                border: 1px solid #555; /* 少し明るめのボーダー */
+                background-color: #333;
+                /* 以前の #222 より少し明るく */
+                color: #fff;
+                /* 文字を白に */
+                border: 1px solid #555;
+                /* 少し明るめのボーダー */
                 padding: 10px 20px;
                 font-size: 16px;
                 border-radius: 5px;
                 cursor: pointer;
                 transition: background-color 0.3s;
-                max-width: 80%; /* ボタンの横幅を制限 */
+                max-width: 80%;
+                /* ボタンの横幅を制限 */
                 text-align: center;
             }
-    
+
             /* --- ボタンのホバー時（少し明るくする）--- */
             .jspsych-btn:hover {
-                background-color: #555; /* 明るさをさらに調整 */
+                background-color: #555;
+                /* 明るさをさらに調整 */
             }
-    
+
             /* --- jsPsych のスライダー画面の上部に余白を追加 --- */
             #jspsych-content-wrapper {
-                padding-top: 50px; /* 上部に余白を作る */
+                padding-top: 50px;
+                /* 上部に余白を作る */
             }
-    
+
             /* --- jsPsych の画面全体のレイアウト調整 --- */
             #jspsych-display-element {
-                padding: 80px; /* 画面の端とボタンの間に余白 */
+                padding: 80px;
+                /* 画面の端とボタンの間に余白 */
                 box-sizing: border-box;
             }
-    
+
             /* --- 折りたたみ要素（details）内のテキストのインデント --- */
             details[open]> :not(summary) {
-                padding-left: 2em; /* 折りたたみ文字を2文字分右へ */
+                padding-left: 2em;
+                /* 折りたたみ文字を2文字分右へ */
             }
-    
+
             /* --- 任意のインデントを持つ summary 要素 --- */
             .indent-summary>summary {
                 padding-left: 2em;
             }
-    
+
             /* --- ページ全体のマージンを調整 --- */
             body {
-                margin: 20px; /* 画面端に余白を設定 */
+                margin: 20px;
+                /* 画面端に余白を設定 */
+            }
+
+            /* --- 説明画面のコンテナ --- */
+            .instruction-container {
+                text-align: center;
+                max-width: 90%;
+                margin: auto;
+                padding: 40px 20px;
+            }
+
+            /* --- 見出しスタイル --- */
+            .instruction-container h2 {
+                font-size: 28px;
+                margin-bottom: 20px;
+                color: #333;
+            }
+
+            /* --- 説明テキストのスタイル --- */
+            .instruction-text {
+                text-align: left;
+                font-size: 18px;
+                color: #555;
+                line-height: 1.6;
+                margin: 20px auto;
+                max-width: 80%;
+            }
+
+            /* --- 同意を求める部分のスタイル --- */
+            .instruction-agreement {
+                font-size: 20px;
+                font-weight: bold;
+                margin-top: 30px;
+            }
+
+            /* --- 説明画面のコンテナ --- */
+            .instruction-container {
+                text-align: center;
+                max-width: 90%;
+                margin: auto;
+                padding: 40px 20px;
+            }
+
+            /* --- 見出しのスタイル --- */
+            .instruction-container h2 {
+                font-size: 28px;
+                margin-bottom: 20px;
+                color: #333;
+            }
+
+            /* --- 説明テキストのスタイル --- */
+            .instruction-text {
+                text-align: left;
+                font-size: 18px;
+                color: #555;
+                line-height: 1.6;
+                margin: 20px auto;
+                max-width: 80%;
+            }
+
+            /* --- 次のページへ進む説明テキスト --- */
+            .instruction-next {
+                font-size: 20px;
+                font-weight: bold;
+                margin-top: 30px;
             }
         </style>
     </head>
@@ -180,24 +263,23 @@
     // 実験開始の説明
     const hello_instructions = {
         type: jsPsychHtmlButtonResponse,
-        stimulus: '<div style="font-size:30px;">' +
-            '<p><b>実験に参加頂き<br>ありがとうございます</b><p>' +
+        stimulus: `
+        <div class="instruction-container">
+            <h2>実験に参加頂きありがとうございます</h2>
 
-            '<p><div style=' +
-            '"text-align: left; margin-top: 20px; margin-bottom: 20px; margin-left: auto; margin-right: auto; width: 80%;' +
-            ' font-size:20px;"><br>' +
-            'この実験は<b>パソコンやタブレットでは実施できません</b>。' +
-            'スマホでのみ実施していただけます。</p>' +
+            <div class="instruction-text">
+                <p><b>この実験は<b>パソコンやタブレットでは実施できません</b>。</p>
+                <p>スマホでのみ実施していただけます。</p>
+                <p>実験は任意でいつでもやめることもできます。</p>
+                <p>回答されたデータは個人が特定できない形で、研究の目的のみに利用します。</p>
+                <p>実験を完了するには<b>5〜10分</b>程度かかります。</p>
+            </div>
 
-            '<p>実験は任意でいつでもやめることもできます</p>' +
-
-            '<p>回答されたデータは個人が特定できない形で、' +
-            '研究の目的のみに利用します。</p>' +
-
-            '<p>実験を完了するには<b>5〜10分</b>程度かかります。</p></div>' +
-
-            '<div style="font-size:20px">' +
-            '<p>実験の参加に<br>同意いただける場合には<br>「次へ」を押して下さい</p>',
+            <div class="instruction-agreement">
+                <p>実験の参加に<br>同意いただける場合には<br><b>「次へ」</b>を押してください</p>
+            </div>
+        </div>
+    `,
         choices: ["次へ"],
         on_start: function (trial) {
             trial.data = {
@@ -232,111 +314,97 @@
     const experiment_instructions = {
         type: jsPsychInstructions,
         pages: [
-            "<div style='font-size:30px; margin-top: 20px; margin-bottom: 20px; margin-left: auto; margin-right: auto; width: 80%;'>" +
-            "<b>実験の目的</b><br><br></div>" +
-            "<div style=" +
-            "'text-align: left; margin-top: 20px; margin-bottom: 20px; margin-left: auto; margin-right: auto; width: 80%;" +
-            " font-size:20px;'>" +
-            " この実験はスマートフォンの画面デザインの検討を目的とした実験です。<br><br>" +
-            "特にスマートフォンを用いたオンラインのお手続きを行ってもらう際に、" +
-            "デザインがどの様な影響を与えるのかを検証する事を目的にしています。<br><br>" +
-            "これから本実験の説明を行います。<br><br>" +
-            "</div>" +
-            '<div style="text-align: center; "font-size:20px">' +
-            "Next ボタンを押してください" +
-            "</div>",
+            `
+        <div class="instruction-container">
+            <h2>実験の目的</h2>
+            <div class="instruction-text">
+                <p>この実験はスマートフォンの画面デザインの検討を目的とした実験です。</p>
+                <p>特にスマートフォンを用いたオンラインのお手続きを行ってもらう際に、デザインがどの様な影響を与えるのかを検証する事を目的にしています。</p>
+                <p>これから本実験の説明を行います。</p>
+            </div>
+            <p class="instruction-next">Next ボタンを押してください</p>
+        </div>
+        `,
 
-            "<div style='font-size:30px; margin-top: 20px; margin-bottom: 20px; margin-left: auto; margin-right: auto; width: 80%;'>" +
-            "<b>実験の流れ</b><br><br></div>" +
-            "<div style=" +
-            "'text-align: left; margin-top: 20px; margin-bottom: 20px; margin-left: auto; margin-right: auto; width: 80%;" +
-            " font-size:20px;'>" +
-            " ここでは本実験全体の流れについて説明します。<br><br>" +
-            "実験は3部で構成されています。<br><br>" +
-            "  1.説明パート(現在はココ)<br>" +
-            "  2.実験のデモを通じた練習パート<br>" +
-            "  3.実験パート<br>" +
-            "  4.アンケートパート<br><br>" +
-            "の3部になります。<br><br>" +
-            "</div>" +
-            '<div style="text-align: center; "font-size:20px">' +
-            "Next ボタンを押すと<br>「実験で行ってもらうタスク」<br>の説明に切り替わります。" +
-            "</div>",
+            `
+        <div class="instruction-container">
+            <h2>実験の流れ</h2>
+            <div class="instruction-text">
+                <p>ここでは本実験全体の流れについて説明します。</p>
+                <p>実験は以下の4部で構成されています。</p>
+                <ul>
+                    <li>1. 説明パート (現在はココ)</li>
+                    <li>2. 実験のデモを通じた練習パート</li>
+                    <li>3. 実験パート</li>
+                    <li>4. アンケートパート</li>
+                </ul>
+            </div>
+            <p class="instruction-next">Next ボタンを押すと「実験で行ってもらうタスク」の説明に切り替わります。</p>
+        </div>
+        `,
 
-            "<div style='font-size:30px; margin-top: 20px; margin-bottom: 20px; margin-left: auto; margin-right: auto; width: 80%;'>" +
-            "<b>実験で行ってもらう<br>タスク</b><br><br></div>" +
-            "<div style=" +
-            "'text-align: left; margin-top: 20px; margin-bottom: 20px; margin-left: auto; margin-right: auto; width: 80%;" +
-            " font-size:20px;'>" +
-            " ここでは練習パート、実験パートで共通して行ってもらう作業（タスク）について説明します。<br><br>" +
-            "実験パートでは2つのタスクを N 回繰り返し行ってもらいます。<br><br>" +
-            "タスクは、<br>" +
-            "  1.オンライン手続きタスク<br>" +
-            "  2.オンライン手続きの評価タスク<br>" +
-            "の2つです。<br><br>" +
-            "</div>" +
-            '<div style="text-align: center; "font-size:20px">' +
-            "Next ボタンを押すと<br>「オンライン手続きタスク」<br>の説明に切り替わります。" +
-            "</div>",
+            `
+        <div class="instruction-container">
+            <h2>実験で行ってもらうタスク</h2>
+            <div class="instruction-text">
+                <p>ここでは練習パート、実験パートで共通して行ってもらう作業（タスク）について説明します。</p>
+                <p>実験パートでは、以下の2つのタスクをN回繰り返して行ってもらいます。</p>
+                <ul>
+                    <li>1. オンライン手続きタスク</li>
+                    <li>2. オンライン手続きの評価タスク</li>
+                </ul>
+            </div>
+            <p class="instruction-next">Next ボタンを押すと「オンライン手続きタスク」の説明に切り替わります。</p>
+        </div>
+        `,
 
-            "<div style='font-size:30px; margin-top: 20px; margin-bottom: 20px; margin-left: auto; margin-right: auto; width: 80%;'>" +
-            "<b>オンライン手続き<br>タスク</b><br><br></div>" +
-            "<div style=" +
-            "'text-align: left; margin-top: 20px; margin-bottom: 20px; margin-left: auto; margin-right: auto; width: 80%;" +
-            " font-size:20px;'>" +
-            " ここでは練習パート、実験パートで共通して行ってもらう作業（タスク）の内、" +
-            "オンライン手続きタスクについて説明します。<br><br>" +
-            "このパートではオンライン手続き情報探索とタップ選択を行ってもらいます。" +
-            "実験では実際のお手続き場面を想定して課題に挑んでください。<br><br>" +
-            "課題では指示される情報がどこにあるのか、画面を操作して探していただきます。" +
-            "太文字で書かれた目的の情報があると思われるリンクを見つけたら、タップして。" +
-            "課題はできるだけ早く解くことを心がけてください。<br><br>" +
-            "</div>" +
-            '<div style="text-align: center; "font-size:20px">' +
-            "Next ボタンを押すと<br>「オンライン手続きの評価タスク」<br>の説明に切り替わります。" +
-            "</div>",
+            `
+        <div class="instruction-container">
+            <h2>オンライン手続きタスク</h2>
+            <div class="instruction-text">
+                <p>ここでは、オンライン手続きタスクについて説明します。</p>
+                <p>このパートでは、オンライン手続き情報探索とタップ選択を行ってもらいます。実際のお手続き場面を想定して課題に挑んでください。</p>
+                <p>太文字で書かれた目的の情報があると思われるリンクを見つけたら、タップしてください。</p>
+                <p>課題はできるだけ早く解くことを心がけてください。</p>
+            </div>
+            <p class="instruction-next">Next ボタンを押すと「オンライン手続きの評価タスク」の説明に切り替わります。</p>
+        </div>
+        `,
 
-            "<div style='font-size:30px; margin-top: 20px; margin-bottom: 20px; margin-left: auto; margin-right: auto; width: 80%;'>" +
-            "<b>オンライン手続きの<br>評価タスク</b><br><br></div>" +
-            "<div style=" +
-            "'text-align: left; margin-top: 20px; margin-bottom: 20px; margin-left: auto; margin-right: auto; width: 80%;" +
-            " font-size:20px;'>" +
-            " ここでは練習パート、実験パートで共通して行ってもらう作業（タスク）の内、" +
-            "オンライン手続きの評価タスクについて説明します。<br><br>" +
-            "このタスクは直前に行なってもらったオンライン手続きの作業負荷を評価していただくタスクになります。<br><br>" +
-            "6つの項目について、あなたが感じた負荷の程度を1～20のスケールで評価していただきます。<br><br>" +
-            "各スケールは、1（非常に低い）から 20（非常に高い）までの段階で構成されています。<br><br>" +
-            "回答は直感的に、最も適切だと思う値を選択してください。<br><br>" +
-            "</div>" +
-            '<div style="text-align: center; "font-size:20px">' +
-            "Next ボタンを押すと<br>「アンケート入力」<br>の説明に切り替わります。" +
-            "</div>",
+            `
+        <div class="instruction-container">
+            <h2>オンライン手続きの評価タスク</h2>
+            <div class="instruction-text">
+                <p>ここでは、オンライン手続きの評価タスクについて説明します。</p>
+                <p>このタスクは、直前に行ったオンライン手続きの作業負荷を評価していただくタスクになります。</p>
+                <p>6つの項目について、あなたが感じた負荷の程度を1～100のスケールで評価していただきます。</p>
+                <p>各スケールは、1（非常に低い）から 100（非常に高い）までの段階で構成されています。</p>
+                <p>直感的に、最も適切だと思う値を選択してください。</p>
+            </div>
+            <p class="instruction-next">Next ボタンを押すと「アンケート入力」の説明に切り替わります。</p>
+        </div>
+        `,
 
-            "<div style='font-size:30px; margin-top: 20px; margin-bottom: 20px; margin-left: auto; margin-right: auto; width: 80%;'>" +
-            "<b>アンケート入力</b><br><br></div>" +
-            "<div style=" +
-            "'text-align: left; margin-top: 20px; margin-bottom: 20px; margin-left: auto; margin-right: auto; width: 80%;" +
-            " font-size:20px;'>" +
-            " ここでは実験の最後に行なっていただくアンケートパートについて説明します。<br><br>" +
-            "このパートでは年齢と性別の調査を行います。<br><br>" +
-            "実験で取得させていただいたデータの傾向を分析するため、" +
-            "最小限の参加者情報として<b>年齢</b>と<b>性別</b>の回答にご協力いただいています。<br><br>" +
-            "本実験では、皆様の実験データと年齢と性別を収集しますが、" +
-            "個人情報保護の観点から個人を特定できるその他の情報（氏名、所属、連絡先など）は一切取得しません。<br><br>" +
-            "この為、取得したデータは個人が特定される形で保存されることはありません。<br>" +
-            "また、データは統計的な解析のみに使用され、本実験の目的以外で使用されることはありません。<br><br>" +
-            "</div>" +
-            '<div style="text-align: center; "font-size:20px">' +
-            "Next ボタンを押してください。" +
-            "</div>",
+            `
+        <div class="instruction-container">
+            <h2>アンケート入力</h2>
+            <div class="instruction-text">
+                <p>ここでは、実験の最後に行っていただくアンケートパートについて説明します。</p>
+                <p>このパートでは年齢と性別の調査を行います。</p>
+                <p>個人を特定できる情報（氏名、所属、連絡先など）は一切取得しません。</p>
+                <p>データは統計的な解析のみに使用され、本実験の目的以外で使用されることはありません。</p>
+            </div>
+            <p class="instruction-next">Next ボタンを押してください。</p>
+        </div>
+        `,
 
-            "<div style='font-size:30px; margin-top: 20px; margin-bottom: 20px; margin-left: auto; margin-right: auto; width: 90%;'>" +
-            "<b>説明終わり</b><br><br></div>" +
-            "以上で説明は終わりです。<br><br><br>" +
-            "</div>" +
-            '<div style="text-align: center; "font-size:20px">' +
-            "Next ボタンを押すと<br>「説明パート」<br>が終わります。",
-
+            `
+        <div class="instruction-container">
+            <h2>説明終わり</h2>
+            <p>以上で説明は終わりです。</p>
+            <p class="instruction-next">Next ボタンを押すと「説明パート」が終わります。</p>
+        </div>
+        `
         ],
         show_clickable_nav: true
     };
@@ -476,75 +544,87 @@
     };
 
     // NASA-RTLX Slider
-    const demo_nasa_tlx_slider = {
-        type: jsPsychHtmlButtonResponse,
-        stimulus: `
-        <strong>各項目について、1（低い）～ 20（高い）で評価してください。</strong>
+    // 共通の NASA-TLX スライダー関数
+    function create_nasa_rtlx_slider(mode) {
+        return {
+            type: jsPsychHtmlButtonResponse,
+            stimulus: `
+            <strong>各項目について、1（左）～ 100（右）で評価してください。</strong>
 
-        <div class="slider-container">
-            <p><strong>1. Mental Demand（精神的負荷）</strong></p>
-            <p class="description">どの程度の知的・知覚的活動(考える，決める，計算する，記憶する，見るなど)を必要としましたか。</p>
-            <input type="range" id="mental_demand" min="1" max="20" step="1" value="10">
-            <div class="slider-labels"><span>1</span><span>20</span></div>
-        </div>
+            <div class="slider-container">
+                <p><strong>1. Mental Demand（精神的負荷）</strong></p>
+                <p class="description">どの程度の知的・知覚的活動(考える，決める，計算する，記憶する，見るなど)を必要としましたか。</p>
+                <input type="range" id="mental_demand" min="1" max="100" step="1" value="50">
+                <div class="slider-labels"><span>必要ない</span><span>とても必要</span></div>
+            </div>
 
-        <div class="slider-container">
-            <p><strong>2. Physical Demand（身体的負荷）</strong></p>
-            <p class="description">どの程度の身体的活動(押す，引く，回す，制御する，動き回るなど)を必要としましたか。</p>
-            <input type="range" id="physical_demand" min="1" max="20" step="1" value="10">
-            <div class="slider-labels"><span>1</span><span>20</span></div>
-        </div>
+            <div class="slider-container">
+                <p><strong>2. Physical Demand（身体的負荷）</strong></p>
+                <p class="description">どの程度の身体的活動(押す，引く，回す，制御する，動き回るなど)を必要としましたか。</p>
+                <input type="range" id="physical_demand" min="1" max="100" step="1" value="50">
+                <div class="slider-labels"><span>負担なし</span><span>とても負担</span></div>
+            </div>
 
-        <div class="slider-container">
-            <p><strong>3. Temporal Demand（時間的負荷）</strong></p>
-            <p class="description">仕事のペースや課題が発生する頻度のために感じる時間的切迫感はどの程度でしたか。</p>
-            <input type="range" id="temporal_demand" min="1" max="20" step="1" value="10">
-            <div class="slider-labels"><span>1</span><span>20</span></div>
-        </div>
+            <div class="slider-container">
+                <p><strong>3. Temporal Demand（時間的負荷）</strong></p>
+                <p class="description">仕事のペースや課題が発生する頻度のために感じる時間的切迫感はどの程度でしたか。</p>
+                <input type="range" id="temporal_demand" min="1" max="100" step="1" value="50">
+                <div class="slider-labels"><span>余裕がある</span><span>非常に忙しい</span></div>
+            </div>
 
-        <div class="slider-container">
-            <p><strong>4. Performance（作業達成度）</strong></p>
-            <p class="description">課題の目標をどの程度達成できたと思いますか。</p>
-            <input type="range" id="performance" min="1" max="20" step="1" value="10">
-            <div class="slider-labels"><span>1</span><span>20</span></div>
-        </div>
+            <div class="slider-container">
+                <p><strong>4. Performance（作業達成度）</strong></p>
+                <p class="description">課題の目標をどの程度達成できたと思いますか。</p>
+                <input type="range" id="performance" min="1" max="100" step="1" value="50">
+                <div class="slider-labels"><span>全く達成できず</span><span>完全に達成</span></div>
+            </div>
 
-        <div class="slider-container">
-            <p><strong>5. Effort（努力量）</strong></p>
-            <p class="description">目標達成のためにどの程度努力しましたか。</p>
-            <input type="range" id="effort" min="1" max="20" step="1" value="10">
-            <div class="slider-labels"><span>1</span><span>20</span></div>
-        </div>
+            <div class="slider-container">
+                <p><strong>5. Effort（努力量）</strong></p>
+                <p class="description">目標達成のためにどの程度努力しましたか。</p>
+                <input type="range" id="effort" min="1" max="100" step="1" value="50">
+                <div class="slider-labels"><span>ほとんど努力なし</span><span>非常に努力した</span></div>
+            </div>
 
-        <div class="slider-container">
-            <p><strong>6. Frustration（不満・ストレス）</strong></p>
-            <p class="description">作業中に感じたストレスや不安はどの程度でしたか。</p>
-            <input type="range" id="frustration" min="1" max="20" step="1" value="10">
-            <div class="slider-labels"><span>1</span><span>20</span></div>
-        </div>
-    `,
-        choices: ["次へ"],
-        on_start: function (trial) {
-            jsPsych.getDisplayElement().innerHTML = ""; // **画面をクリア**
-            start_time = performance.now(); // **開始時刻を記録**
-            const lastThreeData = jsPsych.data.get().last(3).values();
-            const thirdLastData = lastThreeData.length === 3 ? lastThreeData[0] : null;
-            trial.data = {
-                demo_nasa_rtlx_data: thirdLastData?.demo_data ?? "データなし"
-            };
-        },
-        on_finish: function (data) {
-            data.mental_demand = document.getElementById("mental_demand").value;
-            data.physical_demand = document.getElementById("physical_demand").value;
-            data.temporal_demand = document.getElementById("temporal_demand").value;
-            data.performance = document.getElementById("performance").value;
-            data.effort = document.getElementById("effort").value;
-            data.frustration = document.getElementById("frustration").value;
-            console.log(jsPsych.data.get().last(1).values());
-            sPsych.getDisplayElement().innerHTML = ""; // **画面をクリア**
-            start_time = performance.now(); // **開始時刻を記録**
-        }
-    };
+            <div class="slider-container">
+                <p><strong>6. Frustration（不満・ストレス）</strong></p>
+                <p class="description">作業中に感じたストレスや不安はどの程度でしたか。</p>
+                <input type="range" id="frustration" min="1" max="100" step="1" value="50">
+                <div class="slider-labels"><span>全くストレスなし</span><span>非常にストレス</span></div>
+            </div>
+        `,
+            choices: ["次へ"],
+            on_start: function (trial) {
+                jsPsych.getDisplayElement().innerHTML = ""; // **画面をクリア**
+                start_time = performance.now(); // **開始時刻を記録**
+
+                const lastThreeData = jsPsych.data.get().last(3).values();
+                const thirdLastData = lastThreeData.length === 3 ? lastThreeData[0] : null;
+                trial.data = {
+                    demo_nasa_rtlx_data: thirdLastData?.demo_data ?? "データなし",
+                    mode: mode // **デモ or 本番を記録**
+                };
+            },
+            on_finish: function (data) {
+                jsPsych.getDisplayElement().innerHTML = ""; // **画面をクリア**
+                data.start_time = start_time; // **開始時間をデータに記録**
+                data.end_time = performance.now(); // **終了時間を記録**
+                data.reaction_time = data.end_time - data.start_time; // **反応時間を計算**
+
+                data.mental_demand = document.getElementById("mental_demand").value;
+                data.physical_demand = document.getElementById("physical_demand").value;
+                data.temporal_demand = document.getElementById("temporal_demand").value;
+                data.performance = document.getElementById("performance").value;
+                data.effort = document.getElementById("effort").value;
+                data.frustration = document.getElementById("frustration").value;
+                data.mode = mode; // **データにデモ or 本番を記録**
+                console.log(jsPsych.data.get().last(1).values());
+            }
+        };
+    }
+
+    // デモ用スライダー
+    const demo_nasa_rtlx_slider = create_nasa_rtlx_slider("demo");
 
     // デモ実験　NASA-RTLX
     const demo_nasa_tlx_likert = {
@@ -2187,76 +2267,8 @@
         }
     };
 
-    // NASA-TLX の質問 slider
-    const nasa_tlx_slider = {
-        type: jsPsychHtmlButtonResponse,
-        stimulus: `
-        <strong>各項目について、1（低い）～ 20（高い）で評価してください。</strong>
-
-        <div class="slider-container">
-            <p><strong>1. Mental Demand（精神的負荷）</strong></p>
-            <p class="description">どの程度の知的・知覚的活動(考える，決める，計算する，記憶する，見るなど)を必要としましたか。</p>
-            <input type="range" id="mental_demand" min="1" max="20" step="1" value="10">
-            <div class="slider-labels"><span>1</span><span>20</span></div>
-        </div>
-
-        <div class="slider-container">
-            <p><strong>2. Physical Demand（身体的負荷）</strong></p>
-            <p class="description">どの程度の身体的活動(押す，引く，回す，制御する，動き回るなど)を必要としましたか。</p>
-            <input type="range" id="physical_demand" min="1" max="20" step="1" value="10">
-            <div class="slider-labels"><span>1</span><span>20</span></div>
-        </div>
-
-        <div class="slider-container">
-            <p><strong>3. Temporal Demand（時間的負荷）</strong></p>
-            <p class="description">仕事のペースや課題が発生する頻度のために感じる時間的切迫感はどの程度でしたか。</p>
-            <input type="range" id="temporal_demand" min="1" max="20" step="1" value="10">
-            <div class="slider-labels"><span>1</span><span>20</span></div>
-        </div>
-
-        <div class="slider-container">
-            <p><strong>4. Performance（作業達成度）</strong></p>
-            <p class="description">課題の目標をどの程度達成できたと思いますか。</p>
-            <input type="range" id="performance" min="1" max="20" step="1" value="10">
-            <div class="slider-labels"><span>1</span><span>20</span></div>
-        </div>
-
-        <div class="slider-container">
-            <p><strong>5. Effort（努力量）</strong></p>
-            <p class="description">目標達成のためにどの程度努力しましたか。</p>
-            <input type="range" id="effort" min="1" max="20" step="1" value="10">
-            <div class="slider-labels"><span>1</span><span>20</span></div>
-        </div>
-
-        <div class="slider-container">
-            <p><strong>6. Frustration（不満・ストレス）</strong></p>
-            <p class="description">作業中に感じたストレスや不安はどの程度でしたか。</p>
-            <input type="range" id="frustration" min="1" max="20" step="1" value="10">
-            <div class="slider-labels"><span>1</span><span>20</span></div>
-        </div>
-    `,
-        choices: ["次へ"],
-        on_start: function (trial) {
-            jsPsych.getDisplayElement().innerHTML = ""; // **画面をクリア**
-            start_time = performance.now(); // **開始時刻を記録**
-            const lastThreeData = jsPsych.data.get().last(3).values();
-            const thirdLastData = lastThreeData.length === 3 ? lastThreeData[0] : null;
-            trial.data = {
-                nasa_tlx_slider_data: thirdLastData?.experiment_data ?? "データなし"
-            };
-        },
-        on_finish: function (data) {
-            data.mental_demand = document.getElementById("mental_demand").value;
-            data.physical_demand = document.getElementById("physical_demand").value;
-            data.temporal_demand = document.getElementById("temporal_demand").value;
-            data.performance = document.getElementById("performance").value;
-            data.effort = document.getElementById("effort").value;
-            data.frustration = document.getElementById("frustration").value;
-            console.log(jsPsych.data.get().last(1).values());
-            sPsych.getDisplayElement().innerHTML = ""; // **画面をクリア**
-            start_time = performance.now(); // **開始時刻を記録**
-        }
-    };
+    // NASA-TLX slider
+    const nasa_rtlx_slider = create_nasa_rtlx_slider("real");
 
     // NASA-TLX の質問 likert
     const nasa_tlx_likert = {
