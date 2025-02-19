@@ -141,10 +141,19 @@
                 padding: 20px;
             }
 
+            /* --- カテゴリー（植物・動物）を囲むボックス --- */
+            .category-box {
+                border: 1px solid #444;
+                padding: 10px;
+                margin: 10px 0;
+                border-radius: 5px;
+                background-color: #f8f8f8;
+            }
+
+            /* --- カテゴリータイトル（植物・動物） --- */
             .category-title {
                 font-size: 20px;
                 font-weight: bold;
-                margin-top: 10px;
                 margin-bottom: 5px;
                 padding: 5px;
                 border-bottom: 1px solid #444;
@@ -460,32 +469,36 @@
     // デモ実験 刺激2 (修正後)
     const Demo2StimuliDatails = `
     <div class="stimulus-container">
-        <div class="category-title">植物</div>
-        <div class="details-content">
-            <details>
-                <summary>果物</summary>
-                <span class="clickable-text">リンゴ</span>
-                <span class="clickable-text">バナナ</span>
-            </details>
-            <details>
-                <summary>野菜</summary>
-                <span class="clickable-text">トマト</span>
-                <span class="clickable-text">キャベツ</span>
-            </details>
+        <div class="category-box">
+            <div class="category-title">植物</div>
+            <div class="details-content">
+                <details>
+                    <summary>果物</summary>
+                    <span class="clickable-text">リンゴ</span>
+                    <span class="clickable-text">バナナ</span>
+                </details>
+                <details>
+                    <summary>野菜</summary>
+                    <span class="clickable-text">トマト</span>
+                    <span class="clickable-text">キャベツ</span>
+                </details>
+            </div>
         </div>
 
-        <div class="category-title">動物</div>
-        <div class="details-content">
-            <details>
-                <summary>草食</summary>
-                <span class="clickable-text">ウシ</span>
-                <span class="clickable-text">ブタ</span>
-            </details>
-            <details>
-                <summary>肉食</summary>
-                <span class="clickable-text">ワニ</span>
-                <span class="clickable-text">サメ</span>
-            </details>
+        <div class="category-box">
+            <div class="category-title">動物</div>
+            <div class="details-content">
+                <details>
+                    <summary>草食</summary>
+                    <span class="clickable-text">ウシ</span>
+                    <span class="clickable-text">ブタ</span>
+                </details>
+                <details>
+                    <summary>肉食</summary>
+                    <span class="clickable-text">ワニ</span>
+                    <span class="clickable-text">サメ</span>
+                </details>
+            </div>
         </div>
     </div>
     `;
