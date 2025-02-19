@@ -153,13 +153,33 @@
                 justify-content: center;
             }
 
-            .stimulus-container {
-                max-width: 95%;
-                width: auto;
-                padding: 20px;
+            /* 指示文（Prompt）のスタイル */
+            .prompt-container {
+                width: 100%;
+                max-width: 800px;
+                text-align: left;
+                font-size: 18px;
+                color: #555;
+                line-height: 1.6;
+                margin-bottom: 20px;
+                padding: 10px;
+                background-color: #f8f8f8;
+                border-radius: 5px;
+                border: 1px solid #ccc;
             }
 
             /* 実験・デモの共通コンテナ */
+            /* 刺激（StimuliDatails）のコンテナ */
+            .stimulus-container {
+                width: 90%;
+                max-width: 800px;
+                padding: 20px;
+                border: 1px solid #444;
+                border-radius: 5px;
+                background-color: #fff;
+                overflow: auto;
+            }
+
             .stimulus-container {
                 text-align: left;
                 max-width: 100%;
@@ -326,16 +346,14 @@
         });
     }
 
-    const createStimulusHTML = (stimulus, prompt) => {
+    function createStimulusHTML(stimuli, prompt) {
         return `
-        <div style="position: absolute; top: 40px; left: 50%; transform: translateX(-50%); text-align: center;">
-            ${prompt}
+        <div class="stimulus-wrapper">
+            <div class="prompt-container">${prompt}</div>
+            <div class="stimulus-container">${stimuli}</div>
         </div>
-        <div style="position: absolute; top: 150px; left: 50%; transform: translateX(-50%); width: 80%; max-width: 600px; text-align: left; margin: 0 auto;">
-            ${stimulus}
-        </div>
-    `;
-    };
+        `;
+    }
 
     // 実験開始の説明
     const hello_instructions = {
