@@ -16,103 +16,132 @@
     <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.3"></script>
     <script src="https://unpkg.com/@jspsych-contrib/plugin-pipe"></script>
     <link href="https://unpkg.com/jspsych@7.3.2/css/jspsych.css" rel="stylesheet" type="text/css" />
+   
     <!-- css -->
-    <style type="text/css">
-        details[open]> :not(summary) {
-            padding-left: 2em;
-            /* 折りたたみ文字を2文字分右へ */
-        }
 
-        body {
-            margin: 20px;
-            /* 画面端に余白を設定 */
-        }
+    <head>
+        <style>
+            /* --- スライダーのコンテナ（各スライダーの間隔を調整）--- */
+            .slider-container {
+                margin-bottom: 30px;
+                /* スライダー間のスペースを広げる */
+            }
 
-        .jspsych-btn {
-            margin: 50px auto;
-            /* 上下 20px の余白、中央配置 */
-            max-width: 80%;
-            /* ボタンの横幅を制限 */
-        }
+            /* --- スライダーのラベル（1～20の表示）--- */
+            .slider-labels {
+                display: flex;
+                justify-content: space-between;
+                /* 左右に配置 */
+                margin-top: 5px;
+                font-size: 14px;
+                color: #333;
+                /* 黒系に統一 */
+            }
 
-        #jspsych-display-element {
-            padding: 80px;
-            /* 画面の端とボタンの間に余白 */
-            box-sizing: border-box;
-        }
+            /* --- 説明文のスタイル（補足説明のフォント設定）--- */
+            .description {
+                font-size: 14px;
+                color: #666;
+                /* グレーで控えめな表示 */
+                margin-bottom: 10px;
+            }
 
-        .indent-summary>summary {
-            padding-left: 2em;
-            /* 任意のインデント */
-        }
+            /* --- スライダーの基本デザイン --- */
+            input[type="range"] {
+                width: 100%;
+                height: 40px;
+                /* タッチしやすいサイズ */
+                -webkit-appearance: none;
+                appearance: none;
+                background: #ccc;
+                /* 背景色をグレーに */
+                border-radius: 10px;
+                outline: none;
+                opacity: 0.9;
+                transition: opacity 0.2s;
+            }
 
-        /* --- スライダーのコンテナ: 各スライダーの間に余白を設定 --- */
-        .slider-container {
-            margin-bottom: 30px;
-            /* スライダーの間隔を広げ、タッチ操作しやすく */
-        }
+            /* --- スライダーのホバー時（透明度調整）--- */
+            input[type="range"]:hover {
+                opacity: 1;
+            }
 
-        /* --- スライダーのラベル（数値の表示）: 左右に配置 --- */
-        .slider-labels {
-            display: flex;
-            justify-content: space-between;
-            /* 左右に配置 */
-            margin-top: 5px;
-            font-size: 14px;
-            /* 数値の視認性を向上 */
-        }
+            /* --- スライダーのつまみ（サークル部分のデザイン）--- */
+            input[type="range"]::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                width: 30px;
+                height: 30px;
+                background: #222;
+                /* 黒系に統一 */
+                border-radius: 50%;
+                cursor: pointer;
+            }
 
-        /* --- 説明文のスタイル: 見やすくするためのフォント設定 --- */
-        .description {
-            font-size: 14px;
-            /* スマホでも読みやすいサイズ */
-            margin-bottom: 10px;
-        }
+            input[type="range"]::-moz-range-thumb {
+                width: 30px;
+                height: 30px;
+                background: #222;
+                /* 黒系に統一 */
+                border-radius: 50%;
+                cursor: pointer;
+            }
 
-        /* --- スライダーのスタイル: サイズを大きくし、操作しやすく --- */
-        input[type="range"] {
-            width: 100%;
-            height: 40px;
-            /* スライダーを太くしてタッチしやすく */
-            -webkit-appearance: none;
-            appearance: none;
-            /* 背景をグレーに */
-            border-radius: 10px;
-            outline: none;
-            opacity: 0.9;
-            transition: opacity 0.2s;
-        }
+            /* --- ボタンのデザイン --- */
+            .button-container {
+                display: flex;
+                justify-content: center;
+                padding: 15px 0;
+            }
 
-        /* --- スライダーのホバー時: 透明度を変更し、視認性を向上 --- */
-        input[type="range"]:hover {
-            opacity: 1;
-        }
+            /* --- ボタンのスタイル（白黒デザインに変更）--- */
+            .jspsych-btn {
+                background-color: #222;
+                /* 背景を黒に */
+                color: #fff;
+                /* 文字を白に */
+                border: 1px solid #444;
+                /* 灰色の枠線 */
+                padding: 10px 20px;
+                font-size: 16px;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+                margin: 50px auto;
+                /* 上下 50px の余白、中央配置 */
+                max-width: 80%;
+                /* ボタンの横幅を制限 */
+            }
 
-        /* --- スライダーのつまみ（サークル部分）のデザイン --- */
-        input[type="range"]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            cursor: pointer;
-        }
+            /* --- ボタンのホバー時（少し明るくする）--- */
+            .jspsych-btn:hover {
+                background-color: #444;
+            }
 
-        input[type="range"]::-moz-range-thumb {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            cursor: pointer;
-        }
+            /* --- jsPsych の画面全体のレイアウト調整 --- */
+            #jspsych-display-element {
+                padding: 80px;
+                /* 画面の端とボタンの間に余白 */
+                box-sizing: border-box;
+            }
 
-        /* --- ボタンのコンテナ: ボタンを中央に配置 --- */
-        .button-container {
-            display: flex;
-            justify-content: center;
-            padding: 15px 0;
-            /* ボタンをタッチしやすく */
-        }
-    </style>
-</head>
+            /* --- 折りたたみ要素（details）内のテキストのインデント --- */
+            details[open]> :not(summary) {
+                padding-left: 2em;
+                /* 折りたたみ文字を2文字分右へ */
+            }
+
+            /* --- 任意のインデントを持つ summary 要素 --- */
+            .indent-summary>summary {
+                padding-left: 2em;
+            }
+
+            /* --- ページ全体のマージンを調整 --- */
+            body {
+                margin: 20px;
+                /* 画面端に余白を設定 */
+            }
+        </style>
+    </head>
 
 <body></body>
 <script>
