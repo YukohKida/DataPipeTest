@@ -45,6 +45,72 @@
             padding-left: 2em;
             /* 任意のインデント */
         }
+
+        /* --- スライダーのコンテナ: 各スライダーの間に余白を設定 --- */
+        .slider-container {
+            margin-bottom: 30px;
+            /* スライダーの間隔を広げ、タッチ操作しやすく */
+        }
+
+        /* --- スライダーのラベル（数値の表示）: 左右に配置 --- */
+        .slider-labels {
+            display: flex;
+            justify-content: space-between;
+            /* 左右に配置 */
+            margin-top: 5px;
+            font-size: 14px;
+            /* 数値の視認性を向上 */
+        }
+
+        /* --- 説明文のスタイル: 見やすくするためのフォント設定 --- */
+        .description {
+            font-size: 14px;
+            /* スマホでも読みやすいサイズ */
+            margin-bottom: 10px;
+        }
+
+        /* --- スライダーのスタイル: サイズを大きくし、操作しやすく --- */
+        input[type="range"] {
+            width: 100%;
+            height: 40px;
+            /* スライダーを太くしてタッチしやすく */
+            -webkit-appearance: none;
+            appearance: none;
+            /* 背景をグレーに */
+            border-radius: 10px;
+            outline: none;
+            opacity: 0.9;
+            transition: opacity 0.2s;
+        }
+
+        /* --- スライダーのホバー時: 透明度を変更し、視認性を向上 --- */
+        input[type="range"]:hover {
+            opacity: 1;
+        }
+
+        /* --- スライダーのつまみ（サークル部分）のデザイン --- */
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        /* --- ボタンのコンテナ: ボタンを中央に配置 --- */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            padding: 15px 0;
+            /* ボタンをタッチしやすく */
+        }
     </style>
 </head>
 
@@ -389,29 +455,69 @@
         }
     };
 
+    // NASA-RTLX Slider
     const demo_nasa_tlx_slider = {
-        type: jsPsychSurveySlider,
-        preamble: "<strong>各項目について、<br>1（低い）～ 20（高い）<br>で評価してください。</strong>",
-        questions: [
-            { prompt: "1. Mental Demand（精神的負荷）<br>どれくらい精神的、知的な活動を求められましたか？", name: "mental_demand", min: 1, max: 20, step: 1, required: true },
-            { prompt: "2. Physical Demand（身体的負荷）<br>どれくらいの身体的な活動を求められましたか？", name: "physical_demand", min: 1, max: 20, step: 1, required: true },
-            { prompt: "3. Temporal Demand（時間的負荷）<br>どれくらい時間的なプレッシャーを感じましたか？", name: "temporal_demand", min: 1, max: 20, step: 1, required: true },
-            { prompt: "4. Performance（作業達成度）<br>どれくらい成功したと感じましたか？", name: "performance", min: 1, max: 20, step: 1, required: true },
-            { prompt: "5. Effort（努力量）<br>どれくらい努力しましたか？", name: "effort", min: 1, max: 20, step: 1, required: true },
-            { prompt: "6. Frustration（不満・ストレス）<br>どれくらいストレスやイライラを感じましたか？", name: "frustration", min: 1, max: 20, step: 1, required: true }
-        ],
-        randomize_question_order: false,
+        type: jsPsychHtmlButtonResponse,
+        stimulus: `
+        <strong>各項目について、1（低い）～ 20（高い）で評価してください。</strong>
+
+        <div class="slider-container">
+            <p><strong>1. Mental Demand（精神的負荷）</strong></p>
+            <p class="description">どの程度の知的・知覚的活動(考える，決める，計算する，記憶する，見るなど)を必要としましたか。</p>
+            <input type="range" id="mental_demand" min="1" max="20" step="1" value="10">
+            <div class="slider-labels"><span>1</span><span>20</span></div>
+        </div>
+
+        <div class="slider-container">
+            <p><strong>2. Physical Demand（身体的負荷）</strong></p>
+            <p class="description">どの程度の身体的活動(押す，引く，回す，制御する，動き回るなど)を必要としましたか。</p>
+            <input type="range" id="physical_demand" min="1" max="20" step="1" value="10">
+            <div class="slider-labels"><span>1</span><span>20</span></div>
+        </div>
+
+        <div class="slider-container">
+            <p><strong>3. Temporal Demand（時間的負荷）</strong></p>
+            <p class="description">仕事のペースや課題が発生する頻度のために感じる時間的切迫感はどの程度でしたか。</p>
+            <input type="range" id="temporal_demand" min="1" max="20" step="1" value="10">
+            <div class="slider-labels"><span>1</span><span>20</span></div>
+        </div>
+
+        <div class="slider-container">
+            <p><strong>4. Performance（作業達成度）</strong></p>
+            <p class="description">課題の目標をどの程度達成できたと思いますか。</p>
+            <input type="range" id="performance" min="1" max="20" step="1" value="10">
+            <div class="slider-labels"><span>1</span><span>20</span></div>
+        </div>
+
+        <div class="slider-container">
+            <p><strong>5. Effort（努力量）</strong></p>
+            <p class="description">目標達成のためにどの程度努力しましたか。</p>
+            <input type="range" id="effort" min="1" max="20" step="1" value="10">
+            <div class="slider-labels"><span>1</span><span>20</span></div>
+        </div>
+
+        <div class="slider-container">
+            <p><strong>6. Frustration（不満・ストレス）</strong></p>
+            <p class="description">作業中に感じたストレスや不安はどの程度でしたか。</p>
+            <input type="range" id="frustration" min="1" max="20" step="1" value="10">
+            <div class="slider-labels"><span>1</span><span>20</span></div>
+        </div>
+    `,
+        choices: ["次へ"],
         on_start: function (trial) {
-            // 直近3つのデータを取得
             const lastThreeData = jsPsych.data.get().last(3).values();
-            // 3つ前のデータが存在する場合のみ取得
             const thirdLastData = lastThreeData.length === 3 ? lastThreeData[0] : null;
-            // 取得データをそのまま格納
             trial.data = {
-                demo_nasa_tlx_slider_data: thirdLastData?.demo_data ?? "データなし"
+                demo_nasa_rtlx_data: thirdLastData?.demo_data ?? "データなし"
             };
         },
         on_finish: function (data) {
+            data.mental_demand = document.getElementById("mental_demand").value;
+            data.physical_demand = document.getElementById("physical_demand").value;
+            data.temporal_demand = document.getElementById("temporal_demand").value;
+            data.performance = document.getElementById("performance").value;
+            data.effort = document.getElementById("effort").value;
+            data.frustration = document.getElementById("frustration").value;
             console.log(jsPsych.data.get().last(1).values());
         }
     };
@@ -2059,28 +2165,67 @@
 
     // NASA-TLX の質問 slider
     const nasa_tlx_slider = {
-        type: jsPsychSurveySlider,
-        preamble: "<strong>各項目について、<br>1（低い）～ 20（高い）<br>で評価してください。</strong>",
-        questions: [
-            { prompt: "1. Mental Demand（精神的負荷）<br>どれくらい精神的、知的な活動を求められましたか？", name: "mental_demand", min: 1, max: 20, step: 1, required: true },
-            { prompt: "2. Physical Demand（身体的負荷）<br>どれくらいの身体的な活動を求められましたか？", name: "physical_demand", min: 1, max: 20, step: 1, required: true },
-            { prompt: "3. Temporal Demand（時間的負荷）<br>どれくらい時間的なプレッシャーを感じましたか？", name: "temporal_demand", min: 1, max: 20, step: 1, required: true },
-            { prompt: "4. Performance（作業達成度）<br>どれくらい成功したと感じましたか？", name: "performance", min: 1, max: 20, step: 1, required: true },
-            { prompt: "5. Effort（努力量）<br>どれくらい努力しましたか？", name: "effort", min: 1, max: 20, step: 1, required: true },
-            { prompt: "6. Frustration（不満・ストレス）<br>どれくらいストレスやイライラを感じましたか？", name: "frustration", min: 1, max: 20, step: 1, required: true }
-        ],
-        randomize_question_order: false,
+        type: jsPsychHtmlButtonResponse,
+        stimulus: `
+        <strong>各項目について、1（低い）～ 20（高い）で評価してください。</strong>
+
+        <div class="slider-container">
+            <p><strong>1. Mental Demand（精神的負荷）</strong></p>
+            <p class="description">どの程度の知的・知覚的活動(考える，決める，計算する，記憶する，見るなど)を必要としましたか。</p>
+            <input type="range" id="mental_demand" min="1" max="20" step="1" value="10">
+            <div class="slider-labels"><span>1</span><span>20</span></div>
+        </div>
+
+        <div class="slider-container">
+            <p><strong>2. Physical Demand（身体的負荷）</strong></p>
+            <p class="description">どの程度の身体的活動(押す，引く，回す，制御する，動き回るなど)を必要としましたか。</p>
+            <input type="range" id="physical_demand" min="1" max="20" step="1" value="10">
+            <div class="slider-labels"><span>1</span><span>20</span></div>
+        </div>
+
+        <div class="slider-container">
+            <p><strong>3. Temporal Demand（時間的負荷）</strong></p>
+            <p class="description">仕事のペースや課題が発生する頻度のために感じる時間的切迫感はどの程度でしたか。</p>
+            <input type="range" id="temporal_demand" min="1" max="20" step="1" value="10">
+            <div class="slider-labels"><span>1</span><span>20</span></div>
+        </div>
+
+        <div class="slider-container">
+            <p><strong>4. Performance（作業達成度）</strong></p>
+            <p class="description">課題の目標をどの程度達成できたと思いますか。</p>
+            <input type="range" id="performance" min="1" max="20" step="1" value="10">
+            <div class="slider-labels"><span>1</span><span>20</span></div>
+        </div>
+
+        <div class="slider-container">
+            <p><strong>5. Effort（努力量）</strong></p>
+            <p class="description">目標達成のためにどの程度努力しましたか。</p>
+            <input type="range" id="effort" min="1" max="20" step="1" value="10">
+            <div class="slider-labels"><span>1</span><span>20</span></div>
+        </div>
+
+        <div class="slider-container">
+            <p><strong>6. Frustration（不満・ストレス）</strong></p>
+            <p class="description">作業中に感じたストレスや不安はどの程度でしたか。</p>
+            <input type="range" id="frustration" min="1" max="20" step="1" value="10">
+            <div class="slider-labels"><span>1</span><span>20</span></div>
+        </div>
+    `,
+        choices: ["次へ"],
         on_start: function (trial) {
-            // 直近3つのデータを取得
             const lastThreeData = jsPsych.data.get().last(3).values();
-            // 3つ前のデータが存在する場合のみ取得
             const thirdLastData = lastThreeData.length === 3 ? lastThreeData[0] : null;
-            // 取得データをそのまま格納
             trial.data = {
-                demo_nasa_tlx_slider_data: thirdLastData?.demo_data ?? "データなし"
+                nasa_tlx_slider_data: thirdLastData?.experiment_data ?? "データなし"
             };
         },
         on_finish: function (data) {
+            data.mental_demand = document.getElementById("mental_demand").value;
+            data.physical_demand = document.getElementById("physical_demand").value;
+            data.temporal_demand = document.getElementById("temporal_demand").value;
+            data.performance = document.getElementById("performance").value;
+            data.effort = document.getElementById("effort").value;
+            data.frustration = document.getElementById("frustration").value;
             console.log(jsPsych.data.get().last(1).values());
         }
     };
@@ -2167,7 +2312,7 @@
         timeline: [
             demo_experiment1,
             demo_tell_ans,
-            demo_nasa_tlx_likert
+            demo_nasa_tlx_slider
         ]
     };
 
@@ -2175,7 +2320,7 @@
         timeline: [
             demo_experiment2,
             demo_tell_ans,
-            demo_nasa_tlx_likert
+            demo_nasa_tlx_slider
         ]
     };
 
@@ -2189,7 +2334,7 @@
     const demo_timeline = {
         timeline: [
             demo_introduction,
-            ...randomized_demo_experiment_timeline, // 修正点①
+            ...randomized_demo_experiment_timeline,
             end_demo
         ]
     };
@@ -2199,7 +2344,7 @@
         timeline: [
             experiment1,
             tell_ans,
-            nasa_tlx_likert
+            nasa_tlx_slider
         ]
     };
 
@@ -2207,7 +2352,7 @@
         timeline: [
             experiment2,
             tell_ans,
-            nasa_tlx_likert
+            nasa_tlx_slider
         ]
     };
 
@@ -2221,7 +2366,7 @@
 
     // インタビューセクション
     const survey_timeline = {
-        timeline: [survey1, survey2] // 修正点②
+        timeline: [survey1, survey2]
     };
 
     // 実験終了のタイムライン
