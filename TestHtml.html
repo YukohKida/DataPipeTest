@@ -146,10 +146,26 @@
             実験画面（Exp1, Exp2, Demo）のデザイン
             ============================== */
 
+            .stimulus-wrapper {
+                width: 100%;
+                /* 画面全体を使う */
+                display: flex;
+                justify-content: center;
+            }
+
+            .stimulus-container {
+                max-width: 95%;
+                width: auto;
+                padding: 20px;
+            }
+
             /* 実験・デモの共通コンテナ */
             .stimulus-container {
                 text-align: left;
-                max-width: 90%;
+                max-width: 100%;
+                /* 画面いっぱいまで広げる */
+                width: 95%;
+                /* 必要に応じて制限 */
                 margin: auto;
                 padding: 20px;
             }
@@ -189,6 +205,10 @@
                 margin: 5px 0;
                 border-radius: 5px;
                 background-color: #f8f8f8;
+                width: auto;
+                /* 幅を制限せず、内容に応じて広がる */
+                max-width: 100%;
+                /* 画面いっぱいまで拡張可能 */
             }
 
             summary {
@@ -483,6 +503,7 @@
 
     // デモ実験 刺激1 (修正後)
     const Demo1StimuliDatails = `
+    <div class="stimulus-wrapper">
     <div class="stimulus-container">
         <details>
             <summary>植物</summary>
@@ -511,6 +532,7 @@
             </details>
         </details>
     </div>
+</div>
 `;
 
     // デモ実験 指示文 1&2 (修正後)
@@ -538,6 +560,7 @@
 
     // デモ実験 刺激2 (修正後)
     const Demo2StimuliDatails = `
+    <div class="stimulus-wrapper">
     <div class="stimulus-container">
         <div class="category-box">
             <div class="category-title">植物</div>
@@ -571,6 +594,7 @@
             </div>
         </div>
     </div>
+</div>
     `;
 
     // デモ実験2 (修正後)
@@ -749,6 +773,7 @@
 
     // 実験　刺激1　行政手続き階層刺激
     const Exp1StimuliDatails = `
+    <div class="stimulus-wrapper">
     <div class="stimulus-container">
         <details>
             <summary>くらし・手続き</summary>
@@ -1515,6 +1540,8 @@
             <span class="clickable-text"><b>すぐやる課に相談</b><br></span>
             </details>
             </details>
+        </div>
+        </div>
         `;
 
     // 実験 指示文1&2 行政手続き
@@ -1541,6 +1568,7 @@
 
     // 実験 刺激2 行政手続き階層刺激
     const Exp2StimuliDatails = `
+    <div class="stimulus-wrapper">
     <div class="stimulus-container">
         <details>
             <summary>くらし・手続き</summary>
@@ -2307,6 +2335,8 @@
             <span class="clickable-text"><b>すぐやる課に相談</b><br></span>
             </details>
             </details>
+        </div>
+    </div>
         `;
 
     // 実験2 行政実験
