@@ -724,7 +724,12 @@
             };
         },
         on_finish: function (data) {
-            console.log(jsPsych.data.get().last(1).values());
+            const lastData = jsPsych.data.get().last(3).values();
+            if (lastData.length > 0) {
+                console.log(lastData);
+            } else {
+                console.warn("No data available in jsPsych.data.get().last(1).values()");
+            }
         }
     };
 
