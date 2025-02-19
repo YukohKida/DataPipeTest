@@ -534,6 +534,8 @@
     `,
         choices: ["次へ"],
         on_start: function (trial) {
+            jsPsych.getDisplayElement().innerHTML = ""; // **画面をクリア**
+            start_time = performance.now(); // **開始時刻を記録**
             const lastThreeData = jsPsych.data.get().last(3).values();
             const thirdLastData = lastThreeData.length === 3 ? lastThreeData[0] : null;
             trial.data = {
@@ -2242,6 +2244,8 @@
     `,
         choices: ["次へ"],
         on_start: function (trial) {
+            jsPsych.getDisplayElement().innerHTML = ""; // **画面をクリア**
+            start_time = performance.now(); // **開始時刻を記録**
             const lastThreeData = jsPsych.data.get().last(3).values();
             const thirdLastData = lastThreeData.length === 3 ? lastThreeData[0] : null;
             trial.data = {
