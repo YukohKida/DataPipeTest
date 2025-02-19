@@ -23,122 +23,113 @@
         <style>
             /* --- スライダーのコンテナ（各スライダーの間隔を調整）--- */
             .slider-container {
-                margin-bottom: 30px;
-                /* スライダー間のスペースを広げる */
+                margin-bottom: 30px; /* スライダー間のスペースを広げる */
             }
-
+    
             /* --- スライダーのラベル（1～20の表示）--- */
             .slider-labels {
                 display: flex;
-                justify-content: space-between;
-                /* 左右に配置 */
+                justify-content: space-between; /* 左右に配置 */
                 margin-top: 5px;
                 font-size: 14px;
-                color: #333;
-                /* 黒系に統一 */
+                color: #333; /* 黒系に統一 */
             }
-
+    
             /* --- 説明文のスタイル（補足説明のフォント設定）--- */
             .description {
                 font-size: 14px;
-                color: #666;
-                /* グレーで控えめな表示 */
+                color: #666; /* グレーで控えめな表示 */
                 margin-bottom: 10px;
             }
-
+    
             /* --- スライダーの基本デザイン --- */
             input[type="range"] {
                 width: 100%;
-                height: 40px;
-                /* タッチしやすいサイズ */
+                height: 40px; /* タッチしやすいサイズ */
                 -webkit-appearance: none;
                 appearance: none;
-                background: #ccc;
-                /* 背景色をグレーに */
+                background: #ccc; /* 背景色をグレーに */
                 border-radius: 10px;
                 outline: none;
                 opacity: 0.9;
                 transition: opacity 0.2s;
             }
-
+    
             /* --- スライダーのホバー時（透明度調整）--- */
             input[type="range"]:hover {
                 opacity: 1;
             }
-
+    
             /* --- スライダーのつまみ（サークル部分のデザイン）--- */
             input[type="range"]::-webkit-slider-thumb {
                 -webkit-appearance: none;
                 width: 30px;
                 height: 30px;
-                background: #222;
-                /* 黒系に統一 */
+                background: #333; /* 少し明るめの黒 */
                 border-radius: 50%;
                 cursor: pointer;
             }
-
+    
             input[type="range"]::-moz-range-thumb {
                 width: 30px;
                 height: 30px;
-                background: #222;
-                /* 黒系に統一 */
+                background: #333; /* 少し明るめの黒 */
                 border-radius: 50%;
                 cursor: pointer;
             }
-
-            /* --- ボタンのデザイン --- */
+    
+            /* --- ボタンのコンテナ（複数ボタンを均等配置）--- */
             .button-container {
                 display: flex;
                 justify-content: center;
+                gap: 20px; /* ボタン同士の間隔を 20px に設定 */
                 padding: 15px 0;
+                flex-wrap: wrap; /* 小さい画面では折り返し */
             }
-
-            /* --- ボタンのスタイル（白黒デザインに変更）--- */
+    
+            /* --- ボタンのスタイル（少し明るめの黒）--- */
             .jspsych-btn {
-                background-color: #222;
-                /* 背景を黒に */
-                color: #fff;
-                /* 文字を白に */
-                border: 1px solid #444;
-                /* 灰色の枠線 */
+                background-color: #333; /* 以前の #222 より少し明るく */
+                color: #fff; /* 文字を白に */
+                border: 1px solid #555; /* 少し明るめのボーダー */
                 padding: 10px 20px;
                 font-size: 16px;
                 border-radius: 5px;
                 cursor: pointer;
                 transition: background-color 0.3s;
-                margin: 50px auto;
-                /* 上下 50px の余白、中央配置 */
-                max-width: 80%;
-                /* ボタンの横幅を制限 */
+                max-width: 80%; /* ボタンの横幅を制限 */
+                text-align: center;
             }
-
+    
             /* --- ボタンのホバー時（少し明るくする）--- */
             .jspsych-btn:hover {
-                background-color: #444;
+                background-color: #555; /* 明るさをさらに調整 */
             }
-
+    
+            /* --- jsPsych のスライダー画面の上部に余白を追加 --- */
+            #jspsych-content-wrapper {
+                padding-top: 50px; /* 上部に余白を作る */
+            }
+    
             /* --- jsPsych の画面全体のレイアウト調整 --- */
             #jspsych-display-element {
-                padding: 80px;
-                /* 画面の端とボタンの間に余白 */
+                padding: 80px; /* 画面の端とボタンの間に余白 */
                 box-sizing: border-box;
             }
-
+    
             /* --- 折りたたみ要素（details）内のテキストのインデント --- */
             details[open]> :not(summary) {
-                padding-left: 2em;
-                /* 折りたたみ文字を2文字分右へ */
+                padding-left: 2em; /* 折りたたみ文字を2文字分右へ */
             }
-
+    
             /* --- 任意のインデントを持つ summary 要素 --- */
             .indent-summary>summary {
                 padding-left: 2em;
             }
-
+    
             /* --- ページ全体のマージンを調整 --- */
             body {
-                margin: 20px;
-                /* 画面端に余白を設定 */
+                margin: 20px; /* 画面端に余白を設定 */
             }
         </style>
     </head>
@@ -550,6 +541,8 @@
             data.effort = document.getElementById("effort").value;
             data.frustration = document.getElementById("frustration").value;
             console.log(jsPsych.data.get().last(1).values());
+            sPsych.getDisplayElement().innerHTML = ""; // **画面をクリア**
+            start_time = performance.now(); // **開始時刻を記録**
         }
     };
 
@@ -2260,6 +2253,8 @@
             data.effort = document.getElementById("effort").value;
             data.frustration = document.getElementById("frustration").value;
             console.log(jsPsych.data.get().last(1).values());
+            sPsych.getDisplayElement().innerHTML = ""; // **画面をクリア**
+            start_time = performance.now(); // **開始時刻を記録**
         }
     };
 
