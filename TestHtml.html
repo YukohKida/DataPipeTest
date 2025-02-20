@@ -63,7 +63,7 @@
                 background-color: #fff;
                 overflow: auto;
                 text-align: left;
-                margin: 0 auto;
+                margin: auto;
                 border: none;
             }
 
@@ -73,9 +73,8 @@
             details {
                 width: 100%;
                 margin-bottom: 10px;
+                margin-left: 0;
                 padding: 10px;
-                border: 1px solid #ccc;
-                background-color: #f8f8f8;
                 border: none;
             }
 
@@ -92,7 +91,7 @@
             スライダーのデザイン（NASA-TLX スタイル）
             ================================= */
             .slider-container {
-                width: 100%;
+                width: 95%;
                 margin-bottom: 30px;
             }
 
@@ -641,46 +640,46 @@
             type: jsPsychHtmlButtonResponse,
             stimulus: `
             <div class="nasa-rtl-slider-container" style="margin-top: 40px; margin-bottom: 40px;">
-                <strong>各項目について、1（左）～ 100（右）で評価してください。</strong>
+                <strong>先ほど行った手続きに対して、各項目について評価してください。</strong>
 
                 <div class="slider-container">
                     <p><strong>1. Mental Demand（精神的負荷）</strong></p>
-                    <p class="description">どの程度の知的・知覚的活動(考える，決める，計算する，記憶する，見るなど)を必要としましたか。</p>
+                    <p class="description">手続きにはどの程度の知的・知覚的活動(考える，決める，計算する，記憶する，見るなど)を必要としましたか。</p>
                     <input type="range" id="mental_demand" min="1" max="100" step="1" value="50">
                     <div class="slider-labels"><span>必要ない</span><span>とても必要</span></div>
                 </div>
 
                 <div class="slider-container">
                     <p><strong>2. Physical Demand（身体的負荷）</strong></p>
-                    <p class="description">どの程度の身体的活動(押す，引く，回す，制御する，動き回るなど)を必要としましたか。</p>
+                    <p class="description">手続きにはどの程度の身体的活動(押す，引く，回す，制御する，動き回るなど)を必要としましたか。</p>
                     <input type="range" id="physical_demand" min="1" max="100" step="1" value="50">
                     <div class="slider-labels"><span>負担なし</span><span>とても負担</span></div>
                 </div>
 
                 <div class="slider-container">
                     <p><strong>3. Temporal Demand（時間的負荷）</strong></p>
-                    <p class="description">仕事のペースや課題が発生する頻度のために感じる時間的切迫感はどの程度でしたか。</p>
+                    <p class="description">手続きに対して時間的切迫感をどの程度感じましたか。</p>
                     <input type="range" id="temporal_demand" min="1" max="100" step="1" value="50">
                     <div class="slider-labels"><span>余裕がある</span><span>非常に忙しい</span></div>
                 </div>
 
                 <div class="slider-container">
                     <p><strong>4. Performance（作業達成度）</strong></p>
-                    <p class="description">課題の目標をどの程度達成できたと思いますか。</p>
+                    <p class="description">手続きの目標をどの程度達成できたと思いますか。</p>
                     <input type="range" id="performance" min="1" max="100" step="1" value="50">
                     <div class="slider-labels"><span>全く達成できず</span><span>完全に達成</span></div>
                 </div>
 
                 <div class="slider-container">
                     <p><strong>5. Effort（努力量）</strong></p>
-                    <p class="description">目標達成のためにどの程度努力しましたか。</p>
+                    <p class="description">手続きは目標達成のためにどの程度努力を必要でしたか。</p>
                     <input type="range" id="effort" min="1" max="100" step="1" value="50">
                     <div class="slider-labels"><span>ほとんど努力なし</span><span>非常に努力した</span></div>
                 </div>
 
                 <div class="slider-container">
                     <p><strong>6. Frustration（不満・ストレス）</strong></p>
-                    <p class="description">作業中に感じたストレスや不安はどの程度でしたか。</p>
+                    <p class="description">手続き中に感じたストレスや不安はどの程度でしたか。</p>
                     <input type="range" id="frustration" min="1" max="100" step="1" value="50">
                     <div class="slider-labels"><span>全くストレスなし</span><span>非常にストレス</span></div>
                 </div>
