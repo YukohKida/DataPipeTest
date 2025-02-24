@@ -667,7 +667,7 @@
                 </div>
             `,
             choices: ["次へ"],
-            button_html: '<button class="jspsych-btn" id="next-button" disabled>次へ</button>',
+            button_html: '<button class="jspsych-btn" id="next-button" disabled>%choice%</button>', // 🚀 HTMLを文字列として設定
             on_start: function (trial) {
                 jsPsych.getDisplayElement().innerHTML = "";
                 start_time = performance.now();
