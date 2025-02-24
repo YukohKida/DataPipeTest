@@ -617,9 +617,9 @@
     // NASA-RTLX Slider
     // 共通の NASA-TLX スライダー関数
     function create_nasa_rtlx_slider(mode) {
-    return {
-        type: jsPsychHtmlButtonResponse,
-        stimulus: `
+        return {
+            type: jsPsychHtmlButtonResponse,
+            stimulus: `
         <div class="nasa-rtl-slider-container" style="margin-top: 40px; margin-bottom: 40px;">
             <strong>先ほど行った手続きに対して、各項目について評価してください。</strong>
 
@@ -666,62 +666,62 @@
             </div>
         </div>
     `,
-        choices: ["次へ"], // 🚀 デフォルトのボタンを使用
-        on_start: function (trial) {
-            jsPsych.getDisplayElement().innerHTML = "";
-            start_time = performance.now();
+            choices: ["次へ"], // 🚀 デフォルトのボタンを使用
+            on_start: function (trial) {
+                jsPsych.getDisplayElement().innerHTML = "";
+                start_time = performance.now();
 
-            const lastThreeData = jsPsych.data.get().last(3).values();
-            const thirdLastData = lastThreeData.length === 3 ? lastThreeData[0] : null;
-            trial.data = {
-                demo_nasa_rtlx_data: thirdLastData?.demo_data ?? 9,
-                nasa_rtlx_data: thirdLastData?.experiment_data ?? 9,
-                mode: mode
-            };
-        },
-        on_load: function () {
-            const sliders = document.querySelectorAll('input[type="range"]');
-            const nextButton = document.querySelector(".jspsych-btn"); // 🚀 デフォルトのボタン取得
+                const lastThreeData = jsPsych.data.get().last(3).values();
+                const thirdLastData = lastThreeData.length === 3 ? lastThreeData[0] : null;
+                trial.data = {
+                    demo_nasa_rtlx_data: thirdLastData?.demo_data ?? 9,
+                    nasa_rtlx_data: thirdLastData?.experiment_data ?? 9,
+                    mode: mode
+                };
+            },
+            on_load: function () {
+                const sliders = document.querySelectorAll('input[type="range"]');
+                const nextButton = document.querySelector(".jspsych-btn"); // 🚀 デフォルトのボタン取得
 
-            // 🚀 初期状態でボタンを無効化
-            nextButton.disabled = true;
+                // 🚀 初期状態でボタンを無効化
+                nextButton.disabled = true;
 
-            function checkSliders() {
-                let allChanged = true;
+                function checkSliders() {
+                    let allChanged = true;
+                    sliders.forEach(slider => {
+                        if (slider.getAttribute("data-changed") !== "true") {
+                            allChanged = false;
+                        }
+                    });
+
+                    console.log("スライダーすべて変更済み？", allChanged); // デバッグ用
+                    nextButton.disabled = !allChanged; // 🚀 すべてのスライダーが変更されたら有効化
+                }
+
                 sliders.forEach(slider => {
-                    if (slider.getAttribute("data-changed") !== "true") {
-                        allChanged = false;
-                    }
+                    slider.addEventListener("input", function () {
+                        this.setAttribute("data-changed", "true"); // 🚀 変更があったことを記録
+                        checkSliders();
+                    });
                 });
 
-                console.log("スライダーすべて変更済み？", allChanged); // デバッグ用
-                nextButton.disabled = !allChanged; // 🚀 すべてのスライダーが変更されたら有効化
+                checkSliders(); // 初期チェック
+            },
+            on_finish: function (data) {
+                const sliders = document.querySelectorAll('input[type="range"]');
+                sliders.forEach(slider => {
+                    data[slider.id] = slider.value || null;
+                });
+
+                data.start_time = start_time;
+                data.end_time = performance.now();
+                data.reaction_time = data.end_time - data.start_time;
+
+                console.log(jsPsych.data.get().last(1).values());
+                jsPsych.finishTrial();
             }
-
-            sliders.forEach(slider => {
-                slider.addEventListener("input", function () {
-                    this.setAttribute("data-changed", "true"); // 🚀 変更があったことを記録
-                    checkSliders();
-                });
-            });
-
-            checkSliders(); // 初期チェック
-        },
-        on_finish: function (data) {
-            const sliders = document.querySelectorAll('input[type="range"]');
-            sliders.forEach(slider => {
-                data[slider.id] = slider.value || null;
-            });
-
-            data.start_time = start_time;
-            data.end_time = performance.now();
-            data.reaction_time = data.end_time - data.start_time;
-
-            console.log(jsPsych.data.get().last(1).values());
-            jsPsych.finishTrial();
-        }
-    };
-}
+        };
+    }
 
     // デモ用スライダー
     const demo_nasa_rtlx_slider = create_nasa_rtlx_slider("demo");
@@ -2351,33 +2351,6 @@
     // NASA-TLX slider
     const nasa_rtlx_slider = create_nasa_rtlx_slider("real");
 
-    // NASA-TLX の質問 likert
-    const nasa_tlx_likert = {
-        type: jsPsychSurveyLikert,
-        preamble: "<strong>各項目について、<br>1（低い）～ 20（高い）<br>で評価してください。</strong>",
-        questions: [
-            { prompt: "1. Mental Demand（精神的負荷）<br>どれくらい精神的、知的な活動を求められましたか？", labels: Array.from({ length: 20 }, (_, i) => (i + 1).toString()), required: true },
-            { prompt: "2. Physical Demand（身体的負荷）<br>どれくらいの身体的な活動を求められましたか？", labels: Array.from({ length: 20 }, (_, i) => (i + 1).toString()), required: true },
-            { prompt: "3. Temporal Demand（時間的負荷）<br>どれくらい時間的なプレッシャーを感じましたか？", labels: Array.from({ length: 20 }, (_, i) => (i + 1).toString()), required: true },
-            { prompt: "4. Performance（作業達成度）<br>どれくらい成功したと感じましたか？", labels: Array.from({ length: 20 }, (_, i) => (i + 1).toString()), required: true },
-            { prompt: "5. Effort（努力量）<br>どれくらい努力しましたか？", labels: Array.from({ length: 20 }, (_, i) => (i + 1).toString()), required: true },
-            { prompt: "6. Frustration（不満・ストレス）<br>どれくらいストレスやイライラを感じましたか？", labels: Array.from({ length: 20 }, (_, i) => (i + 1).toString()), required: true }
-        ],
-        randomize_question_order: false,
-        on_start: function (trial) {
-            // 直近3つのデータを取得
-            const lastThreeData = jsPsych.data.get().last(3).values();
-            // 3つ前のデータが存在する場合のみ取得
-            const thirdLastData = lastThreeData.length === 3 ? lastThreeData[0] : null;
-            // 取得データを格納
-            trial.data = {
-                nasa_tlx_likert_data: thirdLastData?.experiment_data ?? "データなし"
-            };
-        },
-        on_finish: function (data) {
-            console.log(jsPsych.data.get().last(1).values());
-        }
-    };
 
     // アンケート
     const survey1 = {
@@ -2401,7 +2374,7 @@
         data: {
             survey_data: 'gender',
         },
-        button_html: '<button class="jspsych-btn">%choice%</button>', // カスタムボタン
+        button_html: '<button class="jspsych-btn" style="margin: 10px auto; display: block;">%choice%</button>', // カスタムボタン
     };
 
     const save_data = {
