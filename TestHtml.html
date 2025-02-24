@@ -666,7 +666,7 @@
                     </div>
                 </div>
             `,
-            choices: ["次へ"], // 🚀 ここで標準のボタンを使用する
+            choices: ["次へ"], // 標準のボタンを使用
             on_start: function (trial) {
                 jsPsych.getDisplayElement().innerHTML = ""; // **画面をクリア**
                 start_time = performance.now(); // **開始時刻を記録**
@@ -680,13 +680,13 @@
                 };
             },
             on_load: function () {
-                // 🚀 スライダーの変更を検出する
-                const sliders = document.querySelectorAll('input[type="range"]');
+                // スライダーの変更を検出する
+                window.sliders = document.querySelectorAll('input[type="range"]'); // on_finish でも使えるようにする
                 const nextButton = document.querySelector('.jspsych-btn');
 
                 function checkSliders() {
                     let allFilled = true;
-                    sliders.forEach(slider => {
+                    window.sliders.forEach(slider => {
                         if (!slider.value || slider.value === "") {
                             allFilled = false;
                         }
@@ -694,7 +694,7 @@
                     nextButton.disabled = !allFilled; // 全てのスライダーに入力があればボタン有効化
                 }
 
-                sliders.forEach(slider => {
+                window.sliders.forEach(slider => {
                     slider.addEventListener("input", checkSliders);
                 });
 
@@ -704,6 +704,7 @@
             },
             on_finish: function (data) {
                 // **エレメントが削除される前にデータを取得**
+                const sliders = document.querySelectorAll('input[type="range"]'); // on_finish で再度取得
                 sliders.forEach(slider => {
                     data[slider.id] = slider.value || null;
                 });
