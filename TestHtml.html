@@ -36,7 +36,7 @@
             /* 画面のコンテンツを中央に配置 */
             .container {
                 width: 90%;
-                max-width: 95%;
+                max-width: 800px;
                 margin: auto;
             }
 
@@ -57,14 +57,13 @@
             ================================= */
             .stimulus-container {
                 width: 100%;
-                max-width: 95%;
+                max-width: 800px;
                 padding: 20px;
                 border-radius: 5px;
                 background-color: #fff;
                 overflow: auto;
                 text-align: left;
                 margin: auto;
-                border: none;
             }
 
             /* ==============================
@@ -72,8 +71,7 @@
             ================================= */
             details {
                 width: 100%;
-                margin-bottom: 10px;
-                margin-left: 0;
+                margin-bottom: 5px;
                 padding: 10px;
                 border: none;
             }
@@ -91,7 +89,7 @@
             スライダーのデザイン（NASA-TLX スタイル）
             ================================= */
             .slider-container {
-                width: 95%;
+                width: 100%;
                 margin-bottom: 30px;
             }
 
@@ -118,7 +116,8 @@
             }
 
             /* スライダーのつまみ */
-            input[type="range"]::-webkit-slider-thumb {
+            input[type="range"]::-webkit-slider-thumb,
+            input[type="range"]::-moz-range-thumb {
                 -webkit-appearance: none;
                 width: 30px;
                 height: 30px;
@@ -131,27 +130,8 @@
                 transform: translateY(-50%);
             }
 
-            input[type="range"]::-moz-range-thumb {
-                width: 30px;
-                height: 30px;
-                background: #333;
-                border-radius: 50%;
-                cursor: pointer;
-                border: 2px solid #555;
-                position: relative;
-                top: 50%;
-                transform: translateY(-50%);
-            }
-
             /* スライダーのバー（Webkit用） */
-            input[type="range"]::-webkit-slider-runnable-track {
-                width: 100%;
-                height: 20px;
-                background: #ccc;
-                border-radius: 10px;
-            }
-
-            /* スライダーのバー（Moz用） */
+            input[type="range"]::-webkit-slider-runnable-track,
             input[type="range"]::-moz-range-track {
                 width: 100%;
                 height: 20px;
@@ -166,11 +146,10 @@
                 display: flex;
                 justify-content: center;
                 gap: 20px;
-                padding: 15px 0;
                 flex-wrap: wrap;
-                margin-bottom: 50px;
             }
 
+            /* ボタンスタイル統一 */
             .jspsych-btn {
                 background-color: #333;
                 color: #fff;
@@ -181,6 +160,8 @@
                 cursor: pointer;
                 transition: background-color 0.3s;
                 text-align: center;
+                width: 150px;
+                margin: 10px auto;
             }
 
             .jspsych-btn:hover {
@@ -209,7 +190,7 @@
                 margin: auto;
                 display: flex;
                 flex-direction: column;
-                align-items: center;
+                text-align: left;
             }
 
             /* 各カテゴリーのボックス */
@@ -260,7 +241,7 @@
 
             /* ==============================
             説明画面（指示文）のスタイル
-            s================================= */
+            ================================= */
             .instruction-container {
                 text-align: center;
                 max-width: 90%;
@@ -639,53 +620,54 @@
         return {
             type: jsPsychHtmlButtonResponse,
             stimulus: `
-            <div class="nasa-rtl-slider-container" style="margin-top: 40px; margin-bottom: 40px;">
-                <strong>先ほど行った手続きに対して、各項目について評価してください。</strong>
+        <div class="nasa-rtl-slider-container" style="margin-top: 40px; margin-bottom: 40px;">
+            <strong>先ほど行った手続きに対して、各項目について評価してください。</strong>
 
-                <div class="slider-container">
-                    <p><strong>1. Mental Demand（精神的負荷）</strong></p>
-                    <p class="description">手続きにはどの程度の知的・知覚的活動(考える，決める，計算する，記憶する，見るなど)を必要としましたか。</p>
-                    <input type="range" id="mental_demand" min="1" max="100" step="1" value="50">
-                    <div class="slider-labels"><span>必要ない</span><span>とても必要</span></div>
-                </div>
-
-                <div class="slider-container">
-                    <p><strong>2. Physical Demand（身体的負荷）</strong></p>
-                    <p class="description">手続きにはどの程度の身体的活動(押す，引く，回す，制御する，動き回るなど)を必要としましたか。</p>
-                    <input type="range" id="physical_demand" min="1" max="100" step="1" value="50">
-                    <div class="slider-labels"><span>負担なし</span><span>とても負担</span></div>
-                </div>
-
-                <div class="slider-container">
-                    <p><strong>3. Temporal Demand（時間的負荷）</strong></p>
-                    <p class="description">手続きに対して時間的切迫感をどの程度感じましたか。</p>
-                    <input type="range" id="temporal_demand" min="1" max="100" step="1" value="50">
-                    <div class="slider-labels"><span>余裕がある</span><span>非常に忙しい</span></div>
-                </div>
-
-                <div class="slider-container">
-                    <p><strong>4. Performance（作業達成度）</strong></p>
-                    <p class="description">手続きの目標をどの程度達成できたと思いますか。</p>
-                    <input type="range" id="performance" min="1" max="100" step="1" value="50">
-                    <div class="slider-labels"><span>全く達成できず</span><span>完全に達成</span></div>
-                </div>
-
-                <div class="slider-container">
-                    <p><strong>5. Effort（努力量）</strong></p>
-                    <p class="description">手続きは目標達成のためにどの程度努力を必要でしたか。</p>
-                    <input type="range" id="effort" min="1" max="100" step="1" value="50">
-                    <div class="slider-labels"><span>ほとんど努力なし</span><span>非常に努力した</span></div>
-                </div>
-
-                <div class="slider-container">
-                    <p><strong>6. Frustration（不満・ストレス）</strong></p>
-                    <p class="description">手続き中に感じたストレスや不安はどの程度でしたか。</p>
-                    <input type="range" id="frustration" min="1" max="100" step="1" value="50">
-                    <div class="slider-labels"><span>全くストレスなし</span><span>非常にストレス</span></div>
-                </div>
+            <div class="slider-container">
+                <p><strong>1. Mental Demand（精神的負荷）</strong></p>
+                <p class="description">手続きにはどの程度の知的・知覚的活動(考える，決める，計算する，記憶する，見るなど)を必要としましたか。</p>
+                <input type="range" id="mental_demand" min="1" max="100" step="1" value="">
+                <div class="slider-labels"><span>必要ない</span><span>とても必要</span></div>
             </div>
-        `,
+
+            <div class="slider-container">
+                <p><strong>2. Physical Demand（身体的負荷）</strong></p>
+                <p class="description">手続きにはどの程度の身体的活動(押す，引く，回す，制御する，動き回るなど)を必要としましたか。</p>
+                <input type="range" id="physical_demand" min="1" max="100" step="1" value="">
+                <div class="slider-labels"><span>負担なし</span><span>とても負担</span></div>
+            </div>
+
+            <div class="slider-container">
+                <p><strong>3. Temporal Demand（時間的負荷）</strong></p>
+                <p class="description">手続きに対して時間的切迫感をどの程度感じましたか。</p>
+                <input type="range" id="temporal_demand" min="1" max="100" step="1" value="">
+                <div class="slider-labels"><span>余裕がある</span><span>非常に忙しい</span></div>
+            </div>
+
+            <div class="slider-container">
+                <p><strong>4. Performance（作業達成度）</strong></p>
+                <p class="description">手続きの目標をどの程度達成できたと思いますか。</p>
+                <input type="range" id="performance" min="1" max="100" step="1" value="">
+                <div class="slider-labels"><span>全く達成できず</span><span>完全に達成</span></div>
+            </div>
+
+            <div class="slider-container">
+                <p><strong>5. Effort（努力量）</strong></p>
+                <p class="description">手続きは目標達成のためにどの程度努力を必要でしたか。</p>
+                <input type="range" id="effort" min="1" max="100" step="1" value="">
+                <div class="slider-labels"><span>ほとんど努力なし</span><span>非常に努力した</span></div>
+            </div>
+
+            <div class="slider-container">
+                <p><strong>6. Frustration（不満・ストレス）</strong></p>
+                <p class="description">手続き中に感じたストレスや不安はどの程度でしたか。</p>
+                <input type="range" id="frustration" min="1" max="100" step="1" value="">
+                <div class="slider-labels"><span>全くストレスなし</span><span>非常にストレス</span></div>
+            </div>
+        </div>
+    `,
             choices: ["次へ"],
+            button_html: '<button class="jspsych-btn" id="next-button" disabled>次へ</button>', // 🚀 ボタンを最初は無効化
             on_start: function (trial) {
                 jsPsych.getDisplayElement().innerHTML = ""; // **画面をクリア**
                 start_time = performance.now(); // **開始時刻を記録**
@@ -697,6 +679,27 @@
                     nasa_rtlx_data: thirdLastData?.experiment_data ?? 9,
                     mode: mode // **デモ or 本番を記録**
                 };
+            },
+            on_load: function () {
+                // 🚀 スライダーの変更を検出する
+                const sliders = document.querySelectorAll('input[type="range"]');
+                const nextButton = document.getElementById("next-button");
+
+                function checkSliders() {
+                    let allFilled = true;
+                    sliders.forEach(slider => {
+                        if (slider.value === "") {
+                            allFilled = false;
+                        }
+                    });
+                    nextButton.disabled = !allFilled; // 全てのスライダーに入力があればボタン有効化
+                }
+
+                sliders.forEach(slider => {
+                    slider.addEventListener("input", checkSliders);
+                });
+
+                checkSliders(); // 初期チェック
             },
             on_finish: function (data) {
                 // **エレメントが削除される前にデータを取得**
@@ -2427,12 +2430,12 @@
 
     const survey2 = {
         type: jsPsychHtmlButtonResponse,
-        stimulus: '<p>ご性別をお聞かせください</p>',
-        choices: ['女性', '男性', 'その他'], // 女0, 男1, その他2,
-        // prompt: '<p>Choose your gender</p>'
+        stimulus: '<p class="survey-question">ご性別をお聞かせください</p>',
+        choices: ['女性', '男性', 'その他'], // 女0, 男1, その他2
         data: {
             survey_data: 'gender',
         },
+        button_html: '<button class="jspsych-btn">%choice%</button>', // カスタムボタン
     };
 
     const save_data = {
