@@ -136,7 +136,7 @@
             /* スライダーのつまみ */
             input[type="range"]::-webkit-slider-thumb,
             input[type="range"]::-moz-range-thumb {
-                -webkit-appearance: none　!important;
+                -webkit-appearance: none !important;
                 width: 40px;
                 height: 40px;
                 background: #333;
@@ -323,7 +323,7 @@
 <script>
     // const jsPsych = initJsPsych();
     const jsPsych = initJsPsych({
-        on_trial_start: function() {
+        on_trial_start: function () {
             window.scrollTo(0, 0);
         }
     });
@@ -671,7 +671,8 @@
             type: jsPsychHtmlButtonResponse,
             stimulus: `
         <div class="nasa-rtl-slider-container" style="margin-top: 40px; margin-bottom: 40px;">
-            <strong>先ほど行った手続きに対して、各項目について評価してください。</strong>
+            <strong>先ほどのデザインで手続きをした体験について、各項目について評価してください。</strong>
+            <span style="color: red; font-weight: bold;">⚠️ すべてのスライダーを操作しないと「次へ」は押せません。</span>
 
             <div class="slider-container">
                 <p><strong>1. Mental Demand（精神的負荷）</strong></p>
@@ -715,8 +716,9 @@
                 <div class="slider-labels"><span>全くストレスなし</span><span>非常にストレス</span></div>
             </div>
         </div>
+        <p id="warning-message" style="color: red; font-weight: bold;">⚠️ すべてのスライダーを操作すると「次へ」を押せます。</p>
     `,
-            choices: ["次へ"], // 🚀 デフォルトのボタンを使用
+            choices: ["次へ"], // デフォルトのボタンを使用
             on_start: function (trial) {
                 jsPsych.getDisplayElement().innerHTML = "";
                 start_time = performance.now();
@@ -731,9 +733,20 @@
             },
             on_load: function () {
                 const sliders = document.querySelectorAll('input[type="range"]');
-                const nextButton = document.querySelector(".jspsych-btn"); // 🚀 デフォルトのボタン取得
+                const nextButton = document.querySelector(".jspsych-btn"); // デフォルトのボタン取得
+                sliders.forEach(slider => {
+                    slider.addEventListener("input", function () {
+                        this.setAttribute("data-changed", "true");
+                        this.style.border = "2px solid green"; // 操作済みは緑枠にする
+                        checkSliders();
+                    });
 
-                // 🚀 初期状態でボタンを無効化
+                    if (slider.getAttribute("data-changed") !== "true") {
+                        slider.style.border = "2px solid red"; // 未操作は赤枠
+                    }
+                });
+
+                // 初期状態でボタンを無効化
                 nextButton.disabled = true;
 
                 function checkSliders() {
@@ -745,12 +758,15 @@
                     });
 
                     console.log("スライダーすべて変更済み？", allChanged); // デバッグ用
-                    nextButton.disabled = !allChanged; // 🚀 すべてのスライダーが変更されたら有効化
+                    nextButton.disabled = !allChanged; // すべてのスライダーが変更されたら有効化
+
+                    // すべてのスライダーが変更されたら警告メッセージを消す
+                    document.getElementById("warning-message").style.display = allChanged ? "none" : "block";
                 }
 
                 sliders.forEach(slider => {
                     slider.addEventListener("input", function () {
-                        this.setAttribute("data-changed", "true"); // 🚀 変更があったことを記録
+                        this.setAttribute("data-changed", "true"); // 変更があったことを記録
                         checkSliders();
                     });
                 });
