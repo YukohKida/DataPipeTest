@@ -525,8 +525,8 @@
             '<p><div style=' +
             '"text-align: left; margin-top: 20px; margin-bottom: 20px; margin-left: auto; margin-right: auto; width: 80%;' +
             ' font-size:20px;"><br>' +
-            'これから実験の練習を２セット行なっていただきます。<br>' +
-            '1セットはお手続き、回答結果の表示、お手続きの評価の3ステップで構成されています。<br></p>' +
+            'これから実験の練習を２セット行なっていただきます。</p>' +
+            '<p>1セットはお手続き、回答結果の表示、お手続きの評価の3ステップで構成されています。<br></p>' +
             '<div style="text-align: center; "font-size:20px">' +
             '<p>「次へ」を押すと<br>「練習パート」<br>が始まります。</p>',
         choices: ["実験を開始"],
@@ -675,7 +675,7 @@
             stimulus: `
         <div class="nasa-rtl-slider-container" style="margin-top: 40px; margin-bottom: 40px;">
             <strong>先ほどのデザインで手続きをした体験について、各項目について評価してください。</strong><br>
-            <span style="color: red; font-weight: bold;">⚠️ すべてのスライダーを操作しないと「次へ」は押せません。</span>
+            <span style="color: red; font-weight: bold;">⚠️ すべてのスライダーを操作して「次へ」を押してください。</span>
 
             <div class="slider-container">
                 <p><strong>1. Mental Demand（精神的負荷）</strong></p>
@@ -1586,7 +1586,14 @@
     const Exp1and2Prompt = `
         <div style= "text-align: left; margin-top: 20px; margin-bottom: 20px; margin-left: auto; margin-right: auto;">
         <br>行政webサイトから<b>可燃ゴミ回収の曜日</b>を確認するための資料がどこにあるか探してください。
-        `;
+    `;
+
+    Exp3and4Prompt
+    // 実験 指示文3&4 行政手続き
+    const Exp3and4Prompt = `
+        <div style= "text-align: left; margin-top: 20px; margin-bottom: 20px; margin-left: auto; margin-right: auto;">
+        <br>行政webサイトから<b>図書館の利用時間</b>を確認するための資料がどこにあるか探してください。
+    `;
 
     // 実験1 行政
     // 実験1（行政手続き）
@@ -1601,6 +1608,22 @@
         },
         data: {
             experiment_data: 1, // 実験1であることを識別
+        }
+    };
+
+    // 実験1 行政
+    // 実験1（行政手続き）
+    const experiment3 = {
+        type: jsPsychHtmlKeyboardResponse,
+        stimulus: createStimulusHTML(Exp1StimuliDatails, Exp3and4Prompt),
+        choices: "NO_KEYS", // キーボード入力を無効化
+        on_load: addClickEvent, // クリックイベントを追加
+        on_start: function () {
+            jsPsych.getDisplayElement().innerHTML = ""; // **画面をクリア**
+            start_time = performance.now(); // **開始時刻を記録**
+        },
+        data: {
+            experiment_data: 3, // 実験1であることを識別
         }
     };
 
@@ -2417,6 +2440,21 @@
         }
     };
 
+    // 実験4 行政実験
+    const experiment4 = {
+        type: jsPsychHtmlKeyboardResponse,
+        stimulus: createStimulusHTML(Exp2StimuliDatails, Exp3and4Prompt),
+        choices: "NO_KEYS", // キーボード入力を無効化
+        on_load: addClickEvent, // クリックイベントを追加
+        on_start: function () {
+            jsPsych.getDisplayElement().innerHTML = ""; // **画面をクリア**
+            start_time = performance.now(); // **開始時刻を記録**
+        },
+        data: {
+            experiment_data: 4, // 実験2であることを識別
+        }
+    };
+
     // 回答結果の表示
     const tell_ans = {
         type: jsPsychHtmlButtonResponse,
@@ -2534,7 +2572,7 @@
         ]
     };
 
-    // 実験セクション
+    // 実験セクション 燃えるゴミ
     const experiment1_timeline = {
         timeline: [
             experiment1,
@@ -2550,12 +2588,30 @@
             nasa_rtlx_slider
         ]
     };
+    // 実験セクション 図書館の利用時間
+    const experiment3_timeline = {
+        timeline: [
+            experiment3,
+            tell_ans,
+            nasa_rtlx_slider
+        ]
+    };
+
+    const experiment4_timeline = {
+        timeline: [
+            experiment4,
+            tell_ans,
+            nasa_rtlx_slider
+        ]
+    };
 
     // 実験をランダム化
     const randomized_experiment_timeline = {
         timeline: jsPsych.randomization.shuffle([
             experiment1_timeline,
-            experiment2_timeline
+            experiment2_timeline,
+            experiment3_timeline,
+            experiment4_timeline
         ])
     };
 
