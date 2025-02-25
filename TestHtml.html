@@ -106,8 +106,8 @@
             ================================= */
             .slider-container {
                 width: 90%;
-                margin: 20px auto;
-                margin-bottom: 30px;
+                margin: 50px auto;
+                margin-bottom: 50px;
                 padding: 10px;
             }
 
@@ -452,7 +452,7 @@
 
             `
         <div class="instruction-container">
-            <h2>実験で行ってもらうタスク</h2>
+            <h2>実験で行ってもらう<br>タスク</h2>
             <div class="instruction-text">
                 <p>ここでは練習パート、実験パートで共通して行ってもらう作業（タスク）について説明します。</p>
                 <p>練習パートと実験パートでは、以下の2つのタスクを4回繰り返して行ってもらいます。</p>
@@ -481,12 +481,11 @@
 
             `
         <div class="instruction-container">
-            <h2>オンライン手続きの評価タスク</h2>
+            <h2>オンライン手続きの評価<br>タスク</h2>
             <div class="instruction-text">
                 <p>ここでは、オンライン手続きの評価タスクについて説明します。</p>
                 <p>このタスクは、直前に行ったオンライン手続きの<b>ユーザーの負担やストレスを評価</b>していただくタスクになります。</p>
-                <p>6つの項目について、あなたが感じた負荷の程度を1～100のスケールで評価していただきます。</p>
-                <p>各スケールは、1（非常に低い）から 100（非常に高い）までの段階で構成されています。</p>
+                <p>6つの項目について、あなたが感じた負荷の程度を <b>1～100</b> のスケールで評価していただきます。</p>
                 <p>直感的に、最も適切だと思う値を選択してください。</p>
             </div>
             <p class="instruction-next">Next ボタンを押すと<br>「アンケート入力」<br>の説明に切り替わります。</p>
@@ -679,21 +678,21 @@
 
             <div class="slider-container">
                 <p><strong>1. Mental Demand（精神的負荷）</strong></p>
-                <p class="description">手続きにはどの程度の知的・知覚的活動(考える，決める，計算する，記憶する，見るなど)を必要としましたか。</p>
+                <p class="description">手続きにはどの程度の知的・知覚的活動を必要としましたか。<br>(考える，決める，計算する，記憶する，見るなど)</p>
                 <input type="range" id="mental_demand" min="1" max="100" step="1" value="50" data-changed="false">
                 <div class="slider-labels"><span>必要ない</span><span>とても必要</span></div>
             </div>
 
             <div class="slider-container">
                 <p><strong>2. Physical Demand（身体的負荷）</strong></p>
-                <p class="description">手続きにはどの程度の身体的活動(押す，引く，回す，制御する，動き回るなど)を必要としましたか。</p>
+                <p class="description">デザインは手続きをするのにどの程度の身体的活動を必要としましたか。<br>(押す，引く，回す，制御する，動き回るなど)</p>
                 <input type="range" id="physical_demand" min="1" max="100" step="1" value="50" data-changed="false">
                 <div class="slider-labels"><span>必要ない</span><span>とても必要</span></div>
             </div>
 
             <div class="slider-container">
                 <p><strong>3. Temporal Demand（時間的負荷）</strong></p>
-                <p class="description">手続きに対して時間的切迫感をどの程度感じましたか。</p>
+                <p class="description">デザインは手続きをするのに対して時間的切迫感をどの程度感じましたか。<br>(時間に余裕があった、速くて余裕がなかった)</p>
                 <input type="range" id="temporal_demand" min="1" max="100" step="1" value="50" data-changed="false">
                 <div class="slider-labels"><span>余裕がある</span><span>非常に忙しい</span></div>
             </div>
@@ -707,14 +706,14 @@
 
             <div class="slider-container">
                 <p><strong>5. Effort（努力量）</strong></p>
-                <p class="description">手続きは目標達成のためにどの程度努力を必要でしたか。</p>
+                <p class="description">デザインは手続きの目標達成するのにどの程度努力を必要でしたか。</p>
                 <input type="range" id="effort" min="1" max="100" step="1" value="50" data-changed="false">
                 <div class="slider-labels"><span>ほとんど努力なし</span><span>非常に努力した</span></div>
             </div>
 
             <div class="slider-container">
                 <p><strong>6. Frustration（不満・ストレス）</strong></p>
-                <p class="description">手続き中に感じたストレスや不安はどの程度でしたか。</p>
+                <p class="description">手続き中に感じたデザインによるストレスや不安はどの程度でしたか。</p>
                 <input type="range" id="frustration" min="1" max="100" step="1" value="50" data-changed="false">
                 <div class="slider-labels"><span>全くストレスなし</span><span>非常にストレス</span></div>
             </div>
