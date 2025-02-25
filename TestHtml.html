@@ -269,6 +269,26 @@
                 font-weight: bold;
                 margin-top: 30px;
             }
+
+            /* ==============================
+            性別回答のスタイル
+            ================================= */
+            /* survey2 のみボタンを縦に並べる */
+            .survey2-container .jspsych-btn {
+                display: block;
+                width: 200px;
+                /* ボタンの幅を統一 */
+                margin: 10px auto;
+                /* 上下に余白を作る */
+                text-align: center;
+            }
+
+            /* ボタンを縦に並べる */
+            .survey2-container .jspsych-html-button-response-button {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
         </style>
     </head>
 
@@ -2373,6 +2393,14 @@
         choices: ['女性', '男性', 'その他'], // 女0, 男1, その他2
         data: {
             survey_data: 'gender',
+        },
+        on_load: function () {
+            // 🔥 このページのボタンを縦に並べるためのスタイル適用
+            document.getElementById('jspsych-content').classList.add('survey2-container');
+        },
+        on_finish: function () {
+            // 🔥 スタイルをリセット（他のページに影響しないように）
+            document.getElementById('jspsych-content').classList.remove('survey2-container');
         }
     };
 
