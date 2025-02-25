@@ -311,6 +311,9 @@
 <script>
     // const jsPsych = initJsPsych();
     const jsPsych = initJsPsych({
+        on_trial_start: function() {
+            window.scrollTo(0, 0);
+        }
     });
 
     const subject_id = jsPsych.randomization.randomID(10);
