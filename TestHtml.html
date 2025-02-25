@@ -137,6 +137,7 @@
             input[type="range"]::-webkit-slider-thumb,
             input[type="range"]::-moz-range-thumb {
                 -webkit-appearance: none !important;
+                appearance: none !important;
                 width: 40px;
                 height: 40px;
                 background: #333;
@@ -180,7 +181,7 @@
                 text-align: center;
                 width: 150px;
                 margin: 10px auto;
-                margin-bottom: 30px;
+                margin-bottom: 40px;
             }
 
             .jspsych-btn:hover {
@@ -544,18 +545,18 @@
             <details>
                 <summary>野菜</summary>
                 <span class="clickable-text">トマト</span>
-                <span class="clickable-text">キャベツ</span>
+                <span class="clickable-text">ニンジン</span>
             </details>
         </details>
         <details>
         <summary>動物</summary>
             <details>
-                <summary>草食</summary>
+                <summary>草食動物</summary>
                 <span class="clickable-text">ウシ</span>
                 <span class="clickable-text">ブタ</span>
             </details>
             <details>
-                <summary>肉食</summary>
+                <summary>肉食動物</summary>
                 <span class="clickable-text">ワニ</span>
                 <span class="clickable-text">サメ</span>
             </details>
@@ -602,7 +603,7 @@
                 <details>
                     <summary>野菜</summary>
                     <span class="clickable-text">トマト</span>
-                    <span class="clickable-text">キャベツ</span>
+                    <span class="clickable-text">ニンジン</span>
                 </details>
             </div>
         </div>
@@ -611,12 +612,12 @@
             <div class="category-title">動物</div>
             <div class="details-content">
                 <details>
-                    <summary>草食</summary>
+                    <summary>草食動物</summary>
                     <span class="clickable-text">ウシ</span>
                     <span class="clickable-text">ブタ</span>
                 </details>
                 <details>
-                    <summary>肉食</summary>
+                    <summary>肉食動物</summary>
                     <span class="clickable-text">ワニ</span>
                     <span class="clickable-text">サメ</span>
                 </details>
@@ -678,7 +679,7 @@
             <div class="slider-container">
                 <p><strong>1. Mental Demand（精神的負荷）</strong></p>
                 <p class="description">手続きにはどの程度の知的・知覚的活動(考える，決める，計算する，記憶する，見るなど)を必要としましたか。</p>
-                <input type="range" id="mental_demand" min="1" max="100" step="1" value="50">
+                <input type="range" id="mental_demand" min="1" max="100" step="1" value="50" data-changed="false">
                 <div class="slider-labels"><span>必要ない</span><span>とても必要</span></div>
             </div>
 
