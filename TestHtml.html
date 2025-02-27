@@ -2518,7 +2518,10 @@
     const save_data = {
         type: jsPsychPipe,
         action: 'save',
-        experiment_id: '2xDqhflOiUKP',
+        // // 本番id
+        // experiment_id: 'GRNyxL1DwJxQ',
+        // テスト用id
+        experiment_id: 'HxTduDNuSP3l',
         filename: filename,
         data_string: () => jsPsych.data.get().csv()
     };
@@ -2635,6 +2638,19 @@
         survey_timeline,
         ending_timeline
     ]);
+
+    // // 実験開始期間前の教示
+    // // 本番開始時、 "jsPsych.run" と "DataPipe の id" のコメントアウトをスイッチング
+    // const stop_trial = {
+    //     type: jsPsychHtmlKeyboardResponse,
+    //     stimulus: '申し訳ありません、まだ募集を開始していません。<br><br>開催日時は<br>3/5  9:00<br> ~ <br>3/9< 23:59 br>です。<br><br>' +
+    //         '募集を開始しましたら、ぜひご参加ください。<br><br>'
+    // };
+    // jsPsych.run([
+    //     stop_trial,
+    //     stop_trial,
+    //     stop_trial
+    // ]);
 
 </script>
 
